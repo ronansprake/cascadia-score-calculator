@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -49,7 +48,7 @@
       body[data-players="1"] .player-2, body[data-players="1"] .player-3, body[data-players="1"] .player-4 { display: none; }
       body[data-players="2"] .player-3, body[data-players="2"] .player-4 { display: none; }
       body[data-players="3"] .player-4 { display: none; }
-      body[data-players="1"] .row, body[data-players="1"] .total-scores { justify-content: normal; gap: 50px; }
+      body[data-players="1"] .row, body[data-players="1"] .total-scores { justify-content: normal; gap: 40px; }
       body[data-players="3"] .total-score, body[data-players="4"] .total-score { width: 40px; font-size: 24px; }
     </style>
   </head>
@@ -449,387 +448,387 @@
     </div>
 
     <script>
-const body = document.querySelector("body");
-const players = document.querySelectorAll(".js-player-switch");
+			const body = document.querySelector("body");
+			const players = document.querySelectorAll(".js-player-switch");
 
-const elemScores = document.querySelectorAll(".js-score");
-const elemBonuses = document.querySelectorAll(".js-bonus");
+			const elemScores = document.querySelectorAll(".js-score");
+			const elemBonuses = document.querySelectorAll(".js-bonus");
 
-const elemScoresPlayer1 = document.querySelectorAll(".js-score[data-player='1']");
-const elemBonusesPlayer1 = document.querySelectorAll(".js-bonus[data-player='1']");
-const elemTotalScorePlayer1 = document.querySelector('.js-total-score-player-1');
+			const elemScoresPlayer1 = document.querySelectorAll(".js-score[data-player='1']");
+			const elemBonusesPlayer1 = document.querySelectorAll(".js-bonus[data-player='1']");
+			const elemTotalScorePlayer1 = document.querySelector('.js-total-score-player-1');
 
-const elemScoresPlayer2 = document.querySelectorAll(".js-score[data-player='2']");
-const elemBonusesPlayer2 = document.querySelectorAll(".js-bonus[data-player='2']");
-const elemTotalScorePlayer2 = document.querySelector('.js-total-score-player-2');
+			const elemScoresPlayer2 = document.querySelectorAll(".js-score[data-player='2']");
+			const elemBonusesPlayer2 = document.querySelectorAll(".js-bonus[data-player='2']");
+			const elemTotalScorePlayer2 = document.querySelector('.js-total-score-player-2');
 
-const elemScoresPlayer3 = document.querySelectorAll(".js-score[data-player='3']");
-const elemBonusesPlayer3 = document.querySelectorAll(".js-bonus[data-player='3']");
-const elemTotalScorePlayer3 = document.querySelector('.js-total-score-player-3');
+			const elemScoresPlayer3 = document.querySelectorAll(".js-score[data-player='3']");
+			const elemBonusesPlayer3 = document.querySelectorAll(".js-bonus[data-player='3']");
+			const elemTotalScorePlayer3 = document.querySelector('.js-total-score-player-3');
 
-const elemScoresPlayer4 = document.querySelectorAll(".js-score[data-player='4']");
-const elemBonusesPlayer4 = document.querySelectorAll(".js-bonus[data-player='4']");
-const elemTotalScorePlayer4 = document.querySelector('.js-total-score-player-4');
+			const elemScoresPlayer4 = document.querySelectorAll(".js-score[data-player='4']");
+			const elemBonusesPlayer4 = document.querySelectorAll(".js-bonus[data-player='4']");
+			const elemTotalScorePlayer4 = document.querySelector('.js-total-score-player-4');
 
-const elemIncrements = document.querySelectorAll('.js-increment');
-const elemDecrements = document.querySelectorAll('.js-decrement');
+			const elemIncrements = document.querySelectorAll('.js-increment');
+			const elemDecrements = document.querySelectorAll('.js-decrement');
 
-document.oncontextmenu = function() {
-  return false;
-}
+			document.oncontextmenu = function() {
+			  return false;
+			}
 
-// Switch player
-players.forEach((player) => {
-  player.addEventListener('change', (e) => {
-    if (player.checked) {
-      body.dataset.players = player.value;
-    }
-    // Reset scores on change of player count
-    elemScores.forEach((elemScore) => {
-      elemScore.value = 0;
-    });
-    elemBonuses.forEach((elemBonus) => {
-      elemBonus.innerHTML = '';
-    });
-    updateTotalScore();
-  });
-});
+			// Switch player
+			players.forEach((player) => {
+			  player.addEventListener('change', (e) => {
+			    if (player.checked) {
+			      body.dataset.players = player.value;
+			    }
+			    // Reset scores on change of player count
+			    elemScores.forEach((elemScore) => {
+			      elemScore.value = 0;
+			    });
+			    elemBonuses.forEach((elemBonus) => {
+			      elemBonus.innerHTML = '';
+			    });
+			    updateTotalScore();
+			  });
+			});
 
-elemScores.forEach((elemScore) => {
-  elemScore.addEventListener('change', (e) => {
-    if (!elemScore.value) {
-      elemScore.value = 0;
-    }
-    if (elemScore.dataset.type == "territory") {
-      applyBonusesToRow(elemScore.dataset.row);
-    }
-    updateTotalScore();
-  });
-  elemScore.addEventListener('focus', (e) => {
-	elemScore.select();
-    e.preventDefault();
-    e.stopPropagation();
-    return false;
-  });
-  elemScore.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-  });
-});
+			elemScores.forEach((elemScore) => {
+			  elemScore.addEventListener('change', (e) => {
+			    if (!elemScore.value) {
+			      elemScore.value = 0;
+			    }
+			    if (elemScore.dataset.type == "territory") {
+			      applyBonusesToRow(elemScore.dataset.row);
+			    }
+			    updateTotalScore();
+			  });
+			  elemScore.addEventListener('focus', (e) => {
+				elemScore.select();
+			    e.preventDefault();
+			    e.stopPropagation();
+			    return false;
+			  });
+			  elemScore.addEventListener('contextmenu', (e) => {
+			    e.preventDefault();
+			  });
+			});
 
-// Update row bonuses
-function applyBonusesToRow(row) {
-  var elemScores = document.querySelectorAll(".js-score[data-row='" + row + "']");
-  var elemBonuses = document.querySelectorAll(".js-bonus[data-row='" + row + "']");
-  if (body.dataset.players == 1) {
-    elemScores.forEach((elemScore) => {
-      if (elemScores[0].value > 6) {
-        elemBonuses[0].innerHTML = 2;
-      } else {
-        elemBonuses[0].innerHTML = '';
-      }
-    });
-  }
-  if (body.dataset.players == 2) {
-    if (elemScores[0].value == 0 && elemScores[1].value == 0) {
-      elemBonuses[0].innerHTML = '';
-      elemBonuses[1].innerHTML = '';
-    }
-    else if (elemScores[0].value > elemScores[1].value) {
-      elemBonuses[0].innerHTML = 2;
-      elemBonuses[1].innerHTML = '';
-    }
-    else if (elemScores[1].value > elemScores[0].value) {
-      elemBonuses[0].innerHTML = '';
-      elemBonuses[1].innerHTML = 2;
-    }
-    else {
-      elemBonuses[0].innerHTML = 1;
-      elemBonuses[1].innerHTML = 1;
-    }
-  }
-  if (body.dataset.players == 3) {
-    var scorePlayer1 = parseInt(elemScores[0].value);
-    var scorePlayer2 = parseInt(elemScores[1].value);
-    var scorePlayer3 = parseInt(elemScores[2].value);
-    if (scorePlayer1 == 0 && scorePlayer2 == 0 && scorePlayer3 == 0) {
-      elemBonuses[0].innerHTML = '';
-      elemBonuses[1].innerHTML = '';
-      elemBonuses[2].innerHTML = '';
-    }
-    else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3) {
-      elemBonuses[0].innerHTML = 1;
-      elemBonuses[1].innerHTML = 1;
-      elemBonuses[2].innerHTML = 1;
-    }
-    else if (scorePlayer1 == scorePlayer2 && scorePlayer1 > scorePlayer3) {
-      elemBonuses[0].innerHTML = 2;
-      elemBonuses[1].innerHTML = 2;
-      elemBonuses[2].innerHTML = '';
-    }
-    else if (scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer2) {
-      elemBonuses[0].innerHTML = 2;
-      elemBonuses[1].innerHTML = '';
-      elemBonuses[2].innerHTML = 2;
-    }
-    else if (scorePlayer2 == scorePlayer3 && scorePlayer2 > scorePlayer1) {
-      elemBonuses[0].innerHTML = '';
-      elemBonuses[1].innerHTML = 2;
-      elemBonuses[2].innerHTML = 2;
-    }
-    else if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3) {
-      elemBonuses[0].innerHTML = 3;
-      elemBonuses[1].innerHTML = '';
-      elemBonuses[2].innerHTML = '';
-      if (scorePlayer2 > scorePlayer3) {
-        elemBonuses[1].innerHTML = 1;
-      } else if (scorePlayer3 > scorePlayer2) {
-        elemBonuses[2].innerHTML = 1;
-      }
-    }
-    else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3) {
-      elemBonuses[0].innerHTML = '';
-      elemBonuses[1].innerHTML = 3;
-      elemBonuses[2].innerHTML = '';
-      if (scorePlayer1 > scorePlayer3) {
-        elemBonuses[0].innerHTML = 1;
-      } else if (scorePlayer3 > scorePlayer1) {
-        elemBonuses[2].innerHTML = 1;
-      }
-    }
-    else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2) {
-      elemBonuses[0].innerHTML = '';
-      elemBonuses[1].innerHTML = '';
-      elemBonuses[2].innerHTML = 3;
-      if (scorePlayer1 > scorePlayer2) {
-        elemBonuses[0].innerHTML = 1;
-      } else if (scorePlayer2 > scorePlayer1) {
-        elemBonuses[1].innerHTML = 1;
-      }
-    }
-  }
-  if (body.dataset.players == 4) {
-    var scorePlayer1 = parseInt(elemScores[0].value);
-    var scorePlayer2 = parseInt(elemScores[1].value);
-    var scorePlayer3 = parseInt(elemScores[2].value);
-    var scorePlayer4 = parseInt(elemScores[3].value);
-    if (scorePlayer1 == 0 && scorePlayer2 == 0 && scorePlayer3 == 0 && scorePlayer4 == 0) {
-      elemBonuses[0].innerHTML = '';
-      elemBonuses[1].innerHTML = '';
-      elemBonuses[2].innerHTML = '';
-      elemBonuses[3].innerHTML = '';
-    }
-    else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4) {
-      elemBonuses[0].innerHTML = 1;
-      elemBonuses[1].innerHTML = 1;
-      elemBonuses[2].innerHTML = 1;
-      elemBonuses[3].innerHTML = 1;
-    }
-    else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer4) {
-      elemBonuses[0].innerHTML = 1;
-      elemBonuses[1].innerHTML = 1;
-      elemBonuses[2].innerHTML = 1;
-      elemBonuses[3].innerHTML = '';
-    }
-    else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer3) {
-      elemBonuses[0].innerHTML = 1;
-      elemBonuses[1].innerHTML = 1;
-      elemBonuses[2].innerHTML = '';
-      elemBonuses[3].innerHTML = 1;
-    }
-    else if (scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer2) {
-      elemBonuses[0].innerHTML = 1;
-      elemBonuses[1].innerHTML = '';
-      elemBonuses[2].innerHTML = 1;
-      elemBonuses[3].innerHTML = 1;
-    }
-    else if (scorePlayer2 == scorePlayer3 && scorePlayer2 == scorePlayer4 && scorePlayer2 > scorePlayer1) {
-      elemBonuses[0].innerHTML = '';
-      elemBonuses[1].innerHTML = 1;
-      elemBonuses[2].innerHTML = 1;
-      elemBonuses[3].innerHTML = 1;
-    }
-    else if (scorePlayer1 == scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
-      elemBonuses[0].innerHTML = 2;
-      elemBonuses[1].innerHTML = 2;
-      elemBonuses[2].innerHTML = '';
-      elemBonuses[3].innerHTML = '';
-    }
-    else if (scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer4) {
-      elemBonuses[0].innerHTML = 2;
-      elemBonuses[1].innerHTML = '';
-      elemBonuses[2].innerHTML = 2;
-      elemBonuses[3].innerHTML = '';
-    }
-    else if (scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3) {
-      elemBonuses[0].innerHTML = 2;
-      elemBonuses[1].innerHTML = '';
-      elemBonuses[2].innerHTML = '';
-      elemBonuses[3].innerHTML = 2;
-    }
-    else if (scorePlayer2 == scorePlayer3 && scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer4) {
-      elemBonuses[0].innerHTML = '';
-      elemBonuses[1].innerHTML = 2;
-      elemBonuses[2].innerHTML = 2;
-      elemBonuses[3].innerHTML = '';
-    }
-    else if (scorePlayer2 == scorePlayer4 && scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3) {
-      elemBonuses[0].innerHTML = '';
-      elemBonuses[1].innerHTML = 2;
-      elemBonuses[2].innerHTML = '';
-      elemBonuses[3].innerHTML = 2;
-    }
-    else if (scorePlayer3 == scorePlayer4 && scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2) {
-      elemBonuses[0].innerHTML = '';
-      elemBonuses[1].innerHTML = '';
-      elemBonuses[2].innerHTML = 2;
-      elemBonuses[3].innerHTML = 2;
-    }
-    else if (scorePlayer2 == scorePlayer3 && scorePlayer2 > scorePlayer1) {
-      elemBonuses[0].innerHTML = '';
-      elemBonuses[1].innerHTML = 2;
-      elemBonuses[2].innerHTML = 2;
-    }
-    else if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
-      elemBonuses[0].innerHTML = 3;
-      elemBonuses[1].innerHTML = '';
-      elemBonuses[2].innerHTML = '';
-      elemBonuses[3].innerHTML = '';
-      if (scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4) {
-        elemBonuses[1].innerHTML = 1;
-      } else if (scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4) {
-        elemBonuses[2].innerHTML = 1;
-      } else if (scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3) {
-        elemBonuses[3].innerHTML = 1;
-      }
-    }
-    else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4) {
-      elemBonuses[0].innerHTML = '';
-      elemBonuses[1].innerHTML = 3;
-      elemBonuses[2].innerHTML = '';
-      elemBonuses[3].innerHTML = '';
-      if (scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
-        elemBonuses[0].innerHTML = 1;
-      } else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer4) {
-        elemBonuses[2].innerHTML = 1;
-      } else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer3) {
-        elemBonuses[3].innerHTML = 1;
-      }
-    }
-    else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4) {
-      elemBonuses[0].innerHTML = '';
-      elemBonuses[1].innerHTML = '';
-      elemBonuses[2].innerHTML = 3;
-      elemBonuses[3].innerHTML = '';
-      if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer4) {
-        elemBonuses[0].innerHTML = 1;
-      } else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer4) {
-        elemBonuses[1].innerHTML = 1;
-      } else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2) {
-        elemBonuses[3].innerHTML = 1;
-      }
-    }
-    else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3) {
-      elemBonuses[0].innerHTML = '';
-      elemBonuses[1].innerHTML = '';
-      elemBonuses[2].innerHTML = '';
-      elemBonuses[3].innerHTML = 3;
-      if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3) {
-        elemBonuses[0].innerHTML = 1;
-      } else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3) {
-        elemBonuses[1].innerHTML = 1;
-      } else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2) {
-        elemBonuses[2].innerHTML = 1;
-      }
-    }
-  }
-}
+			// Update row bonuses
+			function applyBonusesToRow(row) {
+			  var elemScores = document.querySelectorAll(".js-score[data-row='" + row + "']");
+			  var elemBonuses = document.querySelectorAll(".js-bonus[data-row='" + row + "']");
+			  if (body.dataset.players == 1) {
+			    elemScores.forEach((elemScore) => {
+			      if (elemScores[0].value > 6) {
+			        elemBonuses[0].innerHTML = 2;
+			      } else {
+			        elemBonuses[0].innerHTML = '';
+			      }
+			    });
+			  }
+			  if (body.dataset.players == 2) {
+			    if (elemScores[0].value == 0 && elemScores[1].value == 0) {
+			      elemBonuses[0].innerHTML = '';
+			      elemBonuses[1].innerHTML = '';
+			    }
+			    else if (elemScores[0].value > elemScores[1].value) {
+			      elemBonuses[0].innerHTML = 2;
+			      elemBonuses[1].innerHTML = '';
+			    }
+			    else if (elemScores[1].value > elemScores[0].value) {
+			      elemBonuses[0].innerHTML = '';
+			      elemBonuses[1].innerHTML = 2;
+			    }
+			    else {
+			      elemBonuses[0].innerHTML = 1;
+			      elemBonuses[1].innerHTML = 1;
+			    }
+			  }
+			  if (body.dataset.players == 3) {
+			    var scorePlayer1 = parseInt(elemScores[0].value);
+			    var scorePlayer2 = parseInt(elemScores[1].value);
+			    var scorePlayer3 = parseInt(elemScores[2].value);
+			    if (scorePlayer1 == 0 && scorePlayer2 == 0 && scorePlayer3 == 0) {
+			      elemBonuses[0].innerHTML = '';
+			      elemBonuses[1].innerHTML = '';
+			      elemBonuses[2].innerHTML = '';
+			    }
+			    else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3) {
+			      elemBonuses[0].innerHTML = 1;
+			      elemBonuses[1].innerHTML = 1;
+			      elemBonuses[2].innerHTML = 1;
+			    }
+			    else if (scorePlayer1 == scorePlayer2 && scorePlayer1 > scorePlayer3) {
+			      elemBonuses[0].innerHTML = 2;
+			      elemBonuses[1].innerHTML = 2;
+			      elemBonuses[2].innerHTML = '';
+			    }
+			    else if (scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer2) {
+			      elemBonuses[0].innerHTML = 2;
+			      elemBonuses[1].innerHTML = '';
+			      elemBonuses[2].innerHTML = 2;
+			    }
+			    else if (scorePlayer2 == scorePlayer3 && scorePlayer2 > scorePlayer1) {
+			      elemBonuses[0].innerHTML = '';
+			      elemBonuses[1].innerHTML = 2;
+			      elemBonuses[2].innerHTML = 2;
+			    }
+			    else if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3) {
+			      elemBonuses[0].innerHTML = 3;
+			      elemBonuses[1].innerHTML = '';
+			      elemBonuses[2].innerHTML = '';
+			      if (scorePlayer2 > scorePlayer3) {
+			        elemBonuses[1].innerHTML = 1;
+			      } else if (scorePlayer3 > scorePlayer2) {
+			        elemBonuses[2].innerHTML = 1;
+			      }
+			    }
+			    else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3) {
+			      elemBonuses[0].innerHTML = '';
+			      elemBonuses[1].innerHTML = 3;
+			      elemBonuses[2].innerHTML = '';
+			      if (scorePlayer1 > scorePlayer3) {
+			        elemBonuses[0].innerHTML = 1;
+			      } else if (scorePlayer3 > scorePlayer1) {
+			        elemBonuses[2].innerHTML = 1;
+			      }
+			    }
+			    else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2) {
+			      elemBonuses[0].innerHTML = '';
+			      elemBonuses[1].innerHTML = '';
+			      elemBonuses[2].innerHTML = 3;
+			      if (scorePlayer1 > scorePlayer2) {
+			        elemBonuses[0].innerHTML = 1;
+			      } else if (scorePlayer2 > scorePlayer1) {
+			        elemBonuses[1].innerHTML = 1;
+			      }
+			    }
+			  }
+			  if (body.dataset.players == 4) {
+			    var scorePlayer1 = parseInt(elemScores[0].value);
+			    var scorePlayer2 = parseInt(elemScores[1].value);
+			    var scorePlayer3 = parseInt(elemScores[2].value);
+			    var scorePlayer4 = parseInt(elemScores[3].value);
+			    if (scorePlayer1 == 0 && scorePlayer2 == 0 && scorePlayer3 == 0 && scorePlayer4 == 0) {
+			      elemBonuses[0].innerHTML = '';
+			      elemBonuses[1].innerHTML = '';
+			      elemBonuses[2].innerHTML = '';
+			      elemBonuses[3].innerHTML = '';
+			    }
+			    else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4) {
+			      elemBonuses[0].innerHTML = 1;
+			      elemBonuses[1].innerHTML = 1;
+			      elemBonuses[2].innerHTML = 1;
+			      elemBonuses[3].innerHTML = 1;
+			    }
+			    else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer4) {
+			      elemBonuses[0].innerHTML = 1;
+			      elemBonuses[1].innerHTML = 1;
+			      elemBonuses[2].innerHTML = 1;
+			      elemBonuses[3].innerHTML = '';
+			    }
+			    else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer3) {
+			      elemBonuses[0].innerHTML = 1;
+			      elemBonuses[1].innerHTML = 1;
+			      elemBonuses[2].innerHTML = '';
+			      elemBonuses[3].innerHTML = 1;
+			    }
+			    else if (scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer2) {
+			      elemBonuses[0].innerHTML = 1;
+			      elemBonuses[1].innerHTML = '';
+			      elemBonuses[2].innerHTML = 1;
+			      elemBonuses[3].innerHTML = 1;
+			    }
+			    else if (scorePlayer2 == scorePlayer3 && scorePlayer2 == scorePlayer4 && scorePlayer2 > scorePlayer1) {
+			      elemBonuses[0].innerHTML = '';
+			      elemBonuses[1].innerHTML = 1;
+			      elemBonuses[2].innerHTML = 1;
+			      elemBonuses[3].innerHTML = 1;
+			    }
+			    else if (scorePlayer1 == scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
+			      elemBonuses[0].innerHTML = 2;
+			      elemBonuses[1].innerHTML = 2;
+			      elemBonuses[2].innerHTML = '';
+			      elemBonuses[3].innerHTML = '';
+			    }
+			    else if (scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer4) {
+			      elemBonuses[0].innerHTML = 2;
+			      elemBonuses[1].innerHTML = '';
+			      elemBonuses[2].innerHTML = 2;
+			      elemBonuses[3].innerHTML = '';
+			    }
+			    else if (scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3) {
+			      elemBonuses[0].innerHTML = 2;
+			      elemBonuses[1].innerHTML = '';
+			      elemBonuses[2].innerHTML = '';
+			      elemBonuses[3].innerHTML = 2;
+			    }
+			    else if (scorePlayer2 == scorePlayer3 && scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer4) {
+			      elemBonuses[0].innerHTML = '';
+			      elemBonuses[1].innerHTML = 2;
+			      elemBonuses[2].innerHTML = 2;
+			      elemBonuses[3].innerHTML = '';
+			    }
+			    else if (scorePlayer2 == scorePlayer4 && scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3) {
+			      elemBonuses[0].innerHTML = '';
+			      elemBonuses[1].innerHTML = 2;
+			      elemBonuses[2].innerHTML = '';
+			      elemBonuses[3].innerHTML = 2;
+			    }
+			    else if (scorePlayer3 == scorePlayer4 && scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2) {
+			      elemBonuses[0].innerHTML = '';
+			      elemBonuses[1].innerHTML = '';
+			      elemBonuses[2].innerHTML = 2;
+			      elemBonuses[3].innerHTML = 2;
+			    }
+			    else if (scorePlayer2 == scorePlayer3 && scorePlayer2 > scorePlayer1) {
+			      elemBonuses[0].innerHTML = '';
+			      elemBonuses[1].innerHTML = 2;
+			      elemBonuses[2].innerHTML = 2;
+			    }
+			    else if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
+			      elemBonuses[0].innerHTML = 3;
+			      elemBonuses[1].innerHTML = '';
+			      elemBonuses[2].innerHTML = '';
+			      elemBonuses[3].innerHTML = '';
+			      if (scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4) {
+			        elemBonuses[1].innerHTML = 1;
+			      } else if (scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4) {
+			        elemBonuses[2].innerHTML = 1;
+			      } else if (scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3) {
+			        elemBonuses[3].innerHTML = 1;
+			      }
+			    }
+			    else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4) {
+			      elemBonuses[0].innerHTML = '';
+			      elemBonuses[1].innerHTML = 3;
+			      elemBonuses[2].innerHTML = '';
+			      elemBonuses[3].innerHTML = '';
+			      if (scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
+			        elemBonuses[0].innerHTML = 1;
+			      } else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer4) {
+			        elemBonuses[2].innerHTML = 1;
+			      } else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer3) {
+			        elemBonuses[3].innerHTML = 1;
+			      }
+			    }
+			    else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4) {
+			      elemBonuses[0].innerHTML = '';
+			      elemBonuses[1].innerHTML = '';
+			      elemBonuses[2].innerHTML = 3;
+			      elemBonuses[3].innerHTML = '';
+			      if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer4) {
+			        elemBonuses[0].innerHTML = 1;
+			      } else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer4) {
+			        elemBonuses[1].innerHTML = 1;
+			      } else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2) {
+			        elemBonuses[3].innerHTML = 1;
+			      }
+			    }
+			    else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3) {
+			      elemBonuses[0].innerHTML = '';
+			      elemBonuses[1].innerHTML = '';
+			      elemBonuses[2].innerHTML = '';
+			      elemBonuses[3].innerHTML = 3;
+			      if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3) {
+			        elemBonuses[0].innerHTML = 1;
+			      } else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3) {
+			        elemBonuses[1].innerHTML = 1;
+			      } else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2) {
+			        elemBonuses[2].innerHTML = 1;
+			      }
+			    }
+			  }
+			}
 
-// Update a score
-function updateRowScore(row, player, direction) {
-  var scoreInput = document.querySelector(".js-score[data-row='" + row + "'][data-player='" + player + "']");
-  if (direction == 'decrement' && scoreInput.value > 0) {
-    scoreInput.value = parseInt(scoreInput.value) - 1
-  }
-  if (direction == 'increment') {
-    scoreInput.value = parseInt(scoreInput.value) + 1
-  }
-  scoreInput.dispatchEvent(new Event('change'));
-  updateTotalScore();
-}
+			// Update a score
+			function updateRowScore(row, player, direction) {
+			  var scoreInput = document.querySelector(".js-score[data-row='" + row + "'][data-player='" + player + "']");
+			  if (direction == 'decrement' && scoreInput.value > 0) {
+			    scoreInput.value = parseInt(scoreInput.value) - 1
+			  }
+			  if (direction == 'increment') {
+			    scoreInput.value = parseInt(scoreInput.value) + 1
+			  }
+			  scoreInput.dispatchEvent(new Event('change'));
+			  updateTotalScore();
+			}
 
-// Increment score
-elemIncrements.forEach((elemIncrement) => {
-  elemIncrement.addEventListener('click', (e) => {
-	updateRowScore(elemIncrement.dataset.row, elemIncrement.dataset.player, 'increment');
-  });
-});
+			// Increment score
+			elemIncrements.forEach((elemIncrement) => {
+			  elemIncrement.addEventListener('click', (e) => {
+				updateRowScore(elemIncrement.dataset.row, elemIncrement.dataset.player, 'increment');
+			  });
+			});
 
-// Decrement score
-elemDecrements.forEach((elemDecrement) => {
-  elemDecrement.addEventListener('click', (e) => {
-	updateRowScore(elemDecrement.dataset.row, elemDecrement.dataset.player, 'decrement');
-  });
-});
+			// Decrement score
+			elemDecrements.forEach((elemDecrement) => {
+			  elemDecrement.addEventListener('click', (e) => {
+				updateRowScore(elemDecrement.dataset.row, elemDecrement.dataset.player, 'decrement');
+			  });
+			});
 
-// Update the total scores with all subtotals
-function updateTotalScore() {
-  var scorePlayer1 = 0;
-  var scorePlayer2 = 0;
-  var scorePlayer3 = 0;
-  var scorePlayer4 = 0;
-  elemScoresPlayer1.forEach((elemScore) => {
-    scorePlayer1 += parseInt(elemScore.value);
-  });
-  elemScoresPlayer2.forEach((elemScore) => {
-    scorePlayer2 += parseInt(elemScore.value);
-  });
-  elemScoresPlayer3.forEach((elemScore) => {
-    scorePlayer3 += parseInt(elemScore.value);
-  });
-  elemScoresPlayer4.forEach((elemScore) => {
-    scorePlayer4 += parseInt(elemScore.value);
-  });
-  elemBonusesPlayer1.forEach((elemBonus) => {
-    if (elemBonus.innerHTML) {
-      scorePlayer1 += parseInt(elemBonus.innerHTML);
-    }
-  });
-  elemBonusesPlayer2.forEach((elemBonus) => {
-    if (elemBonus.innerHTML) {
-      scorePlayer2 += parseInt(elemBonus.innerHTML);
-    }
-  });
-  elemBonusesPlayer3.forEach((elemBonus) => {
-    if (elemBonus.innerHTML) {
-      scorePlayer3 += parseInt(elemBonus.innerHTML);
-    }
-  });
-  elemBonusesPlayer4.forEach((elemBonus) => {
-    if (elemBonus.innerHTML) {
-      scorePlayer4 += parseInt(elemBonus.innerHTML);
-    }
-  });
-  elemTotalScorePlayer1.innerHTML = scorePlayer1;
-  elemTotalScorePlayer2.innerHTML = scorePlayer2;
-  elemTotalScorePlayer3.innerHTML = scorePlayer3;
-  elemTotalScorePlayer4.innerHTML = scorePlayer4;
-}
+			// Update the total scores with all subtotals
+			function updateTotalScore() {
+			  var scorePlayer1 = 0;
+			  var scorePlayer2 = 0;
+			  var scorePlayer3 = 0;
+			  var scorePlayer4 = 0;
+			  elemScoresPlayer1.forEach((elemScore) => {
+			    scorePlayer1 += parseInt(elemScore.value);
+			  });
+			  elemScoresPlayer2.forEach((elemScore) => {
+			    scorePlayer2 += parseInt(elemScore.value);
+			  });
+			  elemScoresPlayer3.forEach((elemScore) => {
+			    scorePlayer3 += parseInt(elemScore.value);
+			  });
+			  elemScoresPlayer4.forEach((elemScore) => {
+			    scorePlayer4 += parseInt(elemScore.value);
+			  });
+			  elemBonusesPlayer1.forEach((elemBonus) => {
+			    if (elemBonus.innerHTML) {
+			      scorePlayer1 += parseInt(elemBonus.innerHTML);
+			    }
+			  });
+			  elemBonusesPlayer2.forEach((elemBonus) => {
+			    if (elemBonus.innerHTML) {
+			      scorePlayer2 += parseInt(elemBonus.innerHTML);
+			    }
+			  });
+			  elemBonusesPlayer3.forEach((elemBonus) => {
+			    if (elemBonus.innerHTML) {
+			      scorePlayer3 += parseInt(elemBonus.innerHTML);
+			    }
+			  });
+			  elemBonusesPlayer4.forEach((elemBonus) => {
+			    if (elemBonus.innerHTML) {
+			      scorePlayer4 += parseInt(elemBonus.innerHTML);
+			    }
+			  });
+			  elemTotalScorePlayer1.innerHTML = scorePlayer1;
+			  elemTotalScorePlayer2.innerHTML = scorePlayer2;
+			  elemTotalScorePlayer3.innerHTML = scorePlayer3;
+			  elemTotalScorePlayer4.innerHTML = scorePlayer4;
+			}
 
-// Reset all scores
-document.querySelector('.js-total-scores').addEventListener('click', (e) => {
-  var result = window.confirm('Reset your score?');
-  if (result == true) {
-    // Reset scores
-    elemScores.forEach((elemScore) => {
-      elemScore.value = 0;
-    });
-    elemBonuses.forEach((elemBonus) => {
-      elemBonus.innerHTML = '';
-    });
-  	updateTotalScore();
-  }
-  e.stopPropagation();
-});
+			// Reset all scores
+			document.querySelector('.js-total-scores').addEventListener('click', (e) => {
+			  var result = window.confirm('Reset your score?');
+			  if (result == true) {
+			    // Reset scores
+			    elemScores.forEach((elemScore) => {
+			      elemScore.value = 0;
+			    });
+			    elemBonuses.forEach((elemBonus) => {
+			      elemBonus.innerHTML = '';
+			    });
+			  	updateTotalScore();
+			  }
+			  e.stopPropagation();
+			});
     </script>
   </body>
 </html>
