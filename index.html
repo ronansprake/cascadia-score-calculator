@@ -51,6 +51,7 @@
       body[data-players="3"] .player-4 { display: none; }
       body[data-players="1"] .row, body[data-players="1"] .total-scores { justify-content: normal; gap: 40px; }
       body[data-players="3"] .total-score, body[data-players="4"] .total-score { width: 40px; font-size: 24px; }
+      .feedback { margin-top: 40px; text-align: center; color: #999; }
     </style>
   </head>
 
@@ -442,11 +443,12 @@
     <div class="total-scores js-total-scores">
       <h2 class="row-label">Totals</h2>
   	  <div class="total-score player-1 js-total-score-player-1">0</div>
-      <div class="total-score player-2 js-total-score-player-2">0</div>
-      <div class="total-score player-3 js-total-score-player-3">0</div>
-      <div class="total-score player-4 js-total-score-player-4">0</div>
+              <div class="total-score player-2 js-total-score-player-2">0</div>
+              <div class="total-score player-3 js-total-score-player-3">0</div>
+              <div class="total-score player-4 js-total-score-player-4">0</div>
   	</div>
     </div>
+    <p class="feedback"><a href="https://ronansprake.co.uk/board-game-score-calculators/" target="_blank">Could this be better? Send me feedback</a></p>
 
     <script>
 			const body = document.querySelector("body");
