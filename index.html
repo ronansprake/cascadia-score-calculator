@@ -537,11 +537,11 @@
 			      elemBonuses[0].innerHTML = '';
 			      elemBonuses[1].innerHTML = '';
 			    }
-			    else if (elemScores[0].value > elemScores[1].value) {
+			    else if (parseInt(elemScores[0].value) > parseInt(elemScores[1].value)) {
 			      elemBonuses[0].innerHTML = 2;
 			      elemBonuses[1].innerHTML = '';
 			    }
-			    else if (elemScores[1].value > elemScores[0].value) {
+			    else if (parseInt(elemScores[1].value) > parseInt(elemScores[0].value)) {
 			      elemBonuses[0].innerHTML = '';
 			      elemBonuses[1].innerHTML = 2;
 			    }
