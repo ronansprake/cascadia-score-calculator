@@ -19,14 +19,15 @@
       .hide { text-indent: -99em; position: absolute; left: -9999px; width: 0; height: 0; }
       .rows {padding: 0;}
       .row-label { font-size: 16px; width: 80px; }
-      .counter, .score, .total-score { font-size: 32px; }
+      .counter, .initials, .score, .total-score { font-size: 32px; }
       h1, .rows label { text-indent: -99em; position: absolute; width: 0; height: 0; }
       button { background: none; width: 40px; height: 40px; font-size: 24px; border: none; cursor: pointer; line-height: 38px; }
       .row { display: flex; flex-direction: row; align-items: center; justify-content: space-between; margin-bottom: 20px; }
       .row.end { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--main-color); }
-      .counter { display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
-      input[type="number"] { display: block; width: 40px; height: 40px; line-height: 38px; padding: 0; border: 1px solid #333; text-align: center; -moz-appearance: textfield; font-size: 18px; }
+      .counter, .initials { display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
+      input[type="number"], input[type="text"] { display: block; width: 40px; height: 40px; line-height: 38px; padding: 0; border: 1px solid #333; text-align: center; -moz-appearance: textfield; font-size: 18px; }
       .input { position: relative; }
+			.initials input[type="text"] { text-transform: uppercase; }
       .input .bonus { position: absolute; text-align: right; bottom: 2px; right: 3px; font-size: 10px; pointer-events: none; }
       input[type="number"]::-webkit-outer-spin-button,input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
       .total-scores { cursor: pointer; display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
@@ -45,6 +46,8 @@
       .players li input[type="radio"]:checked + label { border: 1px solid var(--main-color); background: #EEE; color: var(--main-color); }
       .players li input[type="radio"]:checked + label span { color: var(--main-color); }
       label { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+      body[data-players="1"] .player-multi { display: none; }
+			body[data-players="2"] .initials { margin: 0 40px; }
       body[data-players="3"] .counter button, body[data-players="4"] .counter button {display: none;}
       body[data-players="1"] .player-2, body[data-players="1"] .player-3, body[data-players="1"] .player-4 { display: none; }
       body[data-players="2"] .player-3, body[data-players="2"] .player-4 { display: none; }
@@ -82,11 +85,33 @@
     </ul>
     </fieldset>
 
+    <ul class="rows player-multi">
+      <li class="row end">
+        <div class="row-label">Player</div>
+        <div class="initials player-1">
+          <label for="player-1-initials">Player 1 initials</label>
+          <input id="player-1-initials" type="text" value="" maxlength="2" />
+        </div>
+        <div class="initials player-2">
+          <label for="player-2-initials">Player 2 initials</label>
+          <input id="player-2-initials" type="text" value="" maxlength="2" />
+        </div>
+        <div class="initials player-3">
+          <label for="player-3-initials">Player 3 initials</label>
+          <input id="player-3-initials" type="text" value="" maxlength="2" />
+        </div>
+        <div class="initials player-4">
+          <label for="player-4-initials">Player 4 initials</label>
+          <input id="player-4-initials" type="text" value="" maxlength="2" />
+        </div>
+      </li>
+    </ul>
+
     <ul class="rows">
       <li class="row js-row">
         <h2 class="row-label">Bear</h2>
         <div class="counter player-1">
-	  <label for="player-1-bear">Player 1</label>
+	        <label for="player-1-bear">Player 1</label>
           <button class="js-decrement" data-row="1" data-player="1" tabindex="-1">&ndash;</button>
           <input id="player-1-bear" type="number" min="0" class="js-score" data-row="1" data-type="animal" data-player="1" value="0" tabindex="5" />
           <button class="js-increment" data-row="1" data-player="1" tabindex="-1">+</button>
