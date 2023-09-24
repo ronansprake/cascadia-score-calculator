@@ -845,7 +845,7 @@
         elemScoresPlayer1.forEach((elemScore) => {
           if (elemScore.dataset.type == 'wildlife') {
             subtotalWildlifePlayer1 += parseInt(elemScore.value);
-          } else {
+          } else if (elemScore.dataset.type == 'habitat') {
             subtotalHabitatsPlayer1 += parseInt(elemScore.value);
           }
           scorePlayer1 += parseInt(elemScore.value);
@@ -853,7 +853,7 @@
         elemScoresPlayer2.forEach((elemScore) => {
           if (elemScore.dataset.type == 'wildlife') {
             subtotalWildlifePlayer2 += parseInt(elemScore.value);
-          } else {
+          } else if (elemScore.dataset.type == 'habitat') {
             subtotalHabitatsPlayer2 += parseInt(elemScore.value);
           }
           scorePlayer2 += parseInt(elemScore.value);
@@ -861,7 +861,7 @@
         elemScoresPlayer3.forEach((elemScore) => {
           if (elemScore.dataset.type == 'wildlife') {
             subtotalWildlifePlayer3 += parseInt(elemScore.value);
-          } else {
+          } else if (elemScore.dataset.type == 'habitat') {
             subtotalHabitatsPlayer3 += parseInt(elemScore.value);
           }
           scorePlayer3 += parseInt(elemScore.value);
@@ -869,7 +869,7 @@
         elemScoresPlayer4.forEach((elemScore) => {
           if (elemScore.dataset.type == 'wildlife') {
             subtotalWildlifePlayer4 += parseInt(elemScore.value);
-          } else {
+          } else if (elemScore.dataset.type == 'habitat') {
             subtotalHabitatsPlayer4 += parseInt(elemScore.value);
           }
           scorePlayer4 += parseInt(elemScore.value);
