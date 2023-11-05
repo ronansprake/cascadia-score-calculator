@@ -16,7 +16,7 @@
       }
       * { font-family: 'Open Sans', sans-serif; font-weight: 600; color: var(--neutral-800); box-sizing: border-box; }
       body { background-color: #F6F6F6; margin: 0; padding: 40px 0; position: relative; }
-      .wrap { max-width: 400px; padding: 0 20px; margin: 0 auto; }
+      .wrap { max-width: 440px; padding: 0 20px; margin: 0 auto; }
       .hide { text-indent: -99em; position: absolute; left: -9999px; width: 0; height: 0; }
       .rows {padding: 0;}
       .row-label { font-size: 16px; width: 80px; }
@@ -41,24 +41,24 @@
       .players legend { position: absolute; top: -999px; }
       .players ul { overflow: hidden; position: relative; display: block; list-style: none; margin: 0 0 40px; padding: 0; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly; }
       .players li { width: 50%; }
-      .players label { border: 1px solid #DDD; display: block; background: #FFF; color: #999; padding: 6px 10px; margin-bottom: 5px; cursor: pointer; transition: .2s background; position: relative; text-align: center; }
+      .players label { border: 1px solid #DDD; border-right-color: #FFF; display: block; background: #FFF; color: #999; padding: 6px 10px; margin-bottom: 5px; cursor: pointer; transition: .2s background; position: relative; text-align: center; }
       .players span { color: #999; }
-      .players li:first-child label { border-radius: 4px 0 0 4px; border-right-color: #FFF; }
-      .players li:last-child label { border-radius: 0 4px 4px 0; }
-      .players li:nth-child(2) label, .players li:nth-child(3) label { border-right-color: #FFF; }
+      .players li:first-child label { border-radius: 4px 0 0 4px; }
+      .players li:last-child label { border-radius: 0 4px 4px 0; border-right-color: #DDD; }
       input[type="radio"] { opacity: 0; position: absolute; }
       .players li input[type="radio"]:checked + label { border: 1px solid var(--neutral-800); background: #EEE; color: var(--neutral-800); }
       .players li input[type="radio"]:checked + label span { color: var(--neutral-800); }
       label { -webkit-tap-highlight-color: rgba(0,0,0,0); }
       body[data-players="1"] .player-multi { display: none; }
       body[data-players="2"] .initials { margin: 0 40px; }
-      body[data-players="3"] .counter button, body[data-players="4"] .counter button {display: none;}
-      body[data-players="1"] .player-2, body[data-players="1"] .player-3, body[data-players="1"] .player-4 { display: none; }
-      body[data-players="2"] .player-3, body[data-players="2"] .player-4 { display: none; }
-      body[data-players="3"] .player-4 { display: none; }
+      body[data-players="3"] .counter button, body[data-players="4"] .counter button, body[data-players="5"] .counter button {display: none;}
+      body[data-players="1"] .player-2, body[data-players="1"] .player-3, body[data-players="1"] .player-4, body[data-players="1"] .player-5 { display: none; }
+      body[data-players="2"] .player-3, body[data-players="2"] .player-4, body[data-players="2"] .player-5 { display: none; }
+      body[data-players="3"] .player-4, body[data-players="3"] .player-5 { display: none; }
+      body[data-players="4"] .player-5 { display: none; }
       body[data-players="1"] .row, body[data-players="1"] .total-scores { justify-content: normal; gap: 40px; }
-      body[data-players="3"] .total-score, body[data-players="4"] .total-score { width: 40px; font-size: 24px; }
-      body[data-players="3"] .subtotals .total-score, body[data-players="4"] .subtotals .total-score { font-size: 20px; }
+      body[data-players="3"] .total-score, body[data-players="4"] .total-score, body[data-players="5"] .total-score { width: 40px; font-size: 24px; }
+      body[data-players="3"] .subtotals .total-score, body[data-players="4"] .subtotals .total-score, body[data-players="5"] .subtotals .total-score { font-size: 20px; }
 			.reset { margin-top: 30px; }
 			.links { margin: 30px 0; text-align: center; font-size: 14px; }
 			.links a { color: var(--neutral-800); }
@@ -88,6 +88,10 @@
         <input type="radio" name="player" id="players-4" value="4" class="js-player-switch">
         <label for="players-4">4</label>
       </li>
+      <li>
+        <input type="radio" name="player" id="players-5" value="5" class="js-player-switch">
+        <label for="players-5">5</label>
+      </li>
     </ul>
     </fieldset>
 
@@ -109,6 +113,10 @@
         <div class="initials player-4">
           <label for="player-4-initials">Player 4 initials</label>
           <input id="player-4-initials" type="text" value="" maxlength="2" />
+        </div>
+        <div class="initials player-5">
+          <label for="player-5-initials">Player 5 initials</label>
+          <input id="player-5-initials" type="text" value="" maxlength="2" />
         </div>
       </li>
     </ul>
@@ -140,6 +148,12 @@
           <input id="player-4-bear" type="number" min="0" class="js-score" data-row="1" data-type="wildlife" data-player="4" value="0" />
           <button class="js-increment" data-row="1" data-player="4" tabindex="-1">+</button>
         </div>
+        <div class="counter player-5">
+          <label for="player-5-bear">Player 5</label>
+          <button class="js-decrement" data-row="1" data-player="5" tabindex="-1">&ndash;</button>
+          <input id="player-5-bear" type="number" min="0" class="js-score" data-row="1" data-type="wildlife" data-player="5" value="0" />
+          <button class="js-increment" data-row="1" data-player="5" tabindex="-1">+</button>
+        </div>
       </li>
       <li class="row js-row">
         <h2 class="row-label">Elk</h2>
@@ -166,6 +180,12 @@
           <button class="js-decrement" data-row="2" data-player="4" tabindex="-1">&ndash;</button>
           <input id="player-4-elk" type="number" min="0" class="js-score" data-row="2" data-type="wildlife" data-player="4" value="0" />
           <button class="js-increment" data-row="2" data-player="4" tabindex="-1">+</button>
+        </div>
+        <div class="counter player-5">
+          <label for="player-5-elk">Player 5</label>
+          <button class="js-decrement" data-row="2" data-player="5" tabindex="-1">&ndash;</button>
+          <input id="player-5-elk" type="number" min="0" class="js-score" data-row="2" data-type="wildlife" data-player="5" value="0" />
+          <button class="js-increment" data-row="2" data-player="5" tabindex="-1">+</button>
         </div>
       </li>
       <li class="row js-row">
@@ -194,6 +214,12 @@
           <input id="player-4-hawk" type="number" min="0" class="js-score" data-row="3" data-type="wildlife" data-player="4" value="0" />
           <button class="js-increment" data-row="3" data-player="4" tabindex="-1">+</button>
         </div>
+        <div class="counter player-5">
+          <label for="player-5-hawk">Player 5</label>
+          <button class="js-decrement" data-row="3" data-player="5" tabindex="-1">&ndash;</button>
+          <input id="player-5-hawk" type="number" min="0" class="js-score" data-row="3" data-type="wildlife" data-player="5" value="0" />
+          <button class="js-increment" data-row="3" data-player="5" tabindex="-1">+</button>
+        </div>
       </li>
       <li class="row js-row">
         <h2 class="row-label player-1">Fox</h2>
@@ -220,6 +246,12 @@
           <button class="js-decrement" data-row="4" data-player="4" tabindex="-1">&ndash;</button>
           <input id="player-4-fox" type="number" min="0" class="js-score" data-row="4" data-type="wildlife" data-player="4" value="0" />
           <button class="js-increment" data-row="4" data-player="4" tabindex="-1">+</button>
+        </div>
+        <div class="counter player-5">
+          <label for="player-5-fox">Player 5</label>
+          <button class="js-decrement" data-row="4" data-player="5" tabindex="-1">&ndash;</button>
+          <input id="player-5-fox" type="number" min="0" class="js-score" data-row="4" data-type="wildlife" data-player="5" value="0" />
+          <button class="js-increment" data-row="4" data-player="5" tabindex="-1">+</button>
         </div>
       </li>
       <li class="row end js-row">
@@ -248,6 +280,12 @@
           <input id="player-4-salmon" type="number" min="0" class="js-score" data-row="5" data-type="wildlife" data-player="4" value="0" />
           <button class="js-increment" data-row="5" data-player="4" tabindex="-1">+</button>
         </div>
+        <div class="counter player-5">
+          <label for="player-5-salmon">Player 5</label>
+          <button class="js-decrement" data-row="5" data-player="5" tabindex="-1">&ndash;</button>
+          <input id="player-5-salmon" type="number" min="0" class="js-score" data-row="5" data-type="wildlife" data-player="5" value="0" />
+          <button class="js-increment" data-row="5" data-player="5" tabindex="-1">+</button>
+        </div>
       </li>
     </ul>
     <div class="total-scores subtotals js-subtotal-scores-wildlife">
@@ -256,6 +294,7 @@
       <div class="total-score player-2 js-subtotal-score-wildlife-player-2">0</div>
       <div class="total-score player-3 js-subtotal-score-wildlife-player-3">0</div>
       <div class="total-score player-4 js-subtotal-score-wildlife-player-4">0</div>
+      <div class="total-score player-5 js-subtotal-score-wildlife-player-5">0</div>
     </div>
     <ul class="rows">
       <li class="row js-row">
@@ -296,6 +335,15 @@
           </div>
           <button class="js-increment" data-row="6" data-player="4" tabindex="-1">+</button>
         </div>
+        <div class="counter player-5">
+          <label for="player-5-mountain">Player 5</label>
+          <button class="js-decrement" data-row="6" data-player="5" tabindex="-1">&ndash;</button>
+          <div class="input">
+            <input id="player-5-mountain" type="number" min="0" class="js-score" data-row="6" data-type="habitat" data-player="5" value="0" />
+            <div class="js-bonus bonus" data-row="6" data-player="5"></div>
+          </div>
+          <button class="js-increment" data-row="6" data-player="5" tabindex="-1">+</button>
+        </div>
       </li>
       <li class="row js-row">
         <h2 class="row-label">Forest</h2>
@@ -334,6 +382,15 @@
             <div class="js-bonus bonus" data-row="7" data-player="4"></div>
           </div>
           <button class="js-increment" data-row="7" data-player="4" tabindex="-1">+</button>
+        </div>
+        <div class="counter player-5">
+          <label for="player-5-forest">Player 5</label>
+          <button class="js-decrement" data-row="7" data-player="5" tabindex="-1">&ndash;</button>
+          <div class="input">
+            <input id="player-5-forest" type="number" min="0" class="js-score" data-row="7" data-type="habitat" data-player="5" value="0" />
+            <div class="js-bonus bonus" data-row="7" data-player="5"></div>
+          </div>
+          <button class="js-increment" data-row="7" data-player="5" tabindex="-1">+</button>
         </div>
       </li>
       <li class="row js-row">
@@ -374,6 +431,15 @@
           </div>
           <button class="js-increment" data-row="8" data-player="4" tabindex="-1">+</button>
         </div>
+        <div class="counter player-5">
+          <label for="player-5-prarie">Player 5</label>
+          <button class="js-decrement" data-row="8" data-player="5" tabindex="-1">&ndash;</button>
+          <div class="input">
+            <input id="player-5-prarie" type="number" min="0" class="js-score" data-row="8" data-type="habitat" data-player="5" value="0" />
+            <div class="js-bonus bonus" data-row="8" data-player="5"></div>
+          </div>
+          <button class="js-increment" data-row="8" data-player="5" tabindex="-1">+</button>
+        </div>
       </li>
       <li class="row js-row">
         <h2 class="row-label">Wetland</h2>
@@ -412,6 +478,15 @@
             <div class="js-bonus bonus" data-row="9" data-player="4"></div>
           </div>
           <button class="js-increment" data-row="9" data-player="4" tabindex="-1">+</button>
+        </div>
+        <div class="counter player-5">
+          <label for="player-5-wetland">Player 5</label>
+          <button class="js-decrement" data-row="9" data-player="5" tabindex="-1">&ndash;</button>
+          <div class="input">
+            <input id="player-5-wetland" type="number" min="0" class="js-score" data-row="9" data-type="habitat" data-player="5" value="0" />
+            <div class="js-bonus bonus" data-row="9" data-player="5"></div>
+          </div>
+          <button class="js-increment" data-row="9" data-player="5" tabindex="-1">+</button>
         </div>
      </li>
       <li class="row end js-row">
@@ -452,6 +527,15 @@
           </div>
           <button class="js-increment" data-row="10" data-player="4" tabindex="-1">+</button>
         </div>
+        <div class="counter player-5">
+          <label for="player-5-river">Player 5</label>
+          <button class="js-decrement" data-row="10" data-player="5" tabindex="-1">&ndash;</button>
+          <div class="input">
+            <input id="player-5-river" type="number" min="0" class="js-score" data-row="10" data-type="habitat" data-player="5" value="0" />
+            <div class="js-bonus bonus" data-row="10" data-player="5"></div>
+          </div>
+          <button class="js-increment" data-row="10" data-player="4" tabindex="-1">+</button>
+        </div>
      </li>
     </ul>
     <div class="total-scores subtotals js-subtotal-scores-habitats">
@@ -460,6 +544,7 @@
       <div class="total-score player-2 js-subtotal-score-habitats-player-2">0</div>
       <div class="total-score player-3 js-subtotal-score-habitats-player-3">0</div>
       <div class="total-score player-4 js-subtotal-score-habitats-player-4">0</div>
+      <div class="total-score player-5 js-subtotal-score-habitats-player-5">0</div>
     </div>
     <ul class="rows">
       <li class="row end js-row">
@@ -488,34 +573,46 @@
           <input id="player-4-tokens" type="number" min="0" class="js-score" data-row="11" data-player="4" value="0" />
           <button class="js-increment" data-row="11" data-player="4" tabindex="-1">+</button>
         </div>
+        <div class="counter player-5">
+          <label for="player-5-tokens">Player 5</label>
+          <button class="js-decrement" data-row="11" data-player="5" tabindex="-1">&ndash;</button>
+          <input id="player-5-tokens" type="number" min="0" class="js-score" data-row="11" data-player="5" value="0" />
+          <button class="js-increment" data-row="11" data-player="5" tabindex="-1">+</button>
+        </div>
      </li>
     </ul>
     <ul class="rows">
       <li class="row end js-row">
         <h2 class="row-label">Landmarks</h2>
         <div class="counter player-1">
-          <label for="player-1-tokens">Player 1</label>
+          <label for="player-1-landmarks">Player 1</label>
           <button class="js-decrement" data-row="12" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-tokens" type="number" min="0" class="js-score" data-row="12" data-player="1" value="0" />
+          <input id="player-1-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="1" value="0" />
           <button class="js-increment" data-row="12" data-player="1" tabindex="-1">+</button>
         </div>
         <div class="counter player-2">
-          <label for="player-2-tokens">Player 2</label>
+          <label for="player-2-landmarks">Player 2</label>
           <button class="js-decrement" data-row="12" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-tokens" type="number" min="0" class="js-score" data-row="12" data-player="2" value="0" />
+          <input id="player-2-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="2" value="0" />
           <button class="js-increment" data-row="12" data-player="2" tabindex="-1">+</button>
         </div>
         <div class="counter player-3">
-          <label for="player-3-tokens">Player 3</label>
+          <label for="player-3-landmarks">Player 3</label>
           <button class="js-decrement" data-row="12" data-player="3" tabindex="-1">&ndash;</button>
-          <input id="player-3-tokens" type="number" min="0" class="js-score" data-row="12" data-player="3" value="0" />
+          <input id="player-3-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="3" value="0" />
           <button class="js-increment" data-row="12" data-player="3" tabindex="-1">+</button>
         </div>
         <div class="counter player-4">
-          <label for="player-4-tokens">Player 4</label>
+          <label for="player-4-landmarks">Player 4</label>
           <button class="js-decrement" data-row="12" data-player="4" tabindex="-1">&ndash;</button>
-          <input id="player-4-tokens" type="number" min="0" class="js-score" data-row="12" data-player="4" value="0" />
+          <input id="player-4-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="4" value="0" />
           <button class="js-increment" data-row="12" data-player="4" tabindex="-1">+</button>
+        </div>
+        <div class="counter player-5">
+          <label for="player-5-landmarks">Player 5</label>
+          <button class="js-decrement" data-row="12" data-player="5" tabindex="-1">&ndash;</button>
+          <input id="player-5-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="5" value="0" />
+          <button class="js-increment" data-row="12" data-player="5" tabindex="-1">+</button>
         </div>
      </li>
     </ul>
@@ -525,11 +622,12 @@
       <div class="total-score player-2 js-total-score-player-2">0</div>
       <div class="total-score player-3 js-total-score-player-3">0</div>
       <div class="total-score player-4 js-total-score-player-4">0</div>
+      <div class="total-score player-5 js-total-score-player-5">0</div>
     </div>
     <button class="button reset js-reset">Reset scores</button>
     </div>
 				<p class="links">
-					<a href="https://www.alderac.com/wp-content/uploads/2021/08/Cascadia-Rules.pdf" target="_blank">Official rules</a> | <a href="https://ronansprake.co.uk/board-game-score-calculators#contact" target="_blank">Send feedback</a>
+					<a href="https://www.alderac.com/wp-content/uploads/2021/08/Cascadia-Rules.pdf" target="_blank">Official rules</a> | <a href="https://ronansprake.co.uk/board-game-score-calculators#contact" target="_blank">Give feedback</a>
 				</p>
 
     <script>
@@ -562,6 +660,18 @@
       const elemTotalScorePlayer4 = document.querySelector('.js-total-score-player-4');
       const elemHabitatsSubtotalScorePlayer4 = document.querySelector('.js-subtotal-score-habitats-player-4');
       const elemWildlifeSubtotalScorePlayer4 = document.querySelector('.js-subtotal-score-wildlife-player-4');
+
+      const elemScoresPlayer5 = document.querySelectorAll(".js-score[data-player='5']");
+      const elemBonusesPlayer5 = document.querySelectorAll(".js-bonus[data-player='5']");
+      const elemTotalScorePlayer5 = document.querySelector('.js-total-score-player-5');
+      const elemHabitatsSubtotalScorePlayer5 = document.querySelector('.js-subtotal-score-habitats-player-5');
+      const elemWildlifeSubtotalScorePlayer5 = document.querySelector('.js-subtotal-score-wildlife-player-5');
+
+      const elemScoresPlayer6 = document.querySelectorAll(".js-score[data-player='6']");
+      const elemBonusesPlayer6 = document.querySelectorAll(".js-bonus[data-player='6']");
+      const elemTotalScorePlayer6 = document.querySelector('.js-total-score-player-6');
+      const elemHabitatsSubtotalScorePlayer6 = document.querySelector('.js-subtotal-score-habitats-player-6');
+      const elemWildlifeSubtotalScorePlayer6 = document.querySelector('.js-subtotal-score-wildlife-player-6');
 
       const elemIncrements = document.querySelectorAll('.js-increment');
       const elemDecrements = document.querySelectorAll('.js-decrement');
@@ -608,6 +718,14 @@
         });
       });
 
+      // Update the total scores with all subtotals
+      function updateBonusValues(row, values) {
+      	var elemBonuses = document.querySelectorAll(".js-bonus[data-row='" + row + "']");
+      	values.forEach((value, index) => {
+      		elemBonuses[index].innerHTML = value;
+      	})
+      }
+
       // Update row bonuses
       function applyBonusesToRow(row) {
         var elemScores = document.querySelectorAll(".js-score[data-row='" + row + "']");
@@ -615,28 +733,24 @@
         if (body.dataset.players == 1) {
           elemScores.forEach((elemScore) => {
             if (elemScores[0].value > 6) {
-              elemBonuses[0].innerHTML = 2;
+              updateBonusValues(row, [2]);
             } else {
-              elemBonuses[0].innerHTML = '';
+              updateBonusValues(row, ['']);
             }
           });
         }
         if (body.dataset.players == 2) {
           if (elemScores[0].value == 0 && elemScores[1].value == 0) {
-            elemBonuses[0].innerHTML = '';
-            elemBonuses[1].innerHTML = '';
+              updateBonusValues(row, ['','']);
           }
           else if (parseInt(elemScores[0].value) > parseInt(elemScores[1].value)) {
-            elemBonuses[0].innerHTML = 2;
-            elemBonuses[1].innerHTML = '';
+              updateBonusValues(row, [2,'']);
           }
           else if (parseInt(elemScores[1].value) > parseInt(elemScores[0].value)) {
-            elemBonuses[0].innerHTML = '';
-            elemBonuses[1].innerHTML = 2;
+              updateBonusValues(row, ['',2]);
           }
           else {
-            elemBonuses[0].innerHTML = 1;
-            elemBonuses[1].innerHTML = 1;
+              updateBonusValues(row, [1,1]);
           }
         }
         if (body.dataset.players == 3) {
@@ -644,58 +758,42 @@
           var scorePlayer2 = parseInt(elemScores[1].value);
           var scorePlayer3 = parseInt(elemScores[2].value);
           if (scorePlayer1 == 0 && scorePlayer2 == 0 && scorePlayer3 == 0) {
-            elemBonuses[0].innerHTML = '';
-            elemBonuses[1].innerHTML = '';
-            elemBonuses[2].innerHTML = '';
+              updateBonusValues(row, ['','','']);
           }
           else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3) {
-            elemBonuses[0].innerHTML = 1;
-            elemBonuses[1].innerHTML = 1;
-            elemBonuses[2].innerHTML = 1;
+              updateBonusValues(row, [1,1,1]);
           }
           else if (scorePlayer1 == scorePlayer2 && scorePlayer1 > scorePlayer3) {
-            elemBonuses[0].innerHTML = 2;
-            elemBonuses[1].innerHTML = 2;
-            elemBonuses[2].innerHTML = '';
+              updateBonusValues(row, [2,2,'']);
           }
           else if (scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer2) {
-            elemBonuses[0].innerHTML = 2;
-            elemBonuses[1].innerHTML = '';
-            elemBonuses[2].innerHTML = 2;
+              updateBonusValues(row, [2,'',2]);
           }
           else if (scorePlayer2 == scorePlayer3 && scorePlayer2 > scorePlayer1) {
-            elemBonuses[0].innerHTML = '';
-            elemBonuses[1].innerHTML = 2;
-            elemBonuses[2].innerHTML = 2;
+              updateBonusValues(row, ['',2,2]);
           }
           else if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3) {
-            elemBonuses[0].innerHTML = 3;
-            elemBonuses[1].innerHTML = '';
-            elemBonuses[2].innerHTML = '';
+              updateBonusValues(row, [3,'','']);
             if (scorePlayer2 > scorePlayer3) {
-              elemBonuses[1].innerHTML = 1;
+              updateBonusValues(row, [3,1,'']);
             } else if (scorePlayer3 > scorePlayer2) {
-              elemBonuses[2].innerHTML = 1;
+              updateBonusValues(row, [3,'',1]);
             }
           }
           else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3) {
-            elemBonuses[0].innerHTML = '';
-            elemBonuses[1].innerHTML = 3;
-            elemBonuses[2].innerHTML = '';
+              updateBonusValues(row, ['',3,'']);
             if (scorePlayer1 > scorePlayer3) {
-              elemBonuses[0].innerHTML = 1;
+              updateBonusValues(row, [1,3,'']);
             } else if (scorePlayer3 > scorePlayer1) {
-              elemBonuses[2].innerHTML = 1;
+              updateBonusValues(row, ['',3,1]);
             }
           }
           else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2) {
-            elemBonuses[0].innerHTML = '';
-            elemBonuses[1].innerHTML = '';
-            elemBonuses[2].innerHTML = 3;
+              updateBonusValues(row, ['','',3]);
             if (scorePlayer1 > scorePlayer2) {
-              elemBonuses[0].innerHTML = 1;
+              updateBonusValues(row, [1,'',3]);
             } else if (scorePlayer2 > scorePlayer1) {
-              elemBonuses[1].innerHTML = 1;
+              updateBonusValues(row, ['',1,3]);
             }
           }
         }
@@ -705,132 +803,227 @@
           var scorePlayer3 = parseInt(elemScores[2].value);
           var scorePlayer4 = parseInt(elemScores[3].value);
           if (scorePlayer1 == 0 && scorePlayer2 == 0 && scorePlayer3 == 0 && scorePlayer4 == 0) {
-            elemBonuses[0].innerHTML = '';
-            elemBonuses[1].innerHTML = '';
-            elemBonuses[2].innerHTML = '';
-            elemBonuses[3].innerHTML = '';
+              updateBonusValues(row, ['','','','']);
           }
           else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4) {
-            elemBonuses[0].innerHTML = 1;
-            elemBonuses[1].innerHTML = 1;
-            elemBonuses[2].innerHTML = 1;
-            elemBonuses[3].innerHTML = 1;
+              updateBonusValues(row, [1,1,1,1]);
           }
           else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer4) {
-            elemBonuses[0].innerHTML = 1;
-            elemBonuses[1].innerHTML = 1;
-            elemBonuses[2].innerHTML = 1;
-            elemBonuses[3].innerHTML = '';
+              updateBonusValues(row, [1,1,1,'']);
           }
           else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer3) {
-            elemBonuses[0].innerHTML = 1;
-            elemBonuses[1].innerHTML = 1;
-            elemBonuses[2].innerHTML = '';
-            elemBonuses[3].innerHTML = 1;
+              updateBonusValues(row, [1,1,'',1]);
           }
           else if (scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer2) {
-            elemBonuses[0].innerHTML = 1;
-            elemBonuses[1].innerHTML = '';
-            elemBonuses[2].innerHTML = 1;
-            elemBonuses[3].innerHTML = 1;
+              updateBonusValues(row, [1,'',1,1]);
           }
           else if (scorePlayer2 == scorePlayer3 && scorePlayer2 == scorePlayer4 && scorePlayer2 > scorePlayer1) {
-            elemBonuses[0].innerHTML = '';
-            elemBonuses[1].innerHTML = 1;
-            elemBonuses[2].innerHTML = 1;
-            elemBonuses[3].innerHTML = 1;
+              updateBonusValues(row, ['',1,1,1]);
           }
           else if (scorePlayer1 == scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
-            elemBonuses[0].innerHTML = 2;
-            elemBonuses[1].innerHTML = 2;
-            elemBonuses[2].innerHTML = '';
-            elemBonuses[3].innerHTML = '';
+              updateBonusValues(row, [2,2,'','']);
           }
           else if (scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer4) {
-            elemBonuses[0].innerHTML = 2;
-            elemBonuses[1].innerHTML = '';
-            elemBonuses[2].innerHTML = 2;
-            elemBonuses[3].innerHTML = '';
+              updateBonusValues(row, [2,'',2,'']);
           }
           else if (scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3) {
-            elemBonuses[0].innerHTML = 2;
-            elemBonuses[1].innerHTML = '';
-            elemBonuses[2].innerHTML = '';
-            elemBonuses[3].innerHTML = 2;
+              updateBonusValues(row, [2,'','',2]);
           }
           else if (scorePlayer2 == scorePlayer3 && scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer4) {
-            elemBonuses[0].innerHTML = '';
-            elemBonuses[1].innerHTML = 2;
-            elemBonuses[2].innerHTML = 2;
-            elemBonuses[3].innerHTML = '';
+              updateBonusValues(row, ['',2,2,'']);
           }
           else if (scorePlayer2 == scorePlayer4 && scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3) {
-            elemBonuses[0].innerHTML = '';
-            elemBonuses[1].innerHTML = 2;
-            elemBonuses[2].innerHTML = '';
-            elemBonuses[3].innerHTML = 2;
+              updateBonusValues(row, ['',2,'',2]);
           }
           else if (scorePlayer3 == scorePlayer4 && scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2) {
-            elemBonuses[0].innerHTML = '';
-            elemBonuses[1].innerHTML = '';
-            elemBonuses[2].innerHTML = 2;
-            elemBonuses[3].innerHTML = 2;
-          }
-          else if (scorePlayer2 == scorePlayer3 && scorePlayer2 > scorePlayer1) {
-            elemBonuses[0].innerHTML = '';
-            elemBonuses[1].innerHTML = 2;
-            elemBonuses[2].innerHTML = 2;
+              updateBonusValues(row, ['','',2,2]);
           }
           else if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
-            elemBonuses[0].innerHTML = 3;
-            elemBonuses[1].innerHTML = '';
-            elemBonuses[2].innerHTML = '';
-            elemBonuses[3].innerHTML = '';
+              updateBonusValues(row, [3,'','','']);
             if (scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4) {
-              elemBonuses[1].innerHTML = 1;
+              updateBonusValues(row, [3,1,'','']);
             } else if (scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4) {
-              elemBonuses[2].innerHTML = 1;
+              updateBonusValues(row, [3,'',1,'']);
             } else if (scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3) {
-              elemBonuses[3].innerHTML = 1;
+              updateBonusValues(row, [3,'','',1]);
             }
           }
           else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4) {
-            elemBonuses[0].innerHTML = '';
-            elemBonuses[1].innerHTML = 3;
-            elemBonuses[2].innerHTML = '';
-            elemBonuses[3].innerHTML = '';
+              updateBonusValues(row, ['',3,'','']);
             if (scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
-              elemBonuses[0].innerHTML = 1;
+              updateBonusValues(row, [1,3,'','']);
             } else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer4) {
-              elemBonuses[2].innerHTML = 1;
+              updateBonusValues(row, ['',3,1,'']);
             } else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer3) {
-              elemBonuses[3].innerHTML = 1;
+              updateBonusValues(row, ['',3,'',1]);
             }
           }
           else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4) {
-            elemBonuses[0].innerHTML = '';
-            elemBonuses[1].innerHTML = '';
-            elemBonuses[2].innerHTML = 3;
-            elemBonuses[3].innerHTML = '';
+              updateBonusValues(row, ['','',3,'']);
             if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer4) {
-              elemBonuses[0].innerHTML = 1;
+              updateBonusValues(row, [1,'',3,'']);
             } else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer4) {
-              elemBonuses[1].innerHTML = 1;
+              updateBonusValues(row, ['',1,3,'']);
             } else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2) {
-              elemBonuses[3].innerHTML = 1;
+              updateBonusValues(row, ['','',3,1]);
             }
           }
           else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3) {
-            elemBonuses[0].innerHTML = '';
-            elemBonuses[1].innerHTML = '';
-            elemBonuses[2].innerHTML = '';
-            elemBonuses[3].innerHTML = 3;
+              updateBonusValues(row, ['','','',3]);
             if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3) {
-              elemBonuses[0].innerHTML = 1;
+              updateBonusValues(row, [1,'','',3]);
             } else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3) {
-              elemBonuses[1].innerHTML = 1;
+              updateBonusValues(row, ['',1,'',3]);
             } else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2) {
-              elemBonuses[2].innerHTML = 1;
+              updateBonusValues(row, ['','',1,3]);
+            }
+          }
+        }
+        if (body.dataset.players == 5) {
+          var scorePlayer1 = parseInt(elemScores[0].value);
+          var scorePlayer2 = parseInt(elemScores[1].value);
+          var scorePlayer3 = parseInt(elemScores[2].value);
+          var scorePlayer4 = parseInt(elemScores[3].value);
+          var scorePlayer5 = parseInt(elemScores[4].value);
+          if (scorePlayer1 == 0 && scorePlayer2 == 0 && scorePlayer3 == 0 && scorePlayer4 == 0 && scorePlayer5 == 0) {
+              updateBonusValues(row, ['','','','','']);
+          }
+          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4 && scorePlayer1 == scorePlayer5) {
+              updateBonusValues(row, [1,1,1,1,1]);
+          }
+          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer5) {
+              updateBonusValues(row, [1,1,1,1,'']);
+          }
+          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer5 && scorePlayer1 > scorePlayer4) {
+              updateBonusValues(row, [1,1,1,'',1]);
+          }
+          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer4 && scorePlayer1 == scorePlayer5 && scorePlayer1 > scorePlayer3) {
+              updateBonusValues(row, [1,1,'',1,1]);
+          }
+          else if (scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4 && scorePlayer1 == scorePlayer5 && scorePlayer1 > scorePlayer2) {
+              updateBonusValues(row, [1,'',1,1,1]);
+          }
+          else if (scorePlayer2 == scorePlayer3 && scorePlayer2 == scorePlayer4 && scorePlayer2 == scorePlayer5 && scorePlayer2 > scorePlayer1) {
+              updateBonusValues(row, ['',1,1,1,1]);
+          }
+          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer5 && scorePlayer1 > scorePlayer4) {
+              updateBonusValues(row, [1,1,1,'','']);
+          }
+          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer5 && scorePlayer1 > scorePlayer3) {
+              updateBonusValues(row, [1,1,'',1,'']);
+          }
+          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer5 && scorePlayer1 > scorePlayer4 && scorePlayer1 > scorePlayer3) {
+              updateBonusValues(row, [1,1,'','',1]);
+          }
+          else if (scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer5 && scorePlayer1 > scorePlayer2) {
+              updateBonusValues(row, [1,'',1,1,'']);
+          }
+          else if (scorePlayer1 == scorePlayer4 && scorePlayer1 == scorePlayer5 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer2) {
+              updateBonusValues(row, [1,'','',1,1]);
+          }
+          else if (scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer5 && scorePlayer1 > scorePlayer4 && scorePlayer1 > scorePlayer2) {
+              updateBonusValues(row, [1,'',1,'',1]);
+          }
+          else if (scorePlayer2 == scorePlayer3 && scorePlayer2 == scorePlayer4 && scorePlayer2 > scorePlayer5 && scorePlayer2 > scorePlayer1) {
+              updateBonusValues(row, ['',1,1,1,'']);
+          }
+          else if (scorePlayer2 == scorePlayer3 && scorePlayer2 == scorePlayer5 && scorePlayer2 > scorePlayer4 && scorePlayer2 > scorePlayer1) {
+              updateBonusValues(row, ['',1,1,'',1]);
+          }
+          else if (scorePlayer2 == scorePlayer4 && scorePlayer2 == scorePlayer5 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer1) {
+              updateBonusValues(row, ['',1,'',1,1]);
+          }
+          else if (scorePlayer3 == scorePlayer4 && scorePlayer3 == scorePlayer5 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer1) {
+              updateBonusValues(row, ['','',1,1,1]);
+          }
+          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4 && scorePlayer1 > scorePlayer5) {
+              updateBonusValues(row, [2,2,'','','']);
+          }
+          else if (scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer4 && scorePlayer1 > scorePlayer5) {
+              updateBonusValues(row, [2,'',2,'','']);
+          }
+          else if (scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer5) {
+              updateBonusValues(row, [2,'','',2,'']);
+          }
+          else if (scorePlayer1 == scorePlayer5 && scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
+              updateBonusValues(row, [2,'','','',2]);
+          }
+          else if (scorePlayer2 == scorePlayer3 && scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer4 && scorePlayer2 > scorePlayer5) {
+              updateBonusValues(row, ['',2,2,'','']);
+          }
+          else if (scorePlayer2 == scorePlayer4 && scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer5) {
+              updateBonusValues(row, ['',2,'',2,'']);
+          }
+          else if (scorePlayer2 == scorePlayer5 && scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4) {
+              updateBonusValues(row, ['',2,'','',2]);
+          }
+          else if (scorePlayer3 == scorePlayer4 && scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer5) {
+              updateBonusValues(row, ['','',2,2,'']);
+          }
+          else if (scorePlayer3 == scorePlayer5 && scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4) {
+              updateBonusValues(row, ['','',2,'',2]);
+          }
+          else if (scorePlayer4 == scorePlayer5 && scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3) {
+              updateBonusValues(row, ['','','',2,2]);
+          }
+          else if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4 && scorePlayer1 > scorePlayer5) {
+              updateBonusValues(row, [3,'','','','']);
+            if (scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4 && scorePlayer2 > scorePlayer5) {
+              updateBonusValues(row, [3,1,'','','']);
+            } else if (scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4 && scorePlayer3 > scorePlayer5) {
+              updateBonusValues(row, [3,'',1,'','']);
+            } else if (scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3 && scorePlayer4 > scorePlayer5) {
+              updateBonusValues(row, [3,'','',1,'']);
+            } else if (scorePlayer5 > scorePlayer2 && scorePlayer5 > scorePlayer3 && scorePlayer5 > scorePlayer4) {
+              updateBonusValues(row, [3,'','','',1]);
+            }
+          }
+          else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4 && scorePlayer2 > scorePlayer5) {
+              updateBonusValues(row, ['',3,'','','']);
+            if (scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4 && scorePlayer1 > scorePlayer5) {
+              updateBonusValues(row, [1,3,'','','']);
+            } else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer4 && scorePlayer3 > scorePlayer5) {
+              updateBonusValues(row, ['',3,1,'','']);
+            } else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer3 && scorePlayer4 > scorePlayer5) {
+              updateBonusValues(row, ['',3,'',1,'']);
+            } else if (scorePlayer5 > scorePlayer1 && scorePlayer5 > scorePlayer3 && scorePlayer5 > scorePlayer4) {
+              updateBonusValues(row, ['',3,'','',1]);
+            }
+          }
+          else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4 && scorePlayer3 > scorePlayer5) {
+              updateBonusValues(row, ['','',3,'','']);
+            if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer4 && scorePlayer1 > scorePlayer5) {
+              updateBonusValues(row, [1,'',3,'','']);
+            } else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer4 && scorePlayer2 > scorePlayer5) {
+              updateBonusValues(row, ['',1,3,'','']);
+            } else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer5) {
+              updateBonusValues(row, ['','',3,1,'']);
+            } else if (scorePlayer5 > scorePlayer1 && scorePlayer5 > scorePlayer2 && scorePlayer5 > scorePlayer4) {
+              updateBonusValues(row, ['','',3,'',1]);
+            }
+          }
+          else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3) {
+              updateBonusValues(row, ['','','',3,'']);
+            if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer5) {
+              updateBonusValues(row, [1,'','',3,'']);
+            } else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer5) {
+              updateBonusValues(row, ['',1,'',3,'']);
+            } else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer5) {
+              updateBonusValues(row, ['','',1,3,'']);
+            } else if (scorePlayer5 > scorePlayer1 && scorePlayer5 > scorePlayer2 && scorePlayer5 > scorePlayer3) {
+              updateBonusValues(row, ['','','',3,1]);
+            }
+          }
+          else if (scorePlayer5 > scorePlayer1 && scorePlayer5 > scorePlayer2 && scorePlayer5 > scorePlayer3 && scorePlayer5 > scorePlayer4) {
+              updateBonusValues(row, ['','','','',3]);
+            if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
+              updateBonusValues(row, [1,'','','',3]);
+            } else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4) {
+              updateBonusValues(row, ['',1,'','',3]);
+            } else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4) {
+              updateBonusValues(row, ['','',1,'',3]);
+            } else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3) {
+              updateBonusValues(row, ['','','',1,3]);
             }
           }
         }
@@ -869,6 +1062,7 @@
         var scorePlayer2 = 0;
         var scorePlayer3 = 0;
         var scorePlayer4 = 0;
+        var scorePlayer5 = 0;
         var subtotalWildlifePlayer1 = 0;
         var subtotalHabitatsPlayer1 = 0;
         var subtotalWildlifePlayer2 = 0;
@@ -877,6 +1071,8 @@
         var subtotalHabitatsPlayer3 = 0;
         var subtotalWildlifePlayer4 = 0;
         var subtotalHabitatsPlayer4 = 0;
+        var subtotalWildlifePlayer5 = 0;
+        var subtotalHabitatsPlayer5 = 0;
         elemScoresPlayer1.forEach((elemScore) => {
           if (elemScore.dataset.type == 'wildlife') {
             subtotalWildlifePlayer1 += parseInt(elemScore.value);
@@ -909,6 +1105,14 @@
           }
           scorePlayer4 += parseInt(elemScore.value);
         });
+        elemScoresPlayer5.forEach((elemScore) => {
+          if (elemScore.dataset.type == 'wildlife') {
+            subtotalWildlifePlayer5 += parseInt(elemScore.value);
+          } else if (elemScore.dataset.type == 'habitat') {
+            subtotalHabitatsPlayer5 += parseInt(elemScore.value);
+          }
+          scorePlayer5 += parseInt(elemScore.value);
+        });
         elemBonusesPlayer1.forEach((elemBonus) => {
           if (elemBonus.innerHTML) {
             subtotalHabitatsPlayer1 += parseInt(elemBonus.innerHTML);
@@ -933,6 +1137,12 @@
             scorePlayer4 += parseInt(elemBonus.innerHTML);
           }
         });
+        elemBonusesPlayer5.forEach((elemBonus) => {
+          if (elemBonus.innerHTML) {
+            subtotalHabitatsPlayer5 += parseInt(elemBonus.innerHTML);
+            scorePlayer5 += parseInt(elemBonus.innerHTML);
+          }
+        });
         elemWildlifeSubtotalScorePlayer1.innerHTML = subtotalWildlifePlayer1;
         elemHabitatsSubtotalScorePlayer1.innerHTML = subtotalHabitatsPlayer1;
         elemWildlifeSubtotalScorePlayer2.innerHTML = subtotalWildlifePlayer2;
@@ -941,10 +1151,13 @@
         elemHabitatsSubtotalScorePlayer3.innerHTML = subtotalHabitatsPlayer3;
         elemWildlifeSubtotalScorePlayer4.innerHTML = subtotalWildlifePlayer4;
         elemHabitatsSubtotalScorePlayer4.innerHTML = subtotalHabitatsPlayer4;
+        elemWildlifeSubtotalScorePlayer5.innerHTML = subtotalWildlifePlayer5;
+        elemHabitatsSubtotalScorePlayer5.innerHTML = subtotalHabitatsPlayer5;
         elemTotalScorePlayer1.innerHTML = scorePlayer1;
         elemTotalScorePlayer2.innerHTML = scorePlayer2;
         elemTotalScorePlayer3.innerHTML = scorePlayer3;
         elemTotalScorePlayer4.innerHTML = scorePlayer4;
+        elemTotalScorePlayer5.innerHTML = scorePlayer5;
       }
 
       // Reset all scores
