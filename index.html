@@ -60,1124 +60,1096 @@
       label { -webkit-tap-highlight-color: rgba(0,0,0,0); }
       body[data-players="1"] .player-multi { display: none; }
       body[data-players="2"] .initials { margin: 0 40px; }
-      body[data-players="3"] .counter button, body[data-players="4"] .counter button, body[data-players="5"] .counter button {display: none;}
-      body[data-players="1"] .player-2, body[data-players="1"] .player-3, body[data-players="1"] .player-4, body[data-players="1"] .player-5 { display: none; }
-      body[data-players="2"] .player-3, body[data-players="2"] .player-4, body[data-players="2"] .player-5 { display: none; }
-      body[data-players="3"] .player-4, body[data-players="3"] .player-5 { display: none; }
-      body[data-players="4"] .player-5 { display: none; }
+      body[data-players="3"] .counter button, body[data-players="4"] .counter button, body[data-players="5"] .counter button, body[data-players="6"] .counter button {display: none;}
+      body[data-players="1"] .player-2, body[data-players="1"] .player-3, body[data-players="1"] .player-4, body[data-players="1"] .player-5, body[data-players="1"] .player-6 { display: none; }
+      body[data-players="2"] .player-3, body[data-players="2"] .player-4, body[data-players="2"] .player-5, body[data-players="2"] .player-6 { display: none; }
+      body[data-players="3"] .player-4, body[data-players="3"] .player-5, body[data-players="3"] .player-6 { display: none; }
+      body[data-players="4"] .player-5, body[data-players="4"] .player-6 { display: none; }
+      body[data-players="5"] .player-6 { display: none; }
       body[data-players="1"] .row, body[data-players="1"] .total-scores { justify-content: normal; gap: 40px; }
-      body[data-players="3"] .total-score, body[data-players="4"] .total-score, body[data-players="5"] .total-score { width: 40px; font-size: 24px; }
-      body[data-players="3"] .subtotals .total-score, body[data-players="4"] .subtotals .total-score, body[data-players="5"] .subtotals .total-score { font-size: 20px; }
+      body[data-players="3"] .total-score, body[data-players="4"] .total-score, body[data-players="5"] .total-score, body[data-players="6"] .total-score { width: 40px; font-size: 24px; }
+      body[data-players="3"] .subtotals .total-score, body[data-players="4"] .subtotals .total-score, body[data-players="5"] .subtotals .total-score, body[data-players="6"] .subtotals .total-score { font-size: 20px; }
 			.reset { margin-top: 30px; }
 			.links { margin: 30px 0; text-align: center; font-size: 14px; }
 			.links a { color: var(--neutral-800); }
     </style>
   </head>
 
-  <body data-players="2">
+<body data-players="2">
     <div class="wrap">
-    <h1>Cascadia score calculator</h1>
+        <h1>Cascadia score calculator</h1>
+        <fieldset class="players">
+            <legend>Players</legend>
+            <ul>
+                <li>
+                    <input type="radio" name="player" id="players-1" value="1" class="js-player-switch">
+                    <label for="players-1">1</label>
+                </li>
+                <li>
+                    <input type="radio" name="player" id="players-2" value="2" class="js-player-switch" checked>
+                    <label for="players-2">2</label>
+                </li>
+                <li>
+                    <input type="radio" name="player" id="players-3" value="3" class="js-player-switch">
+                    <label for="players-3">3</label>
+                </li>
+                <li>
+                    <input type="radio" name="player" id="players-4" value="4" class="js-player-switch">
+                    <label for="players-4">4</label>
+                </li>
+                <li>
+                    <input type="radio" name="player" id="players-5" value="5" class="js-player-switch">
+                    <label for="players-5">5</label>
+                </li>
+                <li>
+                    <input type="radio" name="player" id="players-6" value="6" class="js-player-switch">
+                    <label for="players-6">6</label>
+                </li>
+            </ul>
+        </fieldset>
 
-    <fieldset class="players">
-    <legend>Players</legend>
-    <ul>
-      <li>
-        <input type="radio" name="player" id="players-1" value="1" class="js-player-switch">
-        <label for="players-1">1</label>
-      </li>
-      <li>
-        <input type="radio" name="player" id="players-2" value="2" class="js-player-switch" checked>
-        <label for="players-2">2</label>
-      </li>
-      <li>
-        <input type="radio" name="player" id="players-3" value="3" class="js-player-switch">
-        <label for="players-3">3</label>
-      </li>
-      <li>
-        <input type="radio" name="player" id="players-4" value="4" class="js-player-switch">
-        <label for="players-4">4</label>
-      </li>
-      <li>
-        <input type="radio" name="player" id="players-5" value="5" class="js-player-switch">
-        <label for="players-5">5</label>
-      </li>
-    </ul>
-    </fieldset>
+        <ul class="rows player-multi">
+            <li class="row end">
+                <div class="row-label">Player</div>
+                <div class="initials player-1">
+                    <label for="player-1-initials">Player 1 initials</label>
+                    <input id="player-1-initials" type="text" value="" maxlength="2" />
+                </div>
+                <div class="initials player-2">
+                    <label for="player-2-initials">Player 2 initials</label>
+                    <input id="player-2-initials" type="text" value="" maxlength="2" />
+                </div>
+                <div class="initials player-3">
+                    <label for="player-3-initials">Player 3 initials</label>
+                    <input id="player-3-initials" type="text" value="" maxlength="2" />
+                </div>
+                <div class="initials player-4">
+                    <label for="player-4-initials">Player 4 initials</label>
+                    <input id="player-4-initials" type="text" value="" maxlength="2" />
+                </div>
+                <div class="initials player-5">
+                    <label for="player-5-initials">Player 5 initials</label>
+                    <input id="player-5-initials" type="text" value="" maxlength="2" />
+                </div>
+                <div class="initials player-6">
+                    <label for="player-6-initials">Player 6 initials</label>
+                    <input id="player-6-initials" type="text" value="" maxlength="2" />
+                </div>
+            </li>
+        </ul>
 
-    <ul class="rows player-multi">
-      <li class="row end">
-        <div class="row-label">Player</div>
-        <div class="initials player-1">
-          <label for="player-1-initials">Player 1 initials</label>
-          <input id="player-1-initials" type="text" value="" maxlength="2" />
+        <ul class="rows">
+            <li class="row js-row">
+                <h2 class="row-label">Bear</h2>
+                <div class="counter player-1">
+                    <label for="player-1-bear">Player 1</label>
+                    <button class="js-decrement" data-row="1" data-player="1" tabindex="-1">&ndash;</button>
+                    <input id="player-1-bear" type="number" min="0" class="js-score" data-row="1" data-type="wildlife"
+                        data-player="1" value="0" />
+                    <button class="js-increment" data-row="1" data-player="1" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-2">
+                    <label for="player-2-bear">Player 2</label>
+                    <button class="js-decrement" data-row="1" data-player="2" tabindex="-1">&ndash;</button>
+                    <input id="player-2-bear" type="number" min="0" class="js-score" data-row="1" data-type="wildlife"
+                        data-player="2" value="0" />
+                    <button class="js-increment" data-row="1" data-player="2" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-3">
+                    <label for="player-3-bear">Player 3</label>
+                    <button class="js-decrement" data-row="1" data-player="3" tabindex="-1">&ndash;</button>
+                    <input id="player-3-bear" type="number" min="0" class="js-score" data-row="1" data-type="wildlife"
+                        data-player="3" value="0" />
+                    <button class="js-increment" data-row="1" data-player="3" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-4">
+                    <label for="player-4-bear">Player 4</label>
+                    <button class="js-decrement" data-row="1" data-player="4" tabindex="-1">&ndash;</button>
+                    <input id="player-4-bear" type="number" min="0" class="js-score" data-row="1" data-type="wildlife"
+                        data-player="4" value="0" />
+                    <button class="js-increment" data-row="1" data-player="4" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-5">
+                    <label for="player-5-bear">Player 5</label>
+                    <button class="js-decrement" data-row="1" data-player="5" tabindex="-1">&ndash;</button>
+                    <input id="player-5-bear" type="number" min="0" class="js-score" data-row="1" data-type="wildlife"
+                        data-player="5" value="0" />
+                    <button class="js-increment" data-row="1" data-player="5" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-6">
+                    <label for="player-6-bear">Player 6</label>
+                    <button class="js-decrement" data-row="1" data-player="6" tabindex="-1">&ndash;</button>
+                    <input id="player-6-bear" type="number" min="0" class="js-score" data-row="1" data-type="wildlife"
+                        data-player="6" value="0" />
+                    <button class="js-increment" data-row="1" data-player="6" tabindex="-1">+</button>
+                </div>
+            </li>
+            <li class="row js-row">
+                <h2 class="row-label">Elk</h2>
+                <div class="counter player-1">
+                    <label for="player-1-elk">Player 1</label>
+                    <button class="js-decrement" data-row="2" data-player="1" tabindex="-1">&ndash;</button>
+                    <input id="player-1-elk" type="number" min="0" class="js-score" data-row="2" data-type="wildlife"
+                        data-player="1" value="0" />
+                    <button class="js-increment" data-row="2" data-player="1" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-2">
+                    <label for="player-2-elk">Player 2</label>
+                    <button class="js-decrement" data-row="2" data-player="2" tabindex="-1">&ndash;</button>
+                    <input id="player-2-elk" type="number" min="0" class="js-score" data-row="2" data-type="wildlife"
+                        data-player="2" value="0" />
+                    <button class="js-increment" data-row="2" data-player="2" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-3">
+                    <label for="player-3-elk">Player 3</label>
+                    <button class="js-decrement" data-row="3" data-player="3" tabindex="-1">&ndash;</button>
+                    <input id="player-3-elk" type="number" min="0" class="js-score" data-row="2" data-type="wildlife"
+                        data-player="3" value="0" />
+                    <button class="js-increment" data-row="2" data-player="3" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-4">
+                    <label for="player-4-elk">Player 4</label>
+                    <button class="js-decrement" data-row="2" data-player="4" tabindex="-1">&ndash;</button>
+                    <input id="player-4-elk" type="number" min="0" class="js-score" data-row="2" data-type="wildlife"
+                        data-player="4" value="0" />
+                    <button class="js-increment" data-row="2" data-player="4" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-5">
+                    <label for="player-5-elk">Player 5</label>
+                    <button class="js-decrement" data-row="2" data-player="5" tabindex="-1">&ndash;</button>
+                    <input id="player-5-elk" type="number" min="0" class="js-score" data-row="2" data-type="wildlife"
+                        data-player="5" value="0" />
+                    <button class="js-increment" data-row="2" data-player="5" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-6">
+                    <label for="player-6-elk">Player 6</label>
+                    <button class="js-decrement" data-row="2" data-player="6" tabindex="-1">&ndash;</button>
+                    <input id="player-6-elk" type="number" min="0" class="js-score" data-row="2" data-type="wildlife"
+                        data-player="6" value="0" />
+                    <button class="js-increment" data-row="2" data-player="6" tabindex="-1">+</button>
+                </div>
+            </li>
+            <li class="row js-row">
+                <h2 class="row-label">Hawk</h2>
+                <div class="counter player-1">
+                    <label for="player-1-hawk">Player 1</label>
+                    <button class="js-decrement" data-row="3" data-player="1" tabindex="-1">&ndash;</button>
+                    <input id="player-1-hawk" type="number" min="0" class="js-score" data-row="3" data-type="wildlife"
+                        data-player="1" value="0" />
+                    <button class="js-increment" data-row="3" data-player="1" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-2">
+                    <label for="player-2-hawk">Player 2</label>
+                    <button class="js-decrement" data-row="3" data-player="2" tabindex="-1">&ndash;</button>
+                    <input id="player-2-hawk" type="number" min="0" class="js-score" data-row="3" data-type="wildlife"
+                        data-player="2" value="0" />
+                    <button class="js-increment" data-row="3" data-player="2" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-3">
+                    <label for="player-3-hawk">Player 3</label>
+                    <button class="js-decrement" data-row="3" data-player="3" tabindex="-1">&ndash;</button>
+                    <input id="player-3-hawk" type="number" min="0" class="js-score" data-row="3" data-type="wildlife"
+                        data-player="3" value="0" />
+                    <button class="js-increment" data-row="3" data-player="3" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-4">
+                    <label for="player-4-hawk">Player 4</label>
+                    <button class="js-decrement" data-row="3" data-player="4" tabindex="-1">&ndash;</button>
+                    <input id="player-4-hawk" type="number" min="0" class="js-score" data-row="3" data-type="wildlife"
+                        data-player="4" value="0" />
+                    <button class="js-increment" data-row="3" data-player="4" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-5">
+                    <label for="player-5-hawk">Player 5</label>
+                    <button class="js-decrement" data-row="3" data-player="5" tabindex="-1">&ndash;</button>
+                    <input id="player-5-hawk" type="number" min="0" class="js-score" data-row="3" data-type="wildlife"
+                        data-player="5" value="0" />
+                    <button class="js-increment" data-row="3" data-player="5" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-6">
+                    <label for="player-6-hawk">Player 6</label>
+                    <button class="js-decrement" data-row="3" data-player="6" tabindex="-1">&ndash;</button>
+                    <input id="player-6-hawk" type="number" min="0" class="js-score" data-row="3" data-type="wildlife"
+                        data-player="6" value="0" />
+                    <button class="js-increment" data-row="3" data-player="6" tabindex="-1">+</button>
+                </div>
+            </li>
+            <li class="row js-row">
+                <h2 class="row-label player-1">Fox</h2>
+                <div class="counter">
+                    <label for="player-1-fox">Player 1</label>
+                    <button class="js-decrement" data-row="4" data-player="1" tabindex="-1">&ndash;</button>
+                    <input id="player-1-fox" type="number" min="0" class="js-score" data-row="4" data-type="wildlife"
+                        data-player="1" value="0" />
+                    <button class="js-increment" data-row="4" data-player="1" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-2">
+                    <label for="player-2-fox">Player 2</label>
+                    <button class="js-decrement" data-row="4" data-player="2" tabindex="-1">&ndash;</button>
+                    <input id="player-2-fox" type="number" min="0" class="js-score" data-row="4" data-type="wildlife"
+                        data-player="2" value="0" />
+                    <button class="js-increment" data-row="4" data-player="2" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-3">
+                    <label for="player-3-fox">Player 3</label>
+                    <button class="js-decrement" data-row="4" data-player="3" tabindex="-1">&ndash;</button>
+                    <input id="player-3-fox" type="number" min="0" class="js-score" data-row="4" data-type="wildlife"
+                        data-player="3" value="0" />
+                    <button class="js-increment" data-row="4" data-player="3" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-4">
+                    <label for="player-4-fox">Player 4</label>
+                    <button class="js-decrement" data-row="4" data-player="4" tabindex="-1">&ndash;</button>
+                    <input id="player-4-fox" type="number" min="0" class="js-score" data-row="4" data-type="wildlife"
+                        data-player="4" value="0" />
+                    <button class="js-increment" data-row="4" data-player="4" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-5">
+                    <label for="player-5-fox">Player 5</label>
+                    <button class="js-decrement" data-row="4" data-player="5" tabindex="-1">&ndash;</button>
+                    <input id="player-5-fox" type="number" min="0" class="js-score" data-row="4" data-type="wildlife"
+                        data-player="5" value="0" />
+                    <button class="js-increment" data-row="4" data-player="5" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-6">
+                    <label for="player-6-fox">Player 6</label>
+                    <button class="js-decrement" data-row="4" data-player="6" tabindex="-1">&ndash;</button>
+                    <input id="player-6-fox" type="number" min="0" class="js-score" data-row="4" data-type="wildlife"
+                        data-player="6" value="0" />
+                    <button class="js-increment" data-row="4" data-player="6" tabindex="-1">+</button>
+                </div>
+            </li>
+            <li class="row end js-row">
+                <h2 class="row-label player-1">Salmon</h2>
+                <div class="counter">
+                    <label for="player-1-salmon">Player 1</label>
+                    <button class="js-decrement" data-row="5" data-player="1" tabindex="-1">&ndash;</button>
+                    <input id="player-1-salmon" type="number" min="0" class="js-score" data-row="5" data-type="wildlife"
+                        data-player="1" value="0" />
+                    <button class="js-increment" data-row="5" data-player="1" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-2">
+                    <label for="player-2-salmon">Player 2</label>
+                    <button class="js-decrement" data-row="5" data-player="2" tabindex="-1">&ndash;</button>
+                    <input id="player-2-salmon" type="number" min="0" class="js-score" data-row="5" data-type="wildlife"
+                        data-player="2" value="0" />
+                    <button class="js-increment" data-row="5" data-player="2" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-3">
+                    <label for="player-3-salmon">Player 3</label>
+                    <button class="js-decrement" data-row="5" data-player="3" tabindex="-1">&ndash;</button>
+                    <input id="player-3-salmon" type="number" min="0" class="js-score" data-row="5" data-type="wildlife"
+                        data-player="3" value="0" />
+                    <button class="js-increment" data-row="5" data-player="3" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-4">
+                    <label for="player-4-salmon">Player 4</label>
+                    <button class="js-decrement" data-row="5" data-player="4" tabindex="-1">&ndash;</button>
+                    <input id="player-4-salmon" type="number" min="0" class="js-score" data-row="5" data-type="wildlife"
+                        data-player="4" value="0" />
+                    <button class="js-increment" data-row="5" data-player="4" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-5">
+                    <label for="player-5-salmon">Player 5</label>
+                    <button class="js-decrement" data-row="5" data-player="5" tabindex="-1">&ndash;</button>
+                    <input id="player-5-salmon" type="number" min="0" class="js-score" data-row="5" data-type="wildlife"
+                        data-player="5" value="0" />
+                    <button class="js-increment" data-row="5" data-player="5" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-6">
+                    <label for="player-6-salmon">Player 6</label>
+                    <button class="js-decrement" data-row="6" data-player="6" tabindex="-1">&ndash;</button>
+                    <input id="player-6-salmon" type="number" min="0" class="js-score" data-row="5" data-type="wildlife"
+                        data-player="6" value="0" />
+                    <button class="js-increment" data-row="5" data-player="6" tabindex="-1">+</button>
+                </div>
+            </li>
+        </ul>
+        <div class="total-scores subtotals js-subtotal-scores-wildlife">
+            <h2 class="row-label">Wildlife</h2>
+            <div class="total-score player-1 js-subtotal-score-wildlife-player-1">0</div>
+            <div class="total-score player-2 js-subtotal-score-wildlife-player-2">0</div>
+            <div class="total-score player-3 js-subtotal-score-wildlife-player-3">0</div>
+            <div class="total-score player-4 js-subtotal-score-wildlife-player-4">0</div>
+            <div class="total-score player-5 js-subtotal-score-wildlife-player-5">0</div>
+            <div class="total-score player-6 js-subtotal-score-wildlife-player-6">0</div>
         </div>
-        <div class="initials player-2">
-          <label for="player-2-initials">Player 2 initials</label>
-          <input id="player-2-initials" type="text" value="" maxlength="2" />
-        </div>
-        <div class="initials player-3">
-          <label for="player-3-initials">Player 3 initials</label>
-          <input id="player-3-initials" type="text" value="" maxlength="2" />
-        </div>
-        <div class="initials player-4">
-          <label for="player-4-initials">Player 4 initials</label>
-          <input id="player-4-initials" type="text" value="" maxlength="2" />
-        </div>
-        <div class="initials player-5">
-          <label for="player-5-initials">Player 5 initials</label>
-          <input id="player-5-initials" type="text" value="" maxlength="2" />
-        </div>
-      </li>
-    </ul>
+        <ul class="rows">
+            <li class="row js-row">
+                <h2 class="row-label">Mountain</h2>
+                <div class="counter player-1">
+                    <label for="player-1-mountain">Player 1</label>
+                    <button class="js-decrement" data-row="6" data-player="1" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-1-mountain" type="number" min="0" class="js-score" data-row="6"
+                            data-type="habitat" data-player="1" value="0" />
+                        <div class="js-bonus bonus" data-row="6" data-player="1"></div>
+                    </div>
+                    <button class="js-increment" data-row="6" data-player="1" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-2">
+                    <label for="player-2-mountain">Player 2</label>
+                    <button class="js-decrement" data-row="6" data-player="2" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-2-mountain" type="number" min="0" class="js-score" data-row="6"
+                            data-type="habitat" data-player="2" value="0" />
+                        <div class="js-bonus bonus" data-row="6" data-player="2"></div>
+                    </div>
+                    <button class="js-increment" data-row="6" data-player="2" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-3">
+                    <label for="player-3-mountain">Player 3</label>
+                    <button class="js-decrement" data-row="6" data-player="3" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-3-mountain" type="number" min="0" class="js-score" data-row="6"
+                            data-type="habitat" data-player="3" value="0" />
+                        <div class="js-bonus bonus" data-row="6" data-player="3"></div>
+                    </div>
+                    <button class="js-increment" data-row="6" data-player="3" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-4">
+                    <label for="player-4-mountain">Player 4</label>
+                    <button class="js-decrement" data-row="6" data-player="4" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-4-mountain" type="number" min="0" class="js-score" data-row="6"
+                            data-type="habitat" data-player="4" value="0" />
+                        <div class="js-bonus bonus" data-row="6" data-player="4"></div>
+                    </div>
+                    <button class="js-increment" data-row="6" data-player="4" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-5">
+                    <label for="player-5-mountain">Player 5</label>
+                    <button class="js-decrement" data-row="6" data-player="5" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-5-mountain" type="number" min="0" class="js-score" data-row="6"
+                            data-type="habitat" data-player="5" value="0" />
+                        <div class="js-bonus bonus" data-row="6" data-player="5"></div>
+                    </div>
+                    <button class="js-increment" data-row="6" data-player="5" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-6">
+                    <label for="player-6-mountain">Player 6</label>
+                    <button class="js-decrement" data-row="6" data-player="6" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-6-mountain" type="number" min="0" class="js-score" data-row="6"
+                            data-type="habitat" data-player="6" value="0" />
+                        <div class="js-bonus bonus" data-row="6" data-player="6"></div>
+                    </div>
+                    <button class="js-increment" data-row="6" data-player="6" tabindex="-1">+</button>
+                </div>
+            </li>
+            <li class="row js-row">
+                <h2 class="row-label">Forest</h2>
+                <div class="counter player-1">
+                    <label for="player-1-forest">Player 1</label>
+                    <button class="js-decrement" data-row="7" data-player="1" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-1-forest" type="number" min="0" class="js-score" data-row="7"
+                            data-type="habitat" data-player="1" value="0" />
+                        <div class="js-bonus bonus" data-row="7" data-player="1"></div>
+                    </div>
+                    <button class="js-increment" data-row="7" data-player="1" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-2">
+                    <label for="player-2-forest">Player 2</label>
+                    <button class="js-decrement" data-row="7" data-player="2" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-2-forest" type="number" min="0" class="js-score" data-row="7"
+                            data-type="habitat" data-player="2" value="0" />
+                        <div class="js-bonus bonus" data-row="7" data-player="2"></div>
+                    </div>
+                    <button class="js-increment" data-row="7" data-player="2" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-3">
+                    <label for="player-3-forest">Player 3</label>
+                    <button class="js-decrement" data-row="7" data-player="3" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-3-forest" type="number" min="0" class="js-score" data-row="7"
+                            data-type="habitat" data-player="3" value="0" />
+                        <div class="js-bonus bonus" data-row="7" data-player="3"></div>
+                    </div>
+                    <button class="js-increment" data-row="7" data-player="3" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-4">
+                    <label for="player-4-forest">Player 4</label>
+                    <button class="js-decrement" data-row="7" data-player="4" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-4-forest" type="number" min="0" class="js-score" data-row="7"
+                            data-type="habitat" data-player="4" value="0" />
+                        <div class="js-bonus bonus" data-row="7" data-player="4"></div>
+                    </div>
+                    <button class="js-increment" data-row="7" data-player="4" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-5">
+                    <label for="player-5-forest">Player 5</label>
+                    <button class="js-decrement" data-row="7" data-player="5" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-5-forest" type="number" min="0" class="js-score" data-row="7"
+                            data-type="habitat" data-player="5" value="0" />
+                        <div class="js-bonus bonus" data-row="7" data-player="5"></div>
+                    </div>
+                    <button class="js-increment" data-row="7" data-player="5" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-6">
+                    <label for="player-6-forest">Player 6</label>
+                    <button class="js-decrement" data-row="7" data-player="6" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-6-forest" type="number" min="0" class="js-score" data-row="7"
+                            data-type="habitat" data-player="6" value="0" />
+                        <div class="js-bonus bonus" data-row="7" data-player="6"></div>
+                    </div>
+                    <button class="js-increment" data-row="7" data-player="6" tabindex="-1">+</button>
+                </div>
+            </li>
+            <li class="row js-row">
+                <h2 class="row-label">Prarie</h2>
+                <div class="counter player-1">
+                    <label for="player-1-prarie">Player 1</label>
+                    <button class="js-decrement" data-row="8" data-player="1" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-1-prarie" type="number" min="0" class="js-score" data-row="8"
+                            data-type="habitat" data-player="1" value="0" />
+                        <div class="js-bonus bonus" data-row="8" data-player="1"></div>
+                    </div>
+                    <button class="js-increment" data-row="8" data-player="1" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-2">
+                    <label for="player-2-prarie">Player 2</label>
+                    <button class="js-decrement" data-row="8" data-player="2" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-2-prarie" type="number" min="0" class="js-score" data-row="8"
+                            data-type="habitat" data-player="2" value="0" />
+                        <div class="js-bonus bonus" data-row="8" data-player="2"></div>
+                    </div>
+                    <button class="js-increment" data-row="8" data-player="2" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-3">
+                    <label for="player-3-prarie">Player 3</label>
+                    <button class="js-decrement" data-row="8" data-player="3" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-3-prarie" type="number" min="0" class="js-score" data-row="8"
+                            data-type="habitat" data-player="3" value="0" />
+                        <div class="js-bonus bonus" data-row="8" data-player="3"></div>
+                    </div>
+                    <button class="js-increment" data-row="8" data-player="3" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-4">
+                    <label for="player-4-prarie">Player 4</label>
+                    <button class="js-decrement" data-row="8" data-player="4" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-4-prarie" type="number" min="0" class="js-score" data-row="8"
+                            data-type="habitat" data-player="4" value="0" />
+                        <div class="js-bonus bonus" data-row="8" data-player="4"></div>
+                    </div>
+                    <button class="js-increment" data-row="8" data-player="4" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-5">
+                    <label for="player-5-prarie">Player 5</label>
+                    <button class="js-decrement" data-row="8" data-player="5" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-5-prarie" type="number" min="0" class="js-score" data-row="8"
+                            data-type="habitat" data-player="5" value="0" />
+                        <div class="js-bonus bonus" data-row="8" data-player="5"></div>
+                    </div>
+                    <button class="js-increment" data-row="8" data-player="5" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-6">
+                    <label for="player-6-prarie">Player 6</label>
+                    <button class="js-decrement" data-row="8" data-player="6" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-6-prarie" type="number" min="0" class="js-score" data-row="8"
+                            data-type="habitat" data-player="6" value="0" />
+                        <div class="js-bonus bonus" data-row="8" data-player="6"></div>
+                    </div>
+                    <button class="js-increment" data-row="8" data-player="6" tabindex="-1">+</button>
+                </div>
+            </li>
+            <li class="row js-row">
+                <h2 class="row-label">Wetland</h2>
+                <div class="counter player-1">
+                    <label for="player-1-wetland">Player 1</label>
+                    <button class="js-decrement" data-row="9" data-player="1" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-1-wetland" type="number" min="0" class="js-score" data-row="9"
+                            data-type="habitat" data-player="1" value="0" />
+                        <div class="js-bonus bonus" data-row="9" data-player="1"></div>
+                    </div>
+                    <button class="js-increment" data-row="9" data-player="1" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-2">
+                    <label for="player-2-wetland">Player 2</label>
+                    <button class="js-decrement" data-row="9" data-player="2" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-2-wetland" type="number" min="0" class="js-score" data-row="9"
+                            data-type="habitat" data-player="2" value="0" />
+                        <div class="js-bonus bonus" data-row="9" data-player="2"></div>
+                    </div>
+                    <button class="js-increment" data-row="9" data-player="2" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-3">
+                    <label for="player-3-wetland">Player 3</label>
+                    <button class="js-decrement" data-row="9" data-player="3" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-3-wetland" type="number" min="0" class="js-score" data-row="9"
+                            data-type="habitat" data-player="3" value="0" />
+                        <div class="js-bonus bonus" data-row="9" data-player="3"></div>
+                    </div>
+                    <button class="js-increment" data-row="9" data-player="3" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-4">
+                    <label for="player-4-wetland">Player 4</label>
+                    <button class="js-decrement" data-row="9" data-player="4" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-4-wetland" type="number" min="0" class="js-score" data-row="9"
+                            data-type="habitat" data-player="4" value="0" />
+                        <div class="js-bonus bonus" data-row="9" data-player="4"></div>
+                    </div>
+                    <button class="js-increment" data-row="9" data-player="4" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-5">
+                    <label for="player-5-wetland">Player 5</label>
+                    <button class="js-decrement" data-row="9" data-player="5" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-5-wetland" type="number" min="0" class="js-score" data-row="9"
+                            data-type="habitat" data-player="5" value="0" />
+                        <div class="js-bonus bonus" data-row="9" data-player="5"></div>
+                    </div>
+                    <button class="js-increment" data-row="9" data-player="5" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-6">
+                    <label for="player-6-wetland">Player 6</label>
+                    <button class="js-decrement" data-row="9" data-player="6" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-6-wetland" type="number" min="0" class="js-score" data-row="9"
+                            data-type="habitat" data-player="6" value="0" />
+                        <div class="js-bonus bonus" data-row="9" data-player="6"></div>
+                    </div>
+                    <button class="js-increment" data-row="9" data-player="6" tabindex="-1">+</button>
+                </div>
+            </li>
+            <li class="row end js-row">
+                <h2 class="row-label">River</h2>
+                <div class="counter player-1">
+                    <label for="player-1-river">Player 1</label>
+                    <button class="js-decrement" data-row="10" data-player="1" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-1-river" type="number" min="0" class="js-score" data-row="10"
+                            data-type="habitat" data-player="1" value="0" />
+                        <div class="js-bonus bonus" data-row="10" data-player="1"></div>
+                    </div>
+                    <button class="js-increment" data-row="10" data-player="1" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-2">
+                    <label for="player-2-river">Player 2</label>
+                    <button class="js-decrement" data-row="10" data-player="2" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-2-river" type="number" min="0" class="js-score" data-row="10"
+                            data-type="habitat" data-player="2" value="0" />
+                        <div class="js-bonus bonus" data-row="10" data-player="2"></div>
+                    </div>
+                    <button class="js-increment" data-row="10" data-player="2" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-3">
+                    <label for="player-3-river">Player 3</label>
+                    <button class="js-decrement" data-row="10" data-player="3" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-3-river" type="number" min="0" class="js-score" data-row="10"
+                            data-type="habitat" data-player="3" value="0" />
+                        <div class="js-bonus bonus" data-row="10" data-player="3"></div>
+                    </div>
+                    <button class="js-increment" data-row="10" data-player="3" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-4">
+                    <label for="player-4-river">Player 4</label>
+                    <button class="js-decrement" data-row="10" data-player="4" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-4-river" type="number" min="0" class="js-score" data-row="10"
+                            data-type="habitat" data-player="4" value="0" />
+                        <div class="js-bonus bonus" data-row="10" data-player="4"></div>
+                    </div>
+                    <button class="js-increment" data-row="10" data-player="4" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-5">
+                    <label for="player-5-river">Player 5</label>
+                    <button class="js-decrement" data-row="10" data-player="5" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-5-river" type="number" min="0" class="js-score" data-row="10"
+                            data-type="habitat" data-player="5" value="0" />
+                        <div class="js-bonus bonus" data-row="10" data-player="5"></div>
+                    </div>
+                    <button class="js-increment" data-row="10" data-player="4" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-6">
+                    <label for="player-6-river">Player 6</label>
+                    <button class="js-decrement" data-row="10" data-player="6" tabindex="-1">&ndash;</button>
+                    <div class="input">
+                        <input id="player-6-river" type="number" min="0" class="js-score" data-row="10"
+                            data-type="habitat" data-player="6" value="0" />
+                        <div class="js-bonus bonus" data-row="10" data-player="6"></div>
+                    </div>
+                    <button class="js-increment" data-row="10" data-player="4" tabindex="-1">+</button>
+                </div>
+            </li>
+        </ul>
+        <div class="total-scores subtotals js-subtotal-scores-habitats">
+            <h2 class="row-label">Habitats</h2>
+            <div class="total-score player-1 js-subtotal-score-habitats-player-1">0</div>
+            <div class="total-score player-2 js-subtotal-score-habitats-player-2">0</div>
+            <div class="total-score player-3 js-subtotal-score-habitats-player-3">0</div>
+            <div class="total-score player-4 js-subtotal-score-habitats-player-4">0</div>
+            <div class="total-score player-5 js-subtotal-score-habitats-player-5">0</div>
+            <div class="total-score player-6 js-subtotal-score-habitats-player-6">0</div>
 
-    <ul class="rows">
-      <li class="row js-row">
-        <h2 class="row-label">Bear</h2>
-        <div class="counter player-1">
-          <label for="player-1-bear">Player 1</label>
-          <button class="js-decrement" data-row="1" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-bear" type="number" min="0" class="js-score" data-row="1" data-type="wildlife" data-player="1" value="0" />
-          <button class="js-increment" data-row="1" data-player="1" tabindex="-1">+</button>
         </div>
-        <div class="counter player-2">
-          <label for="player-2-bear">Player 2</label>
-          <button class="js-decrement" data-row="1" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-bear" type="number" min="0" class="js-score" data-row="1" data-type="wildlife" data-player="2" value="0" />
-          <button class="js-increment" data-row="1" data-player="2" tabindex="-1">+</button>
+        <ul class="rows">
+            <li class="row end js-row">
+                <h2 class="row-label">Tokens</h2>
+                <div class="counter player-1">
+                    <label for="player-1-tokens">Player 1</label>
+                    <button class="js-decrement" data-row="11" data-player="1" tabindex="-1">&ndash;</button>
+                    <input id="player-1-tokens" type="number" min="0" class="js-score" data-row="11" data-player="1"
+                        value="0" />
+                    <button class="js-increment" data-row="11" data-player="1" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-2">
+                    <label for="player-2-tokens">Player 2</label>
+                    <button class="js-decrement" data-row="11" data-player="2" tabindex="-1">&ndash;</button>
+                    <input id="player-2-tokens" type="number" min="0" class="js-score" data-row="11" data-player="2"
+                        value="0" />
+                    <button class="js-increment" data-row="11" data-player="2" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-3">
+                    <label for="player-3-tokens">Player 3</label>
+                    <button class="js-decrement" data-row="11" data-player="3" tabindex="-1">&ndash;</button>
+                    <input id="player-3-tokens" type="number" min="0" class="js-score" data-row="11" data-player="3"
+                        value="0" />
+                    <button class="js-increment" data-row="11" data-player="3" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-4">
+                    <label for="player-4-tokens">Player 4</label>
+                    <button class="js-decrement" data-row="11" data-player="4" tabindex="-1">&ndash;</button>
+                    <input id="player-4-tokens" type="number" min="0" class="js-score" data-row="11" data-player="4"
+                        value="0" />
+                    <button class="js-increment" data-row="11" data-player="4" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-5">
+                    <label for="player-5-tokens">Player 5</label>
+                    <button class="js-decrement" data-row="11" data-player="5" tabindex="-1">&ndash;</button>
+                    <input id="player-5-tokens" type="number" min="0" class="js-score" data-row="11" data-player="5"
+                        value="0" />
+                    <button class="js-increment" data-row="11" data-player="5" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-6">
+                    <label for="player-6-tokens">Player 6</label>
+                    <button class="js-decrement" data-row="11" data-player="6" tabindex="-1">&ndash;</button>
+                    <input id="player-6-tokens" type="number" min="0" class="js-score" data-row="11" data-player="6"
+                        value="0" />
+                    <button class="js-increment" data-row="11" data-player="6" tabindex="-1">+</button>
+                </div>
+            </li>
+        </ul>
+        <ul class="rows">
+            <li class="row end js-row">
+                <h2 class="row-label">Landmarks</h2>
+                <div class="counter player-1">
+                    <label for="player-1-landmarks">Player 1</label>
+                    <button class="js-decrement" data-row="12" data-player="1" tabindex="-1">&ndash;</button>
+                    <input id="player-1-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="1"
+                        value="0" />
+                    <button class="js-increment" data-row="12" data-player="1" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-2">
+                    <label for="player-2-landmarks">Player 2</label>
+                    <button class="js-decrement" data-row="12" data-player="2" tabindex="-1">&ndash;</button>
+                    <input id="player-2-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="2"
+                        value="0" />
+                    <button class="js-increment" data-row="12" data-player="2" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-3">
+                    <label for="player-3-landmarks">Player 3</label>
+                    <button class="js-decrement" data-row="12" data-player="3" tabindex="-1">&ndash;</button>
+                    <input id="player-3-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="3"
+                        value="0" />
+                    <button class="js-increment" data-row="12" data-player="3" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-4">
+                    <label for="player-4-landmarks">Player 4</label>
+                    <button class="js-decrement" data-row="12" data-player="4" tabindex="-1">&ndash;</button>
+                    <input id="player-4-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="4"
+                        value="0" />
+                    <button class="js-increment" data-row="12" data-player="4" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-5">
+                    <label for="player-5-landmarks">Player 5</label>
+                    <button class="js-decrement" data-row="12" data-player="5" tabindex="-1">&ndash;</button>
+                    <input id="player-5-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="5"
+                        value="0" />
+                    <button class="js-increment" data-row="12" data-player="5" tabindex="-1">+</button>
+                </div>
+                <div class="counter player-6">
+                    <label for="player-6-landmarks">Player 6</label>
+                    <button class="js-decrement" data-row="12" data-player="6" tabindex="-1">&ndash;</button>
+                    <input id="player-6-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="6"
+                        value="0" />
+                    <button class="js-increment" data-row="12" data-player="6" tabindex="-1">+</button>
+                </div>
+            </li>
+        </ul>
+        <div class="total-scores js-total-scores">
+            <h2 class="row-label">Totals</h2>
+            <div class="total-score player-1 js-total-score-player-1">0</div>
+            <div class="total-score player-2 js-total-score-player-2">0</div>
+            <div class="total-score player-3 js-total-score-player-3">0</div>
+            <div class="total-score player-4 js-total-score-player-4">0</div>
+            <div class="total-score player-5 js-total-score-player-5">0</div>
+            <div class="total-score player-6 js-total-score-player-6">0</div>
         </div>
-        <div class="counter player-3">
-          <label for="player-3-bear">Player 3</label>
-          <button class="js-decrement" data-row="1" data-player="3" tabindex="-1">&ndash;</button>
-          <input id="player-3-bear" type="number" min="0" class="js-score" data-row="1" data-type="wildlife" data-player="3" value="0" />
-          <button class="js-increment" data-row="1" data-player="3" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-4">
-          <label for="player-4-bear">Player 4</label>
-          <button class="js-decrement" data-row="1" data-player="4" tabindex="-1">&ndash;</button>
-          <input id="player-4-bear" type="number" min="0" class="js-score" data-row="1" data-type="wildlife" data-player="4" value="0" />
-          <button class="js-increment" data-row="1" data-player="4" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-5">
-          <label for="player-5-bear">Player 5</label>
-          <button class="js-decrement" data-row="1" data-player="5" tabindex="-1">&ndash;</button>
-          <input id="player-5-bear" type="number" min="0" class="js-score" data-row="1" data-type="wildlife" data-player="5" value="0" />
-          <button class="js-increment" data-row="1" data-player="5" tabindex="-1">+</button>
-        </div>
-      </li>
-      <li class="row js-row">
-        <h2 class="row-label">Elk</h2>
-        <div class="counter player-1">
-          <label for="player-1-elk">Player 1</label>
-          <button class="js-decrement" data-row="2" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-elk" type="number" min="0" class="js-score" data-row="2" data-type="wildlife" data-player="1" value="0" />
-          <button class="js-increment" data-row="2" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-2">
-          <label for="player-2-elk">Player 2</label>
-          <button class="js-decrement" data-row="2" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-elk" type="number" min="0" class="js-score" data-row="2" data-type="wildlife" data-player="2" value="0" />
-          <button class="js-increment" data-row="2" data-player="2" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-3">
-          <label for="player-3-elk">Player 3</label>
-          <button class="js-decrement" data-row="3" data-player="3" tabindex="-1">&ndash;</button>
-          <input id="player-3-elk" type="number" min="0" class="js-score" data-row="2" data-type="wildlife" data-player="3" value="0" />
-          <button class="js-increment" data-row="2" data-player="3" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-4">
-          <label for="player-4-elk">Player 4</label>
-          <button class="js-decrement" data-row="2" data-player="4" tabindex="-1">&ndash;</button>
-          <input id="player-4-elk" type="number" min="0" class="js-score" data-row="2" data-type="wildlife" data-player="4" value="0" />
-          <button class="js-increment" data-row="2" data-player="4" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-5">
-          <label for="player-5-elk">Player 5</label>
-          <button class="js-decrement" data-row="2" data-player="5" tabindex="-1">&ndash;</button>
-          <input id="player-5-elk" type="number" min="0" class="js-score" data-row="2" data-type="wildlife" data-player="5" value="0" />
-          <button class="js-increment" data-row="2" data-player="5" tabindex="-1">+</button>
-        </div>
-      </li>
-      <li class="row js-row">
-        <h2 class="row-label">Hawk</h2>
-        <div class="counter player-1">
-          <label for="player-1-hawk">Player 1</label>
-          <button class="js-decrement" data-row="3" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-hawk" type="number" min="0" class="js-score" data-row="3" data-type="wildlife" data-player="1" value="0" />
-          <button class="js-increment" data-row="3" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-2">
-          <label for="player-2-hawk">Player 2</label>
-          <button class="js-decrement" data-row="3" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-hawk" type="number" min="0" class="js-score" data-row="3" data-type="wildlife" data-player="2" value="0" />
-          <button class="js-increment" data-row="3" data-player="2" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-3">
-          <label for="player-3-hawk">Player 3</label>
-          <button class="js-decrement" data-row="3" data-player="3" tabindex="-1">&ndash;</button>
-          <input id="player-3-hawk" type="number" min="0" class="js-score" data-row="3" data-type="wildlife" data-player="3" value="0" />
-          <button class="js-increment" data-row="3" data-player="3" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-4">
-          <label for="player-4-hawk">Player 4</label>
-          <button class="js-decrement" data-row="3" data-player="4" tabindex="-1">&ndash;</button>
-          <input id="player-4-hawk" type="number" min="0" class="js-score" data-row="3" data-type="wildlife" data-player="4" value="0" />
-          <button class="js-increment" data-row="3" data-player="4" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-5">
-          <label for="player-5-hawk">Player 5</label>
-          <button class="js-decrement" data-row="3" data-player="5" tabindex="-1">&ndash;</button>
-          <input id="player-5-hawk" type="number" min="0" class="js-score" data-row="3" data-type="wildlife" data-player="5" value="0" />
-          <button class="js-increment" data-row="3" data-player="5" tabindex="-1">+</button>
-        </div>
-      </li>
-      <li class="row js-row">
-        <h2 class="row-label player-1">Fox</h2>
-        <div class="counter">
-          <label for="player-1-fox">Player 1</label>
-          <button class="js-decrement" data-row="4" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-fox" type="number" min="0" class="js-score" data-row="4" data-type="wildlife" data-player="1" value="0" />
-          <button class="js-increment" data-row="4" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-2">
-          <label for="player-2-fox">Player 2</label>
-          <button class="js-decrement" data-row="4" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-fox" type="number" min="0" class="js-score" data-row="4" data-type="wildlife" data-player="2" value="0" />
-          <button class="js-increment" data-row="4" data-player="2" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-3">
-          <label for="player-3-fox">Player 3</label>
-          <button class="js-decrement" data-row="4" data-player="3" tabindex="-1">&ndash;</button>
-          <input id="player-3-fox" type="number" min="0" class="js-score" data-row="4" data-type="wildlife" data-player="3" value="0" />
-          <button class="js-increment" data-row="4" data-player="3" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-4">
-          <label for="player-4-fox">Player 4</label>
-          <button class="js-decrement" data-row="4" data-player="4" tabindex="-1">&ndash;</button>
-          <input id="player-4-fox" type="number" min="0" class="js-score" data-row="4" data-type="wildlife" data-player="4" value="0" />
-          <button class="js-increment" data-row="4" data-player="4" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-5">
-          <label for="player-5-fox">Player 5</label>
-          <button class="js-decrement" data-row="4" data-player="5" tabindex="-1">&ndash;</button>
-          <input id="player-5-fox" type="number" min="0" class="js-score" data-row="4" data-type="wildlife" data-player="5" value="0" />
-          <button class="js-increment" data-row="4" data-player="5" tabindex="-1">+</button>
-        </div>
-      </li>
-      <li class="row end js-row">
-        <h2 class="row-label player-1">Salmon</h2>
-        <div class="counter">
-          <label for="player-1-salmon">Player 1</label>
-          <button class="js-decrement" data-row="5" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-salmon" type="number" min="0" class="js-score" data-row="5" data-type="wildlife" data-player="1" value="0" />
-          <button class="js-increment" data-row="5" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-2">
-          <label for="player-2-salmon">Player 2</label>
-          <button class="js-decrement" data-row="5" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-salmon" type="number" min="0" class="js-score" data-row="5" data-type="wildlife" data-player="2" value="0" />
-          <button class="js-increment" data-row="5" data-player="2" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-3">
-          <label for="player-3-salmon">Player 3</label>
-          <button class="js-decrement" data-row="5" data-player="3" tabindex="-1">&ndash;</button>
-          <input id="player-3-salmon" type="number" min="0" class="js-score" data-row="5" data-type="wildlife" data-player="3" value="0" />
-          <button class="js-increment" data-row="5" data-player="3" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-4">
-          <label for="player-4-salmon">Player 4</label>
-          <button class="js-decrement" data-row="5" data-player="4" tabindex="-1">&ndash;</button>
-          <input id="player-4-salmon" type="number" min="0" class="js-score" data-row="5" data-type="wildlife" data-player="4" value="0" />
-          <button class="js-increment" data-row="5" data-player="4" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-5">
-          <label for="player-5-salmon">Player 5</label>
-          <button class="js-decrement" data-row="5" data-player="5" tabindex="-1">&ndash;</button>
-          <input id="player-5-salmon" type="number" min="0" class="js-score" data-row="5" data-type="wildlife" data-player="5" value="0" />
-          <button class="js-increment" data-row="5" data-player="5" tabindex="-1">+</button>
-        </div>
-      </li>
-    </ul>
-    <div class="total-scores subtotals js-subtotal-scores-wildlife">
-      <h2 class="row-label">Wildlife</h2>
-      <div class="total-score player-1 js-subtotal-score-wildlife-player-1">0</div>
-      <div class="total-score player-2 js-subtotal-score-wildlife-player-2">0</div>
-      <div class="total-score player-3 js-subtotal-score-wildlife-player-3">0</div>
-      <div class="total-score player-4 js-subtotal-score-wildlife-player-4">0</div>
-      <div class="total-score player-5 js-subtotal-score-wildlife-player-5">0</div>
-    </div>
-    <ul class="rows">
-      <li class="row js-row">
-        <h2 class="row-label">Mountain</h2>
-        <div class="counter player-1">
-          <label for="player-1-mountain">Player 1</label>
-          <button class="js-decrement" data-row="6" data-player="1" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-1-mountain" type="number" min="0" class="js-score" data-row="6" data-type="habitat" data-player="1" value="0" />
-            <div class="js-bonus bonus" data-row="6" data-player="1"></div>
-          </div>
-          <button class="js-increment" data-row="6" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-2">
-          <label for="player-2-mountain">Player 2</label>
-          <button class="js-decrement" data-row="6" data-player="2" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-2-mountain" type="number" min="0" class="js-score" data-row="6" data-type="habitat" data-player="2" value="0" />
-            <div class="js-bonus bonus" data-row="6" data-player="2"></div>
-          </div>
-          <button class="js-increment" data-row="6" data-player="2" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-3">
-          <label for="player-3-mountain">Player 3</label>
-          <button class="js-decrement" data-row="6" data-player="3" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-3-mountain" type="number" min="0" class="js-score" data-row="6" data-type="habitat" data-player="3" value="0" />
-            <div class="js-bonus bonus" data-row="6" data-player="3"></div>
-          </div>
-          <button class="js-increment" data-row="6" data-player="3" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-4">
-          <label for="player-4-mountain">Player 4</label>
-          <button class="js-decrement" data-row="6" data-player="4" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-4-mountain" type="number" min="0" class="js-score" data-row="6" data-type="habitat" data-player="4" value="0" />
-            <div class="js-bonus bonus" data-row="6" data-player="4"></div>
-          </div>
-          <button class="js-increment" data-row="6" data-player="4" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-5">
-          <label for="player-5-mountain">Player 5</label>
-          <button class="js-decrement" data-row="6" data-player="5" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-5-mountain" type="number" min="0" class="js-score" data-row="6" data-type="habitat" data-player="5" value="0" />
-            <div class="js-bonus bonus" data-row="6" data-player="5"></div>
-          </div>
-          <button class="js-increment" data-row="6" data-player="5" tabindex="-1">+</button>
-        </div>
-      </li>
-      <li class="row js-row">
-        <h2 class="row-label">Forest</h2>
-        <div class="counter player-1">
-          <label for="player-1-forest">Player 1</label>
-          <button class="js-decrement" data-row="7" data-player="1" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-1-forest" type="number" min="0" class="js-score" data-row="7" data-type="habitat" data-player="1" value="0" />
-            <div class="js-bonus bonus" data-row="7" data-player="1"></div>
-          </div>
-          <button class="js-increment" data-row="7" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-2">
-          <label for="player-2-forest">Player 2</label>
-          <button class="js-decrement" data-row="7" data-player="2" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-2-forest" type="number" min="0" class="js-score" data-row="7" data-type="habitat" data-player="2" value="0" />
-            <div class="js-bonus bonus" data-row="7" data-player="2"></div>
-          </div>
-          <button class="js-increment" data-row="7" data-player="2" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-3">
-          <label for="player-3-forest">Player 3</label>
-          <button class="js-decrement" data-row="7" data-player="3" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-3-forest" type="number" min="0" class="js-score" data-row="7" data-type="habitat" data-player="3" value="0" />
-            <div class="js-bonus bonus" data-row="7" data-player="3"></div>
-          </div>
-          <button class="js-increment" data-row="7" data-player="3" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-4">
-          <label for="player-4-forest">Player 4</label>
-          <button class="js-decrement" data-row="7" data-player="4" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-4-forest" type="number" min="0" class="js-score" data-row="7" data-type="habitat" data-player="4" value="0" />
-            <div class="js-bonus bonus" data-row="7" data-player="4"></div>
-          </div>
-          <button class="js-increment" data-row="7" data-player="4" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-5">
-          <label for="player-5-forest">Player 5</label>
-          <button class="js-decrement" data-row="7" data-player="5" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-5-forest" type="number" min="0" class="js-score" data-row="7" data-type="habitat" data-player="5" value="0" />
-            <div class="js-bonus bonus" data-row="7" data-player="5"></div>
-          </div>
-          <button class="js-increment" data-row="7" data-player="5" tabindex="-1">+</button>
-        </div>
-      </li>
-      <li class="row js-row">
-        <h2 class="row-label">Prarie</h2>
-        <div class="counter player-1">
-          <label for="player-1-prarie">Player 1</label>
-          <button class="js-decrement" data-row="8" data-player="1" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-1-prarie" type="number" min="0" class="js-score" data-row="8" data-type="habitat" data-player="1" value="0" />
-            <div class="js-bonus bonus" data-row="8" data-player="1"></div>
-          </div>
-          <button class="js-increment" data-row="8" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-2">
-          <label for="player-2-prarie">Player 2</label>
-          <button class="js-decrement" data-row="8" data-player="2" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-2-prarie" type="number" min="0" class="js-score" data-row="8" data-type="habitat" data-player="2" value="0" />
-            <div class="js-bonus bonus" data-row="8" data-player="2"></div>
-          </div>
-          <button class="js-increment" data-row="8" data-player="2" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-3">
-          <label for="player-3-prarie">Player 3</label>
-          <button class="js-decrement" data-row="8" data-player="3" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-3-prarie" type="number" min="0" class="js-score" data-row="8" data-type="habitat" data-player="3" value="0" />
-            <div class="js-bonus bonus" data-row="8" data-player="3"></div>
-          </div>
-          <button class="js-increment" data-row="8" data-player="3" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-4">
-          <label for="player-4-prarie">Player 4</label>
-          <button class="js-decrement" data-row="8" data-player="4" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-4-prarie" type="number" min="0" class="js-score" data-row="8" data-type="habitat" data-player="4" value="0" />
-            <div class="js-bonus bonus" data-row="8" data-player="4"></div>
-          </div>
-          <button class="js-increment" data-row="8" data-player="4" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-5">
-          <label for="player-5-prarie">Player 5</label>
-          <button class="js-decrement" data-row="8" data-player="5" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-5-prarie" type="number" min="0" class="js-score" data-row="8" data-type="habitat" data-player="5" value="0" />
-            <div class="js-bonus bonus" data-row="8" data-player="5"></div>
-          </div>
-          <button class="js-increment" data-row="8" data-player="5" tabindex="-1">+</button>
-        </div>
-      </li>
-      <li class="row js-row">
-        <h2 class="row-label">Wetland</h2>
-        <div class="counter player-1">
-          <label for="player-1-wetland">Player 1</label>
-          <button class="js-decrement" data-row="9" data-player="1" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-1-wetland" type="number" min="0" class="js-score" data-row="9" data-type="habitat" data-player="1" value="0" />
-            <div class="js-bonus bonus" data-row="9" data-player="1"></div>
-          </div>
-          <button class="js-increment" data-row="9" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-2">
-          <label for="player-2-wetland">Player 2</label>
-          <button class="js-decrement" data-row="9" data-player="2" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-2-wetland" type="number" min="0" class="js-score" data-row="9" data-type="habitat" data-player="2" value="0" />
-            <div class="js-bonus bonus" data-row="9" data-player="2"></div>
-          </div>
-          <button class="js-increment" data-row="9" data-player="2" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-3">
-          <label for="player-3-wetland">Player 3</label>
-          <button class="js-decrement" data-row="9" data-player="3" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-3-wetland" type="number" min="0" class="js-score" data-row="9" data-type="habitat" data-player="3" value="0" />
-            <div class="js-bonus bonus" data-row="9" data-player="3"></div>
-          </div>
-          <button class="js-increment" data-row="9" data-player="3" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-4">
-          <label for="player-4-wetland">Player 4</label>
-          <button class="js-decrement" data-row="9" data-player="4" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-4-wetland" type="number" min="0" class="js-score" data-row="9" data-type="habitat" data-player="4" value="0" />
-            <div class="js-bonus bonus" data-row="9" data-player="4"></div>
-          </div>
-          <button class="js-increment" data-row="9" data-player="4" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-5">
-          <label for="player-5-wetland">Player 5</label>
-          <button class="js-decrement" data-row="9" data-player="5" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-5-wetland" type="number" min="0" class="js-score" data-row="9" data-type="habitat" data-player="5" value="0" />
-            <div class="js-bonus bonus" data-row="9" data-player="5"></div>
-          </div>
-          <button class="js-increment" data-row="9" data-player="5" tabindex="-1">+</button>
-        </div>
-     </li>
-      <li class="row end js-row">
-        <h2 class="row-label">River</h2>
-        <div class="counter player-1">
-          <label for="player-1-river">Player 1</label>
-          <button class="js-decrement" data-row="10" data-player="1" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-1-river" type="number" min="0" class="js-score" data-row="10" data-type="habitat" data-player="1" value="0" />
-            <div class="js-bonus bonus" data-row="10" data-player="1"></div>
-          </div>
-          <button class="js-increment" data-row="10" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-2">
-          <label for="player-2-river">Player 2</label>
-          <button class="js-decrement" data-row="10" data-player="2" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-2-river" type="number" min="0" class="js-score" data-row="10" data-type="habitat" data-player="2" value="0" />
-            <div class="js-bonus bonus" data-row="10" data-player="2"></div>
-          </div>
-          <button class="js-increment" data-row="10" data-player="2" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-3">
-          <label for="player-3-river">Player 3</label>
-          <button class="js-decrement" data-row="10" data-player="3" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-3-river" type="number" min="0" class="js-score" data-row="10" data-type="habitat" data-player="3" value="0" />
-            <div class="js-bonus bonus" data-row="10" data-player="3"></div>
-          </div>
-          <button class="js-increment" data-row="10" data-player="3" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-4">
-          <label for="player-4-river">Player 4</label>
-          <button class="js-decrement" data-row="10" data-player="4" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-4-river" type="number" min="0" class="js-score" data-row="10" data-type="habitat" data-player="4" value="0" />
-            <div class="js-bonus bonus" data-row="10" data-player="4"></div>
-          </div>
-          <button class="js-increment" data-row="10" data-player="4" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-5">
-          <label for="player-5-river">Player 5</label>
-          <button class="js-decrement" data-row="10" data-player="5" tabindex="-1">&ndash;</button>
-          <div class="input">
-            <input id="player-5-river" type="number" min="0" class="js-score" data-row="10" data-type="habitat" data-player="5" value="0" />
-            <div class="js-bonus bonus" data-row="10" data-player="5"></div>
-          </div>
-          <button class="js-increment" data-row="10" data-player="4" tabindex="-1">+</button>
-        </div>
-     </li>
-    </ul>
-    <div class="total-scores subtotals js-subtotal-scores-habitats">
-      <h2 class="row-label">Habitats</h2>
-      <div class="total-score player-1 js-subtotal-score-habitats-player-1">0</div>
-      <div class="total-score player-2 js-subtotal-score-habitats-player-2">0</div>
-      <div class="total-score player-3 js-subtotal-score-habitats-player-3">0</div>
-      <div class="total-score player-4 js-subtotal-score-habitats-player-4">0</div>
-      <div class="total-score player-5 js-subtotal-score-habitats-player-5">0</div>
-    </div>
-    <ul class="rows">
-      <li class="row end js-row">
-        <h2 class="row-label">Tokens</h2>
-        <div class="counter player-1">
-          <label for="player-1-tokens">Player 1</label>
-          <button class="js-decrement" data-row="11" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-tokens" type="number" min="0" class="js-score" data-row="11" data-player="1" value="0" />
-          <button class="js-increment" data-row="11" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-2">
-          <label for="player-2-tokens">Player 2</label>
-          <button class="js-decrement" data-row="11" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-tokens" type="number" min="0" class="js-score" data-row="11" data-player="2" value="0" />
-          <button class="js-increment" data-row="11" data-player="2" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-3">
-          <label for="player-3-tokens">Player 3</label>
-          <button class="js-decrement" data-row="11" data-player="3" tabindex="-1">&ndash;</button>
-          <input id="player-3-tokens" type="number" min="0" class="js-score" data-row="11" data-player="3" value="0" />
-          <button class="js-increment" data-row="11" data-player="3" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-4">
-          <label for="player-4-tokens">Player 4</label>
-          <button class="js-decrement" data-row="11" data-player="4" tabindex="-1">&ndash;</button>
-          <input id="player-4-tokens" type="number" min="0" class="js-score" data-row="11" data-player="4" value="0" />
-          <button class="js-increment" data-row="11" data-player="4" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-5">
-          <label for="player-5-tokens">Player 5</label>
-          <button class="js-decrement" data-row="11" data-player="5" tabindex="-1">&ndash;</button>
-          <input id="player-5-tokens" type="number" min="0" class="js-score" data-row="11" data-player="5" value="0" />
-          <button class="js-increment" data-row="11" data-player="5" tabindex="-1">+</button>
-        </div>
-     </li>
-    </ul>
-    <ul class="rows">
-      <li class="row end js-row">
-        <h2 class="row-label">Landmarks</h2>
-        <div class="counter player-1">
-          <label for="player-1-landmarks">Player 1</label>
-          <button class="js-decrement" data-row="12" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="1" value="0" />
-          <button class="js-increment" data-row="12" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-2">
-          <label for="player-2-landmarks">Player 2</label>
-          <button class="js-decrement" data-row="12" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="2" value="0" />
-          <button class="js-increment" data-row="12" data-player="2" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-3">
-          <label for="player-3-landmarks">Player 3</label>
-          <button class="js-decrement" data-row="12" data-player="3" tabindex="-1">&ndash;</button>
-          <input id="player-3-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="3" value="0" />
-          <button class="js-increment" data-row="12" data-player="3" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-4">
-          <label for="player-4-landmarks">Player 4</label>
-          <button class="js-decrement" data-row="12" data-player="4" tabindex="-1">&ndash;</button>
-          <input id="player-4-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="4" value="0" />
-          <button class="js-increment" data-row="12" data-player="4" tabindex="-1">+</button>
-        </div>
-        <div class="counter player-5">
-          <label for="player-5-landmarks">Player 5</label>
-          <button class="js-decrement" data-row="12" data-player="5" tabindex="-1">&ndash;</button>
-          <input id="player-5-landmarks" type="number" min="0" class="js-score" data-row="12" data-player="5" value="0" />
-          <button class="js-increment" data-row="12" data-player="5" tabindex="-1">+</button>
-        </div>
-     </li>
-    </ul>
-    <div class="total-scores js-total-scores">
-      <h2 class="row-label">Totals</h2>
-      <div class="total-score player-1 js-total-score-player-1">0</div>
-      <div class="total-score player-2 js-total-score-player-2">0</div>
-      <div class="total-score player-3 js-total-score-player-3">0</div>
-      <div class="total-score player-4 js-total-score-player-4">0</div>
-      <div class="total-score player-5 js-total-score-player-5">0</div>
-    </div>
-    <button class="button reset js-reset">Reset scores</button>
+        <button class="button reset js-reset">Reset scores</button>
     </div>
 				<p class="links">
 					<a href="https://www.alderac.com/wp-content/uploads/2021/08/Cascadia-Rules.pdf" target="_blank">Official rules</a> | <a href="https://ronansprake.co.uk/board-game-score-calculators#contact" target="_blank">Give feedback</a>
 				</p>
 
     <script>
-      const body = document.querySelector("body");
-      const players = document.querySelectorAll(".js-player-switch");
+        const body = document.querySelector("body");
+        const players = document.querySelectorAll(".js-player-switch");
 
-      const elemScores = document.querySelectorAll(".js-score");
-      const elemBonuses = document.querySelectorAll(".js-bonus");
+        const elemScores = document.querySelectorAll(".js-score");
+        const elemBonuses = document.querySelectorAll(".js-bonus");
 
-      const elemScoresPlayer1 = document.querySelectorAll(".js-score[data-player='1']");
-      const elemBonusesPlayer1 = document.querySelectorAll(".js-bonus[data-player='1']");
-      const elemTotalScorePlayer1 = document.querySelector('.js-total-score-player-1');
-      const elemHabitatsSubtotalScorePlayer1 = document.querySelector('.js-subtotal-score-habitats-player-1');
-      const elemWildlifeSubtotalScorePlayer1 = document.querySelector('.js-subtotal-score-wildlife-player-1');
+        const elemScoresPlayer1 = document.querySelectorAll(".js-score[data-player='1']");
+        const elemBonusesPlayer1 = document.querySelectorAll(".js-bonus[data-player='1']");
+        const elemTotalScorePlayer1 = document.querySelector('.js-total-score-player-1');
+        const elemHabitatsSubtotalScorePlayer1 = document.querySelector('.js-subtotal-score-habitats-player-1');
+        const elemWildlifeSubtotalScorePlayer1 = document.querySelector('.js-subtotal-score-wildlife-player-1');
 
-      const elemScoresPlayer2 = document.querySelectorAll(".js-score[data-player='2']");
-      const elemBonusesPlayer2 = document.querySelectorAll(".js-bonus[data-player='2']");
-      const elemTotalScorePlayer2 = document.querySelector('.js-total-score-player-2');
-      const elemHabitatsSubtotalScorePlayer2 = document.querySelector('.js-subtotal-score-habitats-player-2');
-      const elemWildlifeSubtotalScorePlayer2 = document.querySelector('.js-subtotal-score-wildlife-player-2');
+        const elemScoresPlayer2 = document.querySelectorAll(".js-score[data-player='2']");
+        const elemBonusesPlayer2 = document.querySelectorAll(".js-bonus[data-player='2']");
+        const elemTotalScorePlayer2 = document.querySelector('.js-total-score-player-2');
+        const elemHabitatsSubtotalScorePlayer2 = document.querySelector('.js-subtotal-score-habitats-player-2');
+        const elemWildlifeSubtotalScorePlayer2 = document.querySelector('.js-subtotal-score-wildlife-player-2');
 
-      const elemScoresPlayer3 = document.querySelectorAll(".js-score[data-player='3']");
-      const elemBonusesPlayer3 = document.querySelectorAll(".js-bonus[data-player='3']");
-      const elemTotalScorePlayer3 = document.querySelector('.js-total-score-player-3');
-      const elemHabitatsSubtotalScorePlayer3 = document.querySelector('.js-subtotal-score-habitats-player-3');
-      const elemWildlifeSubtotalScorePlayer3 = document.querySelector('.js-subtotal-score-wildlife-player-3');
+        const elemScoresPlayer3 = document.querySelectorAll(".js-score[data-player='3']");
+        const elemBonusesPlayer3 = document.querySelectorAll(".js-bonus[data-player='3']");
+        const elemTotalScorePlayer3 = document.querySelector('.js-total-score-player-3');
+        const elemHabitatsSubtotalScorePlayer3 = document.querySelector('.js-subtotal-score-habitats-player-3');
+        const elemWildlifeSubtotalScorePlayer3 = document.querySelector('.js-subtotal-score-wildlife-player-3');
 
-      const elemScoresPlayer4 = document.querySelectorAll(".js-score[data-player='4']");
-      const elemBonusesPlayer4 = document.querySelectorAll(".js-bonus[data-player='4']");
-      const elemTotalScorePlayer4 = document.querySelector('.js-total-score-player-4');
-      const elemHabitatsSubtotalScorePlayer4 = document.querySelector('.js-subtotal-score-habitats-player-4');
-      const elemWildlifeSubtotalScorePlayer4 = document.querySelector('.js-subtotal-score-wildlife-player-4');
+        const elemScoresPlayer4 = document.querySelectorAll(".js-score[data-player='4']");
+        const elemBonusesPlayer4 = document.querySelectorAll(".js-bonus[data-player='4']");
+        const elemTotalScorePlayer4 = document.querySelector('.js-total-score-player-4');
+        const elemHabitatsSubtotalScorePlayer4 = document.querySelector('.js-subtotal-score-habitats-player-4');
+        const elemWildlifeSubtotalScorePlayer4 = document.querySelector('.js-subtotal-score-wildlife-player-4');
 
-      const elemScoresPlayer5 = document.querySelectorAll(".js-score[data-player='5']");
-      const elemBonusesPlayer5 = document.querySelectorAll(".js-bonus[data-player='5']");
-      const elemTotalScorePlayer5 = document.querySelector('.js-total-score-player-5');
-      const elemHabitatsSubtotalScorePlayer5 = document.querySelector('.js-subtotal-score-habitats-player-5');
-      const elemWildlifeSubtotalScorePlayer5 = document.querySelector('.js-subtotal-score-wildlife-player-5');
+        const elemScoresPlayer5 = document.querySelectorAll(".js-score[data-player='5']");
+        const elemBonusesPlayer5 = document.querySelectorAll(".js-bonus[data-player='5']");
+        const elemTotalScorePlayer5 = document.querySelector('.js-total-score-player-5');
+        const elemHabitatsSubtotalScorePlayer5 = document.querySelector('.js-subtotal-score-habitats-player-5');
+        const elemWildlifeSubtotalScorePlayer5 = document.querySelector('.js-subtotal-score-wildlife-player-5');
 
-      const elemIncrements = document.querySelectorAll('.js-increment');
-      const elemDecrements = document.querySelectorAll('.js-decrement');
+        const elemScoresPlayer6 = document.querySelectorAll(".js-score[data-player='6']");
+        const elemBonusesPlayer6 = document.querySelectorAll(".js-bonus[data-player='6']");
+        const elemTotalScorePlayer6 = document.querySelector('.js-total-score-player-6');
+        const elemHabitatsSubtotalScorePlayer6 = document.querySelector('.js-subtotal-score-habitats-player-6');
+        const elemWildlifeSubtotalScorePlayer6 = document.querySelector('.js-subtotal-score-wildlife-player-6');
 
-      document.oncontextmenu = function() {
-        return false;
-      }
+        const elemIncrements = document.querySelectorAll('.js-increment');
+        const elemDecrements = document.querySelectorAll('.js-decrement');
 
-      // Switch player
-      players.forEach((player) => {
-        player.addEventListener('change', (e) => {
-          if (player.checked) {
-            body.dataset.players = player.value;
-          }
-          // Reset scores on change of player count
-          // elemScores.forEach((elemScore) => {
-          //   elemScore.value = 0;
-          // });
-          // elemBonuses.forEach((elemBonus) => {
-          //   elemBonus.innerHTML = '';
-          // });
-          updateTotalScore();
-        });
-      });
-
-      elemScores.forEach((elemScore) => {
-        elemScore.addEventListener('change', (e) => {
-          if (!elemScore.value) {
-            elemScore.value = 0;
-          }
-          if (elemScore.dataset.type == "habitat") {
-            applyBonusesToRow(elemScore.dataset.row);
-          }
-          updateTotalScore();
-        });
-        elemScore.addEventListener('focus', (e) => {
-          elemScore.select();
-          e.preventDefault();
-          e.stopPropagation();
-          return false;
-        });
-        elemScore.addEventListener('contextmenu', (e) => {
-          e.preventDefault();
-        });
-      });
-
-      // Update the total scores with all subtotals
-      function updateBonusValues(row, values) {
-      	var elemBonuses = document.querySelectorAll(".js-bonus[data-row='" + row + "']");
-      	values.forEach((value, index) => {
-      		elemBonuses[index].innerHTML = value;
-      	})
-      }
-
-      // Update row bonuses
-      function applyBonusesToRow(row) {
-        var elemScores = document.querySelectorAll(".js-score[data-row='" + row + "']");
-        var elemBonuses = document.querySelectorAll(".js-bonus[data-row='" + row + "']");
-        if (body.dataset.players == 1) {
-          elemScores.forEach((elemScore) => {
-            if (elemScores[0].value > 6) {
-              updateBonusValues(row, [2]);
-            } else {
-              updateBonusValues(row, ['']);
-            }
-          });
+        document.oncontextmenu = function () {
+            return false;
         }
-        if (body.dataset.players == 2) {
-          if (elemScores[0].value == 0 && elemScores[1].value == 0) {
-              updateBonusValues(row, ['','']);
-          }
-          else if (parseInt(elemScores[0].value) > parseInt(elemScores[1].value)) {
-              updateBonusValues(row, [2,'']);
-          }
-          else if (parseInt(elemScores[1].value) > parseInt(elemScores[0].value)) {
-              updateBonusValues(row, ['',2]);
-          }
-          else {
-              updateBonusValues(row, [1,1]);
-          }
-        }
-        if (body.dataset.players == 3) {
-          var scorePlayer1 = parseInt(elemScores[0].value);
-          var scorePlayer2 = parseInt(elemScores[1].value);
-          var scorePlayer3 = parseInt(elemScores[2].value);
-          if (scorePlayer1 == 0 && scorePlayer2 == 0 && scorePlayer3 == 0) {
-              updateBonusValues(row, ['','','']);
-          }
-          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3) {
-              updateBonusValues(row, [1,1,1]);
-          }
-          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 > scorePlayer3) {
-              updateBonusValues(row, [2,2,'']);
-          }
-          else if (scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer2) {
-              updateBonusValues(row, [2,'',2]);
-          }
-          else if (scorePlayer2 == scorePlayer3 && scorePlayer2 > scorePlayer1) {
-              updateBonusValues(row, ['',2,2]);
-          }
-          else if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3) {
-              updateBonusValues(row, [3,'','']);
-            if (scorePlayer2 > scorePlayer3) {
-              updateBonusValues(row, [3,1,'']);
-            } else if (scorePlayer3 > scorePlayer2) {
-              updateBonusValues(row, [3,'',1]);
-            }
-          }
-          else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3) {
-              updateBonusValues(row, ['',3,'']);
-            if (scorePlayer1 > scorePlayer3) {
-              updateBonusValues(row, [1,3,'']);
-            } else if (scorePlayer3 > scorePlayer1) {
-              updateBonusValues(row, ['',3,1]);
-            }
-          }
-          else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2) {
-              updateBonusValues(row, ['','',3]);
-            if (scorePlayer1 > scorePlayer2) {
-              updateBonusValues(row, [1,'',3]);
-            } else if (scorePlayer2 > scorePlayer1) {
-              updateBonusValues(row, ['',1,3]);
-            }
-          }
-        }
-        if (body.dataset.players == 4) {
-          var scorePlayer1 = parseInt(elemScores[0].value);
-          var scorePlayer2 = parseInt(elemScores[1].value);
-          var scorePlayer3 = parseInt(elemScores[2].value);
-          var scorePlayer4 = parseInt(elemScores[3].value);
-          if (scorePlayer1 == 0 && scorePlayer2 == 0 && scorePlayer3 == 0 && scorePlayer4 == 0) {
-              updateBonusValues(row, ['','','','']);
-          }
-          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4) {
-              updateBonusValues(row, [1,1,1,1]);
-          }
-          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer4) {
-              updateBonusValues(row, [1,1,1,'']);
-          }
-          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer3) {
-              updateBonusValues(row, [1,1,'',1]);
-          }
-          else if (scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer2) {
-              updateBonusValues(row, [1,'',1,1]);
-          }
-          else if (scorePlayer2 == scorePlayer3 && scorePlayer2 == scorePlayer4 && scorePlayer2 > scorePlayer1) {
-              updateBonusValues(row, ['',1,1,1]);
-          }
-          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
-              updateBonusValues(row, [2,2,'','']);
-          }
-          else if (scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer4) {
-              updateBonusValues(row, [2,'',2,'']);
-          }
-          else if (scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3) {
-              updateBonusValues(row, [2,'','',2]);
-          }
-          else if (scorePlayer2 == scorePlayer3 && scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer4) {
-              updateBonusValues(row, ['',2,2,'']);
-          }
-          else if (scorePlayer2 == scorePlayer4 && scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3) {
-              updateBonusValues(row, ['',2,'',2]);
-          }
-          else if (scorePlayer3 == scorePlayer4 && scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2) {
-              updateBonusValues(row, ['','',2,2]);
-          }
-          else if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
-              updateBonusValues(row, [3,'','','']);
-            if (scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4) {
-              updateBonusValues(row, [3,1,'','']);
-            } else if (scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4) {
-              updateBonusValues(row, [3,'',1,'']);
-            } else if (scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3) {
-              updateBonusValues(row, [3,'','',1]);
-            }
-          }
-          else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4) {
-              updateBonusValues(row, ['',3,'','']);
-            if (scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
-              updateBonusValues(row, [1,3,'','']);
-            } else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer4) {
-              updateBonusValues(row, ['',3,1,'']);
-            } else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer3) {
-              updateBonusValues(row, ['',3,'',1]);
-            }
-          }
-          else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4) {
-              updateBonusValues(row, ['','',3,'']);
-            if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer4) {
-              updateBonusValues(row, [1,'',3,'']);
-            } else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer4) {
-              updateBonusValues(row, ['',1,3,'']);
-            } else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2) {
-              updateBonusValues(row, ['','',3,1]);
-            }
-          }
-          else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3) {
-              updateBonusValues(row, ['','','',3]);
-            if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3) {
-              updateBonusValues(row, [1,'','',3]);
-            } else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3) {
-              updateBonusValues(row, ['',1,'',3]);
-            } else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2) {
-              updateBonusValues(row, ['','',1,3]);
-            }
-          }
-        }
-        if (body.dataset.players == 5) {
-          var scorePlayer1 = parseInt(elemScores[0].value);
-          var scorePlayer2 = parseInt(elemScores[1].value);
-          var scorePlayer3 = parseInt(elemScores[2].value);
-          var scorePlayer4 = parseInt(elemScores[3].value);
-          var scorePlayer5 = parseInt(elemScores[4].value);
-          if (scorePlayer1 == 0 && scorePlayer2 == 0 && scorePlayer3 == 0 && scorePlayer4 == 0 && scorePlayer5 == 0) {
-              updateBonusValues(row, ['','','','','']);
-          }
-          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4 && scorePlayer1 == scorePlayer5) {
-              updateBonusValues(row, [1,1,1,1,1]);
-          }
-          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer5) {
-              updateBonusValues(row, [1,1,1,1,'']);
-          }
-          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer5 && scorePlayer1 > scorePlayer4) {
-              updateBonusValues(row, [1,1,1,'',1]);
-          }
-          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer4 && scorePlayer1 == scorePlayer5 && scorePlayer1 > scorePlayer3) {
-              updateBonusValues(row, [1,1,'',1,1]);
-          }
-          else if (scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4 && scorePlayer1 == scorePlayer5 && scorePlayer1 > scorePlayer2) {
-              updateBonusValues(row, [1,'',1,1,1]);
-          }
-          else if (scorePlayer2 == scorePlayer3 && scorePlayer2 == scorePlayer4 && scorePlayer2 == scorePlayer5 && scorePlayer2 > scorePlayer1) {
-              updateBonusValues(row, ['',1,1,1,1]);
-          }
-          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer5 && scorePlayer1 > scorePlayer4) {
-              updateBonusValues(row, [1,1,1,'','']);
-          }
-          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer5 && scorePlayer1 > scorePlayer3) {
-              updateBonusValues(row, [1,1,'',1,'']);
-          }
-          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 == scorePlayer5 && scorePlayer1 > scorePlayer4 && scorePlayer1 > scorePlayer3) {
-              updateBonusValues(row, [1,1,'','',1]);
-          }
-          else if (scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer5 && scorePlayer1 > scorePlayer2) {
-              updateBonusValues(row, [1,'',1,1,'']);
-          }
-          else if (scorePlayer1 == scorePlayer4 && scorePlayer1 == scorePlayer5 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer2) {
-              updateBonusValues(row, [1,'','',1,1]);
-          }
-          else if (scorePlayer1 == scorePlayer3 && scorePlayer1 == scorePlayer5 && scorePlayer1 > scorePlayer4 && scorePlayer1 > scorePlayer2) {
-              updateBonusValues(row, [1,'',1,'',1]);
-          }
-          else if (scorePlayer2 == scorePlayer3 && scorePlayer2 == scorePlayer4 && scorePlayer2 > scorePlayer5 && scorePlayer2 > scorePlayer1) {
-              updateBonusValues(row, ['',1,1,1,'']);
-          }
-          else if (scorePlayer2 == scorePlayer3 && scorePlayer2 == scorePlayer5 && scorePlayer2 > scorePlayer4 && scorePlayer2 > scorePlayer1) {
-              updateBonusValues(row, ['',1,1,'',1]);
-          }
-          else if (scorePlayer2 == scorePlayer4 && scorePlayer2 == scorePlayer5 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer1) {
-              updateBonusValues(row, ['',1,'',1,1]);
-          }
-          else if (scorePlayer3 == scorePlayer4 && scorePlayer3 == scorePlayer5 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer1) {
-              updateBonusValues(row, ['','',1,1,1]);
-          }
-          else if (scorePlayer1 == scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4 && scorePlayer1 > scorePlayer5) {
-              updateBonusValues(row, [2,2,'','','']);
-          }
-          else if (scorePlayer1 == scorePlayer3 && scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer4 && scorePlayer1 > scorePlayer5) {
-              updateBonusValues(row, [2,'',2,'','']);
-          }
-          else if (scorePlayer1 == scorePlayer4 && scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer5) {
-              updateBonusValues(row, [2,'','',2,'']);
-          }
-          else if (scorePlayer1 == scorePlayer5 && scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
-              updateBonusValues(row, [2,'','','',2]);
-          }
-          else if (scorePlayer2 == scorePlayer3 && scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer4 && scorePlayer2 > scorePlayer5) {
-              updateBonusValues(row, ['',2,2,'','']);
-          }
-          else if (scorePlayer2 == scorePlayer4 && scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer5) {
-              updateBonusValues(row, ['',2,'',2,'']);
-          }
-          else if (scorePlayer2 == scorePlayer5 && scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4) {
-              updateBonusValues(row, ['',2,'','',2]);
-          }
-          else if (scorePlayer3 == scorePlayer4 && scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer5) {
-              updateBonusValues(row, ['','',2,2,'']);
-          }
-          else if (scorePlayer3 == scorePlayer5 && scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4) {
-              updateBonusValues(row, ['','',2,'',2]);
-          }
-          else if (scorePlayer4 == scorePlayer5 && scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3) {
-              updateBonusValues(row, ['','','',2,2]);
-          }
-          else if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4 && scorePlayer1 > scorePlayer5) {
-              updateBonusValues(row, [3,'','','','']);
-            if (scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4 && scorePlayer2 > scorePlayer5) {
-              updateBonusValues(row, [3,1,'','','']);
-            } else if (scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4 && scorePlayer3 > scorePlayer5) {
-              updateBonusValues(row, [3,'',1,'','']);
-            } else if (scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3 && scorePlayer4 > scorePlayer5) {
-              updateBonusValues(row, [3,'','',1,'']);
-            } else if (scorePlayer5 > scorePlayer2 && scorePlayer5 > scorePlayer3 && scorePlayer5 > scorePlayer4) {
-              updateBonusValues(row, [3,'','','',1]);
-            }
-          }
-          else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4 && scorePlayer2 > scorePlayer5) {
-              updateBonusValues(row, ['',3,'','','']);
-            if (scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4 && scorePlayer1 > scorePlayer5) {
-              updateBonusValues(row, [1,3,'','','']);
-            } else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer4 && scorePlayer3 > scorePlayer5) {
-              updateBonusValues(row, ['',3,1,'','']);
-            } else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer3 && scorePlayer4 > scorePlayer5) {
-              updateBonusValues(row, ['',3,'',1,'']);
-            } else if (scorePlayer5 > scorePlayer1 && scorePlayer5 > scorePlayer3 && scorePlayer5 > scorePlayer4) {
-              updateBonusValues(row, ['',3,'','',1]);
-            }
-          }
-          else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4 && scorePlayer3 > scorePlayer5) {
-              updateBonusValues(row, ['','',3,'','']);
-            if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer4 && scorePlayer1 > scorePlayer5) {
-              updateBonusValues(row, [1,'',3,'','']);
-            } else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer4 && scorePlayer2 > scorePlayer5) {
-              updateBonusValues(row, ['',1,3,'','']);
-            } else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer5) {
-              updateBonusValues(row, ['','',3,1,'']);
-            } else if (scorePlayer5 > scorePlayer1 && scorePlayer5 > scorePlayer2 && scorePlayer5 > scorePlayer4) {
-              updateBonusValues(row, ['','',3,'',1]);
-            }
-          }
-          else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3) {
-              updateBonusValues(row, ['','','',3,'']);
-            if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer5) {
-              updateBonusValues(row, [1,'','',3,'']);
-            } else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer5) {
-              updateBonusValues(row, ['',1,'',3,'']);
-            } else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer5) {
-              updateBonusValues(row, ['','',1,3,'']);
-            } else if (scorePlayer5 > scorePlayer1 && scorePlayer5 > scorePlayer2 && scorePlayer5 > scorePlayer3) {
-              updateBonusValues(row, ['','','',3,1]);
-            }
-          }
-          else if (scorePlayer5 > scorePlayer1 && scorePlayer5 > scorePlayer2 && scorePlayer5 > scorePlayer3 && scorePlayer5 > scorePlayer4) {
-              updateBonusValues(row, ['','','','',3]);
-            if (scorePlayer1 > scorePlayer2 && scorePlayer1 > scorePlayer3 && scorePlayer1 > scorePlayer4) {
-              updateBonusValues(row, [1,'','','',3]);
-            } else if (scorePlayer2 > scorePlayer1 && scorePlayer2 > scorePlayer3 && scorePlayer2 > scorePlayer4) {
-              updateBonusValues(row, ['',1,'','',3]);
-            } else if (scorePlayer3 > scorePlayer1 && scorePlayer3 > scorePlayer2 && scorePlayer3 > scorePlayer4) {
-              updateBonusValues(row, ['','',1,'',3]);
-            } else if (scorePlayer4 > scorePlayer1 && scorePlayer4 > scorePlayer2 && scorePlayer4 > scorePlayer3) {
-              updateBonusValues(row, ['','','',1,3]);
-            }
-          }
-        }
-      }
 
-      // Update a score
-      function updateRowScore(row, player, direction) {
-        var scoreInput = document.querySelector(".js-score[data-row='" + row + "'][data-player='" + player + "']");
-        if (direction == 'decrement' && scoreInput.value > 0) {
-          scoreInput.value = parseInt(scoreInput.value) - 1
+        // Switch player
+        players.forEach((player) => {
+            player.addEventListener('change', (e) => {
+                if (player.checked) {
+                    body.dataset.players = player.value;
+                }
+                // Reset scores on change of player count
+                // elemScores.forEach((elemScore) => {
+                //   elemScore.value = 0;
+                // });
+                // elemBonuses.forEach((elemBonus) => {
+                //   elemBonus.innerHTML = '';
+                // });
+                updateTotalScore();
+            });
+        });
+
+        elemScores.forEach((elemScore) => {
+            elemScore.addEventListener('change', (e) => {
+                if (!elemScore.value) {
+                    elemScore.value = 0;
+                }
+                if (elemScore.dataset.type == "habitat") {
+                    applyBonusesToRow(elemScore.dataset.row);
+                }
+                updateTotalScore();
+            });
+            elemScore.addEventListener('focus', (e) => {
+                elemScore.select();
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            });
+            elemScore.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+            });
+        });
+
+        // Update the total scores with all subtotals
+        function updateBonusValues(row, values) {
+            var elemBonuses = document.querySelectorAll(".js-bonus[data-row='" + row + "']");
+            values.forEach((value, index) => {
+                elemBonuses[index].innerHTML = value;
+            })
         }
-        if (direction == 'increment') {
-          scoreInput.value = parseInt(scoreInput.value) + 1
+
+        // Update row bonuses
+        function applyBonusesToRow(row) {
+            var elemScores = document.querySelectorAll(".js-score[data-row='" + row + "']");
+            var elemBonuses = document.querySelectorAll(".js-bonus[data-row='" + row + "']");
+            if (body.dataset.players == 1) {
+                elemScores.forEach((elemScore) => {
+                    if (elemScores[0].value > 6) {
+                        updateBonusValues(row, [2]);
+                    } else {
+                        updateBonusValues(row, ['']);
+                    }
+                });
+            }
+            else if (body.dataset.players >= 2) {
+                var players = [];
+
+                // Create player objects
+                for (var i = 0; i < 6; i++) {
+                    var player = {
+                        number: i + 1, // Player number
+                        score: parseInt(elemScores[i].value), // Player score
+                        bonus: 0 // Player bonus score, initialized to 0
+                    };
+                    players.push(player);
+                }
+
+                // Sort players by score in descending order
+                players.sort((a, b) => b.score - a.score);
+
+                // Calculate bonus scores
+                var maxScore = players[0].score; // Maximum score
+                var tiedPlayers = players.filter(player => player.score === maxScore); // Find tied players
+
+                // If there's only one player with the top score, they get 3 points
+                if (tiedPlayers.length === 1) {
+                    tiedPlayers[0].bonus = 3;
+                } else {
+                    // Calculate bonus points based on the number of tied players
+                    var bonusPoints = (tiedPlayers.length >= 3) ? 1 : 2;
+
+                    // Assign bonus points to tied players and update players array
+                    tiedPlayers.forEach(player => {
+                        player.bonus = bonusPoints;
+                        // Update players array with modified bonus scores
+                        players[players.findIndex(p => p.number === player.number)] = player;
+                    });
+                }
+
+                // If there is only one player with 3 points, assign 3 points to them
+                var topPlayer = players.find(player => player.bonus === 3);
+                if (topPlayer) {
+                    topPlayer.bonus = 3;
+                    // Update players array with modified bonus score
+                    players[players.findIndex(p => p.number === topPlayer.number)] = topPlayer;
+                }
+
+                // Check for tie for second place
+                if (topPlayer) {
+                    var secondPlaceScore = players[1].score;
+                    var secondPlaceTies = players.filter(player => player.score === secondPlaceScore && player.number !== topPlayer.number);
+                    if (secondPlaceTies.length === 1) {
+                        secondPlaceTies[0].bonus = 1;
+                        // Update players array with modified bonus score
+                        players[players.findIndex(p => p.number === secondPlaceTies[0].number)] = secondPlaceTies[0];
+                    }
+                }
+
+                // Sort players back to original order (1 to 6)
+                players.sort((a, b) => a.number - b.number);
+
+                // Prepare bonus values array in player order
+                var bonusValues = players.map(player => player.bonus);
+
+                // Update bonus values
+                updateBonusValues(row, bonusValues);
+            }
         }
-        scoreInput.dispatchEvent(new Event('change'));
-        updateTotalScore();
-      }
 
-      // Increment score
-      elemIncrements.forEach((elemIncrement) => {
-        elemIncrement.addEventListener('click', (e) => {
-          updateRowScore(elemIncrement.dataset.row, elemIncrement.dataset.player, 'increment');
-        });
-      });
-
-      // Decrement score
-      elemDecrements.forEach((elemDecrement) => {
-        elemDecrement.addEventListener('click', (e) => {
-          updateRowScore(elemDecrement.dataset.row, elemDecrement.dataset.player, 'decrement');
-        });
-      });
-
-      // Update the total scores with all subtotals
-      function updateTotalScore() {
-        var scorePlayer1 = 0;
-        var scorePlayer2 = 0;
-        var scorePlayer3 = 0;
-        var scorePlayer4 = 0;
-        var scorePlayer5 = 0;
-        var subtotalWildlifePlayer1 = 0;
-        var subtotalHabitatsPlayer1 = 0;
-        var subtotalWildlifePlayer2 = 0;
-        var subtotalHabitatsPlayer2 = 0;
-        var subtotalWildlifePlayer3 = 0;
-        var subtotalHabitatsPlayer3 = 0;
-        var subtotalWildlifePlayer4 = 0;
-        var subtotalHabitatsPlayer4 = 0;
-        var subtotalWildlifePlayer5 = 0;
-        var subtotalHabitatsPlayer5 = 0;
-        elemScoresPlayer1.forEach((elemScore) => {
-          if (elemScore.dataset.type == 'wildlife') {
-            subtotalWildlifePlayer1 += parseInt(elemScore.value);
-          } else if (elemScore.dataset.type == 'habitat') {
-            subtotalHabitatsPlayer1 += parseInt(elemScore.value);
-          }
-          scorePlayer1 += parseInt(elemScore.value);
-        });
-        elemScoresPlayer2.forEach((elemScore) => {
-          if (elemScore.dataset.type == 'wildlife') {
-            subtotalWildlifePlayer2 += parseInt(elemScore.value);
-          } else if (elemScore.dataset.type == 'habitat') {
-            subtotalHabitatsPlayer2 += parseInt(elemScore.value);
-          }
-          scorePlayer2 += parseInt(elemScore.value);
-        });
-        elemScoresPlayer3.forEach((elemScore) => {
-          if (elemScore.dataset.type == 'wildlife') {
-            subtotalWildlifePlayer3 += parseInt(elemScore.value);
-          } else if (elemScore.dataset.type == 'habitat') {
-            subtotalHabitatsPlayer3 += parseInt(elemScore.value);
-          }
-          scorePlayer3 += parseInt(elemScore.value);
-        });
-        elemScoresPlayer4.forEach((elemScore) => {
-          if (elemScore.dataset.type == 'wildlife') {
-            subtotalWildlifePlayer4 += parseInt(elemScore.value);
-          } else if (elemScore.dataset.type == 'habitat') {
-            subtotalHabitatsPlayer4 += parseInt(elemScore.value);
-          }
-          scorePlayer4 += parseInt(elemScore.value);
-        });
-        elemScoresPlayer5.forEach((elemScore) => {
-          if (elemScore.dataset.type == 'wildlife') {
-            subtotalWildlifePlayer5 += parseInt(elemScore.value);
-          } else if (elemScore.dataset.type == 'habitat') {
-            subtotalHabitatsPlayer5 += parseInt(elemScore.value);
-          }
-          scorePlayer5 += parseInt(elemScore.value);
-        });
-        elemBonusesPlayer1.forEach((elemBonus) => {
-          if (elemBonus.innerHTML) {
-            subtotalHabitatsPlayer1 += parseInt(elemBonus.innerHTML);
-            scorePlayer1 += parseInt(elemBonus.innerHTML);
-          }
-        });
-        elemBonusesPlayer2.forEach((elemBonus) => {
-          if (elemBonus.innerHTML) {
-            subtotalHabitatsPlayer2 += parseInt(elemBonus.innerHTML);
-            scorePlayer2 += parseInt(elemBonus.innerHTML);
-          }
-        });
-        elemBonusesPlayer3.forEach((elemBonus) => {
-          if (elemBonus.innerHTML) {
-            subtotalHabitatsPlayer3 += parseInt(elemBonus.innerHTML);
-            scorePlayer3 += parseInt(elemBonus.innerHTML);
-          }
-        });
-        elemBonusesPlayer4.forEach((elemBonus) => {
-          if (elemBonus.innerHTML) {
-            subtotalHabitatsPlayer4 += parseInt(elemBonus.innerHTML);
-            scorePlayer4 += parseInt(elemBonus.innerHTML);
-          }
-        });
-        elemBonusesPlayer5.forEach((elemBonus) => {
-          if (elemBonus.innerHTML) {
-            subtotalHabitatsPlayer5 += parseInt(elemBonus.innerHTML);
-            scorePlayer5 += parseInt(elemBonus.innerHTML);
-          }
-        });
-        elemWildlifeSubtotalScorePlayer1.innerHTML = subtotalWildlifePlayer1;
-        elemHabitatsSubtotalScorePlayer1.innerHTML = subtotalHabitatsPlayer1;
-        elemWildlifeSubtotalScorePlayer2.innerHTML = subtotalWildlifePlayer2;
-        elemHabitatsSubtotalScorePlayer2.innerHTML = subtotalHabitatsPlayer2;
-        elemWildlifeSubtotalScorePlayer3.innerHTML = subtotalWildlifePlayer3;
-        elemHabitatsSubtotalScorePlayer3.innerHTML = subtotalHabitatsPlayer3;
-        elemWildlifeSubtotalScorePlayer4.innerHTML = subtotalWildlifePlayer4;
-        elemHabitatsSubtotalScorePlayer4.innerHTML = subtotalHabitatsPlayer4;
-        elemWildlifeSubtotalScorePlayer5.innerHTML = subtotalWildlifePlayer5;
-        elemHabitatsSubtotalScorePlayer5.innerHTML = subtotalHabitatsPlayer5;
-        elemTotalScorePlayer1.innerHTML = scorePlayer1;
-        elemTotalScorePlayer2.innerHTML = scorePlayer2;
-        elemTotalScorePlayer3.innerHTML = scorePlayer3;
-        elemTotalScorePlayer4.innerHTML = scorePlayer4;
-        elemTotalScorePlayer5.innerHTML = scorePlayer5;
-      }
-
-      // Reset all scores
-      document.querySelector('.js-reset').addEventListener('click', (e) => {
-        var result = window.confirm('Reset your score?');
-        if (result == true) {
-          // Reset scores
-          elemScores.forEach((elemScore) => {
-            elemScore.value = 0;
-          });
-          elemBonuses.forEach((elemBonus) => {
-            elemBonus.innerHTML = '';
-          });
-          updateTotalScore();
+        // Update a score
+        function updateRowScore(row, player, direction) {
+            var scoreInput = document.querySelector(".js-score[data-row='" + row + "'][data-player='" + player + "']");
+            if (direction == 'decrement' && scoreInput.value > 0) {
+                scoreInput.value = parseInt(scoreInput.value) - 1
+            }
+            if (direction == 'increment') {
+                scoreInput.value = parseInt(scoreInput.value) + 1
+            }
+            scoreInput.dispatchEvent(new Event('change'));
+            updateTotalScore();
         }
-        e.stopPropagation();
-      });
+
+        // Increment score
+        elemIncrements.forEach((elemIncrement) => {
+            elemIncrement.addEventListener('click', (e) => {
+                updateRowScore(elemIncrement.dataset.row, elemIncrement.dataset.player, 'increment');
+            });
+        });
+
+        // Decrement score
+        elemDecrements.forEach((elemDecrement) => {
+            elemDecrement.addEventListener('click', (e) => {
+                updateRowScore(elemDecrement.dataset.row, elemDecrement.dataset.player, 'decrement');
+            });
+        });
+
+        // Update the total scores with all subtotals
+        function updateTotalScore() {
+            var scorePlayer1 = 0;
+            var scorePlayer2 = 0;
+            var scorePlayer3 = 0;
+            var scorePlayer4 = 0;
+            var scorePlayer5 = 0;
+            var scorePlayer6 = 0;
+            var subtotalWildlifePlayer1 = 0;
+            var subtotalHabitatsPlayer1 = 0;
+            var subtotalWildlifePlayer2 = 0;
+            var subtotalHabitatsPlayer2 = 0;
+            var subtotalWildlifePlayer3 = 0;
+            var subtotalHabitatsPlayer3 = 0;
+            var subtotalWildlifePlayer4 = 0;
+            var subtotalHabitatsPlayer4 = 0;
+            var subtotalWildlifePlayer5 = 0;
+            var subtotalHabitatsPlayer5 = 0;
+            var subtotalWildlifePlayer6 = 0;
+            var subtotalHabitatsPlayer6 = 0;
+            elemScoresPlayer1.forEach((elemScore) => {
+                if (elemScore.dataset.type == 'wildlife') {
+                    subtotalWildlifePlayer1 += parseInt(elemScore.value);
+                } else if (elemScore.dataset.type == 'habitat') {
+                    subtotalHabitatsPlayer1 += parseInt(elemScore.value);
+                }
+                scorePlayer1 += parseInt(elemScore.value);
+            });
+            elemScoresPlayer2.forEach((elemScore) => {
+                if (elemScore.dataset.type == 'wildlife') {
+                    subtotalWildlifePlayer2 += parseInt(elemScore.value);
+                } else if (elemScore.dataset.type == 'habitat') {
+                    subtotalHabitatsPlayer2 += parseInt(elemScore.value);
+                }
+                scorePlayer2 += parseInt(elemScore.value);
+            });
+            elemScoresPlayer3.forEach((elemScore) => {
+                if (elemScore.dataset.type == 'wildlife') {
+                    subtotalWildlifePlayer3 += parseInt(elemScore.value);
+                } else if (elemScore.dataset.type == 'habitat') {
+                    subtotalHabitatsPlayer3 += parseInt(elemScore.value);
+                }
+                scorePlayer3 += parseInt(elemScore.value);
+            });
+            elemScoresPlayer4.forEach((elemScore) => {
+                if (elemScore.dataset.type == 'wildlife') {
+                    subtotalWildlifePlayer4 += parseInt(elemScore.value);
+                } else if (elemScore.dataset.type == 'habitat') {
+                    subtotalHabitatsPlayer4 += parseInt(elemScore.value);
+                }
+                scorePlayer4 += parseInt(elemScore.value);
+            });
+            elemScoresPlayer5.forEach((elemScore) => {
+                if (elemScore.dataset.type == 'wildlife') {
+                    subtotalWildlifePlayer5 += parseInt(elemScore.value);
+                } else if (elemScore.dataset.type == 'habitat') {
+                    subtotalHabitatsPlayer5 += parseInt(elemScore.value);
+                }
+                scorePlayer5 += parseInt(elemScore.value);
+            });
+            elemScoresPlayer6.forEach((elemScore) => {
+                if (elemScore.dataset.type == 'wildlife') {
+                    subtotalWildlifePlayer6 += parseInt(elemScore.value);
+                } else if (elemScore.dataset.type == 'habitat') {
+                    subtotalHabitatsPlayer6 += parseInt(elemScore.value);
+                }
+                scorePlayer6 += parseInt(elemScore.value);
+            });
+            elemBonusesPlayer1.forEach((elemBonus) => {
+                if (elemBonus.innerHTML) {
+                    subtotalHabitatsPlayer1 += parseInt(elemBonus.innerHTML);
+                    scorePlayer1 += parseInt(elemBonus.innerHTML);
+                }
+            });
+            elemBonusesPlayer2.forEach((elemBonus) => {
+                if (elemBonus.innerHTML) {
+                    subtotalHabitatsPlayer2 += parseInt(elemBonus.innerHTML);
+                    scorePlayer2 += parseInt(elemBonus.innerHTML);
+                }
+            });
+            elemBonusesPlayer3.forEach((elemBonus) => {
+                if (elemBonus.innerHTML) {
+                    subtotalHabitatsPlayer3 += parseInt(elemBonus.innerHTML);
+                    scorePlayer3 += parseInt(elemBonus.innerHTML);
+                }
+            });
+            elemBonusesPlayer4.forEach((elemBonus) => {
+                if (elemBonus.innerHTML) {
+                    subtotalHabitatsPlayer4 += parseInt(elemBonus.innerHTML);
+                    scorePlayer4 += parseInt(elemBonus.innerHTML);
+                }
+            });
+            elemBonusesPlayer5.forEach((elemBonus) => {
+                if (elemBonus.innerHTML) {
+                    subtotalHabitatsPlayer5 += parseInt(elemBonus.innerHTML);
+                    scorePlayer5 += parseInt(elemBonus.innerHTML);
+                }
+            });
+            elemBonusesPlayer6.forEach((elemBonus) => {
+                if (elemBonus.innerHTML) {
+                    subtotalHabitatsPlayer6 += parseInt(elemBonus.innerHTML);
+                    scorePlayer6 += parseInt(elemBonus.innerHTML);
+                }
+            });
+            elemWildlifeSubtotalScorePlayer1.innerHTML = subtotalWildlifePlayer1;
+            elemHabitatsSubtotalScorePlayer1.innerHTML = subtotalHabitatsPlayer1;
+            elemWildlifeSubtotalScorePlayer2.innerHTML = subtotalWildlifePlayer2;
+            elemHabitatsSubtotalScorePlayer2.innerHTML = subtotalHabitatsPlayer2;
+            elemWildlifeSubtotalScorePlayer3.innerHTML = subtotalWildlifePlayer3;
+            elemHabitatsSubtotalScorePlayer3.innerHTML = subtotalHabitatsPlayer3;
+            elemWildlifeSubtotalScorePlayer4.innerHTML = subtotalWildlifePlayer4;
+            elemHabitatsSubtotalScorePlayer4.innerHTML = subtotalHabitatsPlayer4;
+            elemWildlifeSubtotalScorePlayer5.innerHTML = subtotalWildlifePlayer5;
+            elemHabitatsSubtotalScorePlayer5.innerHTML = subtotalHabitatsPlayer5;
+            elemWildlifeSubtotalScorePlayer6.innerHTML = subtotalWildlifePlayer6;
+            elemHabitatsSubtotalScorePlayer6.innerHTML = subtotalHabitatsPlayer6;
+            elemTotalScorePlayer1.innerHTML = scorePlayer1;
+            elemTotalScorePlayer2.innerHTML = scorePlayer2;
+            elemTotalScorePlayer3.innerHTML = scorePlayer3;
+            elemTotalScorePlayer4.innerHTML = scorePlayer4;
+            elemTotalScorePlayer5.innerHTML = scorePlayer5;
+            elemTotalScorePlayer6.innerHTML = scorePlayer6;
+        }
+
+        // Reset all scores
+        document.querySelector('.js-reset').addEventListener('click', (e) => {
+            var result = window.confirm('Reset your score?');
+            if (result == true) {
+                // Reset scores
+                elemScores.forEach((elemScore) => {
+                    elemScore.value = 0;
+                });
+                elemBonuses.forEach((elemBonus) => {
+                    elemBonus.innerHTML = '';
+                });
+                updateTotalScore();
+            }
+            e.stopPropagation();
+        });
     </script>
   </body>
 </html>
