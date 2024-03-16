@@ -907,6 +907,9 @@
         }
 
         // Update row bonuses
+        // Code by Josh Vincent @josh-vin (some help from ChatGPT)
+        // Original code done by Ronan https://ronansprake.co.uk/cascadia-score-calculator/
+        // Thanks Ronan!
         function applyBonusesToRow(row) {
             var elemScores = document.querySelectorAll(".js-score[data-row='" + row + "']");
             var elemBonuses = document.querySelectorAll(".js-bonus[data-row='" + row + "']");
@@ -923,7 +926,7 @@
                 var players = [];
 
                 // Create player objects
-                for (var i = 0; i < 6; i++) {
+                for (var i = 0; i < body.dataset.players; i++) {
                     var player = {
                         number: i + 1, // Player number
                         score: parseInt(elemScores[i].value), // Player score
@@ -939,12 +942,14 @@
                 var maxScore = players[0].score; // Maximum score
                 var tiedPlayers = players.filter(player => player.score === maxScore); // Find tied players
 
-                // If there's only one player with the top score, they get 3 points
-                if (tiedPlayers.length === 1) {
-                    tiedPlayers[0].bonus = 3;
+                // FIRST PLACE POINTS LOGIC
+                if (tiedPlayers.length === 1) { // If there's only one player with the top score, they get 3 points
+                    tiedPlayers[0].bonus = (players.length == 2) ? 2 : 3;
+                    // Update player array with modified bonus score
+                    players[players.findIndex(p => p.number === tiedPlayers[0].number)] = tiedPlayers[0];
                 } else {
                     // Calculate bonus points based on the number of tied players
-                    var bonusPoints = (tiedPlayers.length >= 3) ? 1 : 2;
+                    var bonusPoints = (tiedPlayers.length >= 3 || players.length == 2) ? 1 : 2; // if 3 people tied then its 1 point each otherwise 2 points each
 
                     // Assign bonus points to tied players and update players array
                     tiedPlayers.forEach(player => {
@@ -953,25 +958,19 @@
                         players[players.findIndex(p => p.number === player.number)] = player;
                     });
                 }
+                // END FIRST PLACE POINTS LOGIC
 
-                // If there is only one player with 3 points, assign 3 points to them
-                var topPlayer = players.find(player => player.bonus === 3);
-                if (topPlayer) {
-                    topPlayer.bonus = 3;
-                    // Update players array with modified bonus score
-                    players[players.findIndex(p => p.number === topPlayer.number)] = topPlayer;
-                }
-
-                // Check for tie for second place
-                if (topPlayer) {
-                    var secondPlaceScore = players[1].score;
-                    var secondPlaceTies = players.filter(player => player.score === secondPlaceScore && player.number !== topPlayer.number);
-                    if (secondPlaceTies.length === 1) {
-                        secondPlaceTies[0].bonus = 1;
+                // SECOND PLACE POINTS LOGIC
+                if (tiedPlayers.length < 2 && tiedPlayers.length < players.length) { // make sure not everyone tied and that both players didn't tie
+                    var secondPlaceScore = players[tiedPlayers.length].score; // get the next players score
+                    var secondPlaceTies = players.filter(player => player.score === secondPlaceScore);
+                    if (secondPlaceTies.length === 1) { 
+                        secondPlaceTies[0].bonus = (players.length == 2) ? 0 : 1;
                         // Update players array with modified bonus score
                         players[players.findIndex(p => p.number === secondPlaceTies[0].number)] = secondPlaceTies[0];
-                    }
+                    } // if more than one person ties, no one gets points.
                 }
+                // END SECOND PLACE POINTS LOGIC
 
                 // Sort players back to original order (1 to 6)
                 players.sort((a, b) => a.number - b.number);
@@ -1151,5 +1150,7 @@
             e.stopPropagation();
         });
     </script>
-  </body>
+</body>
+
 </html>
+
