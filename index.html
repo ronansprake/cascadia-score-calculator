@@ -818,6 +818,7 @@
         <select id="language-select">
             <option value="en">English</option>
             <option value="fr">Français</option>
+            <option value="tr">Türkçe</option>
         </select>
     </div>
 
@@ -1196,36 +1197,34 @@
             tokens: 'Jetons',
             landmarks: 'Repères',
             reset: 'Réinitialiser',
-            feedback: 'Commentaires',
         };
         var turkishTranslation = {
-            player: 'Player',
-            bear: 'Bear',
-            elk: 'Elk',
-            hawk: 'Hawk',
-            fox: 'Fox',
-            salmon: 'Salmon',
-            mountain: 'Mountain',
-            forest: 'Forest',
+            player: 'Oyuncu',
+            bear: 'Ayı',
+            elk: 'Kanada geyiği',
+            hawk: 'Şahin',
+            fox: 'Tilki',
+            salmon: 'Somon',
+            mountain: 'Dağ',
+            forest: 'Orman',
             prarie: 'Prarie',
-            wetland: 'Wetland',
-            river: 'River',
-            tokens: 'Tokens',
-            landmarks: 'Landmarks',
-            reset: 'Reset scores',
+            wetland: 'Bataklık',
+            river: 'Nehir',
+            tokens: 'Jetonlar',
+            landmarks: 'Sınır taşı',
+            reset: 'Sıfırla',
         };
 
         var translator = new Translator({
-            defaultLanguage: "fr",
             detectLanguage: true,
             selector: "[data-i18n]",
-            registerGlobally: false,
-            persist: false,
+            persist: true,
             persistKey: "preferred_language"
         });
 
         translator.add('en', englishTranslation);
         translator.add('fr', frenchTranslation);
+        translator.add('tr', turkishTranslation);
 
         translator.translatePageTo();
         elemLanguageSelector.value = translator.currentLanguage;
