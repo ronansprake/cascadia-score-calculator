@@ -811,12 +811,13 @@
         <button class="button reset js-reset" data-i18n="reset">Reset scores</button>
     </div>
 	<p class="links">
-		<a href="https://ronansprake.co.uk/board-game-score-calculators#contact" target="_blank">Give feedback</a> | <a href="https://www.alderac.com/wp-content/uploads/2021/08/Cascadia-Rules.pdf" target="_blank">Official rules</a> | Thanks to <a href="https://github.com/josh-vin" target="_blank">Josh</a>
+		<a href="https://ronansprake.co.uk/board-game-score-calculators#contact" target="_blank" data-i18n="feedback">Give feedback</a> | <a href="https://www.alderac.com/wp-content/uploads/2021/08/Cascadia-Rules.pdf" target="_blank" data-i18n="rules">Official rules</a> | <span data-i18n="thanks">Thanks to</span> <a href="https://github.com/josh-vin" target="_blank">Josh</a>
 	</p>
     <div class="language">
         <label for="language-select">Change language</label>
         <select id="language-select">
             <option value="en">English</option>
+            <option value="de">Deutsch</option>
             <option value="fr">Français</option>
             <option value="tr">Türkçe</option>
         </select>
@@ -1150,7 +1151,7 @@
 
         // Reset all scores
         document.querySelector('.js-reset').addEventListener('click', (e) => {
-            var result = window.confirm('Reset your score?');
+            var result = window.confirm(translator.translateForKey('dialog.reset', translator.currentLanguage));
             if (result == true) {
                 // Reset scores
                 elemScores.forEach((elemScore) => {
@@ -1181,22 +1182,56 @@
             tokens: 'Tokens',
             landmarks: 'Landmarks',
             reset: 'Reset scores',
+            feedback: 'Give feedback',
+            rules: 'Official rules',
+            thanks: 'Thanks to',
+            dialog: {
+                reset: 'Reset your score?',
+            },
         };
         var frenchTranslation = {
             player: 'Joueur',
             bear: 'Ours',
             elk: 'Wapiti',
-            hawk: 'Faucon',
+            hawk: 'Buse',
             fox: 'Renard',
             salmon: 'Saumon',
             mountain: 'Montagne',
             forest: 'Forêt',
-            prarie: 'Prairies',
-            wetland: 'Marécages',
-            river: 'Rivière',
+            prarie: 'Prairie',
+            wetland: 'Marais',
+            river: 'Fleuve',
             tokens: 'Jetons',
-            landmarks: 'Repères',
+            landmarks: 'Paysages',
             reset: 'Réinitialiser',
+            feedback: 'Suggestions',
+            rules: 'Livre de règles (Anglais)',
+            thanks: 'Merci à',
+            dialog: {
+                reset: 'Réinitialiser les scores?',
+            },
+        };
+        var germanTranslation = {
+            player: 'Spieler',
+            bear: 'Bär',
+            elk: 'Hirsch',
+            hawk: 'Bussard',
+            fox: 'Fuchs',
+            salmon: 'Lachs',
+            mountain: 'Gebirge',
+            forest: 'Wald',
+            prarie: 'Prärie',
+            wetland: 'Feuchtgebiet',
+            river: 'Fluss',
+            tokens: 'Zapfen',
+            landmarks: 'Landmarks',
+            reset: 'Zurücksetzen',
+            feedback: 'Vorschläge',
+            rules: 'Regelbuch (Englisch)',
+            thanks: 'Danke an ',
+            dialog: {
+                reset: 'Punkte zurücksetzen?',
+            },
         };
         var turkishTranslation = {
             player: 'Oyuncu',
@@ -1213,6 +1248,12 @@
             tokens: 'Jetonlar',
             landmarks: 'Sınır taşı',
             reset: 'Sıfırla',
+            feedback: 'Geri bildirim',
+            rules: 'Kural Kitapçığı (İngilizce)',
+            thanks: 'Thanks to',
+            dialog: {
+                reset: 'Tüm tabloyu sıfırla?',
+            },
         };
 
         var translator = new Translator({
@@ -1224,6 +1265,7 @@
 
         translator.add('en', englishTranslation);
         translator.add('fr', frenchTranslation);
+        translator.add('de', germanTranslation);
         translator.add('tr', turkishTranslation);
 
         translator.translatePageTo();
