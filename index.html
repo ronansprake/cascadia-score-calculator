@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+    <!-- Translation -->
+    <script src="https://unpkg.com/@andreasremdt/simple-translator@latest/dist/umd/translator.min.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2533848-6"></script>
     <script>
@@ -69,9 +71,11 @@
       body[data-players="1"] .row, body[data-players="1"] .total-scores { justify-content: normal; gap: 40px; }
       body[data-players="3"] .total-score, body[data-players="4"] .total-score, body[data-players="5"] .total-score, body[data-players="6"] .total-score { width: 40px; font-size: 24px; }
       body[data-players="3"] .subtotals .total-score, body[data-players="4"] .subtotals .total-score, body[data-players="5"] .subtotals .total-score, body[data-players="6"] .subtotals .total-score { font-size: 20px; }
-			.reset { margin-top: 30px; }
-			.links { margin: 30px 0; text-align: center; font-size: 14px; }
-			.links a { color: var(--neutral-800); }
+      .reset { margin-top: 30px; }
+      .links, .language { margin: 30px 0; text-align: center; font-size: 14px; }
+      .links a { color: var(--neutral-800); }
+      .language label { position: absolute; left: -1000px; }
+      .language select { padding: 2px 10px; }
     </style>
   </head>
 
@@ -110,7 +114,7 @@
 
         <ul class="rows player-multi">
             <li class="row end">
-                <div class="row-label">Player</div>
+                <div class="row-label" data-i18n="player">Player</div>
                 <div class="initials player-1">
                     <label for="player-1-initials">Player 1 initials</label>
                     <input id="player-1-initials" type="text" value="" maxlength="2" />
@@ -140,7 +144,7 @@
 
         <ul class="rows">
             <li class="row js-row">
-                <h2 class="row-label">Bear</h2>
+                <h2 class="row-label" data-i18n="bear">Bear</h2>
                 <div class="counter player-1">
                     <label for="player-1-bear">Player 1</label>
                     <button class="js-decrement" data-row="1" data-player="1" tabindex="-1">&ndash;</button>
@@ -185,7 +189,7 @@
                 </div>
             </li>
             <li class="row js-row">
-                <h2 class="row-label">Elk</h2>
+                <h2 class="row-label" data-i18n="elk">Elk</h2>
                 <div class="counter player-1">
                     <label for="player-1-elk">Player 1</label>
                     <button class="js-decrement" data-row="2" data-player="1" tabindex="-1">&ndash;</button>
@@ -230,7 +234,7 @@
                 </div>
             </li>
             <li class="row js-row">
-                <h2 class="row-label">Hawk</h2>
+                <h2 class="row-label" data-i18n="hawk">Hawk</h2>
                 <div class="counter player-1">
                     <label for="player-1-hawk">Player 1</label>
                     <button class="js-decrement" data-row="3" data-player="1" tabindex="-1">&ndash;</button>
@@ -275,7 +279,7 @@
                 </div>
             </li>
             <li class="row js-row">
-                <h2 class="row-label player-1">Fox</h2>
+                <h2 class="row-label player-1" data-i18n="fox">Fox</h2>
                 <div class="counter">
                     <label for="player-1-fox">Player 1</label>
                     <button class="js-decrement" data-row="4" data-player="1" tabindex="-1">&ndash;</button>
@@ -320,7 +324,7 @@
                 </div>
             </li>
             <li class="row end js-row">
-                <h2 class="row-label player-1">Salmon</h2>
+                <h2 class="row-label player-1" data-i18n="salmon">Salmon</h2>
                 <div class="counter">
                     <label for="player-1-salmon">Player 1</label>
                     <button class="js-decrement" data-row="5" data-player="1" tabindex="-1">&ndash;</button>
@@ -376,7 +380,7 @@
         </div>
         <ul class="rows">
             <li class="row js-row">
-                <h2 class="row-label">Mountain</h2>
+                <h2 class="row-label" data-i18n="mountain">Mountain</h2>
                 <div class="counter player-1">
                     <label for="player-1-mountain">Player 1</label>
                     <button class="js-decrement" data-row="6" data-player="1" tabindex="-1">&ndash;</button>
@@ -439,7 +443,7 @@
                 </div>
             </li>
             <li class="row js-row">
-                <h2 class="row-label">Forest</h2>
+                <h2 class="row-label" data-i18n="forest">Forest</h2>
                 <div class="counter player-1">
                     <label for="player-1-forest">Player 1</label>
                     <button class="js-decrement" data-row="7" data-player="1" tabindex="-1">&ndash;</button>
@@ -502,7 +506,7 @@
                 </div>
             </li>
             <li class="row js-row">
-                <h2 class="row-label">Prarie</h2>
+                <h2 class="row-label" data-i18n="prarie">Prarie</h2>
                 <div class="counter player-1">
                     <label for="player-1-prarie">Player 1</label>
                     <button class="js-decrement" data-row="8" data-player="1" tabindex="-1">&ndash;</button>
@@ -565,7 +569,7 @@
                 </div>
             </li>
             <li class="row js-row">
-                <h2 class="row-label">Wetland</h2>
+                <h2 class="row-label" data-i18n="wetland">Wetland</h2>
                 <div class="counter player-1">
                     <label for="player-1-wetland">Player 1</label>
                     <button class="js-decrement" data-row="9" data-player="1" tabindex="-1">&ndash;</button>
@@ -628,7 +632,7 @@
                 </div>
             </li>
             <li class="row end js-row">
-                <h2 class="row-label">River</h2>
+                <h2 class="row-label" data-i18n="river">River</h2>
                 <div class="counter player-1">
                     <label for="player-1-river">Player 1</label>
                     <button class="js-decrement" data-row="10" data-player="1" tabindex="-1">&ndash;</button>
@@ -703,7 +707,7 @@
         </div>
         <ul class="rows">
             <li class="row end js-row">
-                <h2 class="row-label">Tokens</h2>
+                <h2 class="row-label" data-i18n="tokens">Tokens</h2>
                 <div class="counter player-1">
                     <label for="player-1-tokens">Player 1</label>
                     <button class="js-decrement" data-row="11" data-player="1" tabindex="-1">&ndash;</button>
@@ -750,7 +754,7 @@
         </ul>
         <ul class="rows">
             <li class="row end js-row">
-                <h2 class="row-label">Landmarks</h2>
+                <h2 class="row-label" data-i18n="landmarks">Landmarks</h2>
                 <div class="counter player-1">
                     <label for="player-1-landmarks">Player 1</label>
                     <button class="js-decrement" data-row="12" data-player="1" tabindex="-1">&ndash;</button>
@@ -804,11 +808,18 @@
             <div class="total-score player-5 js-total-score-player-5">0</div>
             <div class="total-score player-6 js-total-score-player-6">0</div>
         </div>
-        <button class="button reset js-reset">Reset scores</button>
+        <button class="button reset js-reset" data-i18n="reset">Reset scores</button>
     </div>
-				<p class="links">
-					<a href="https://ronansprake.co.uk/board-game-score-calculators#contact" target="_blank">Give feedback</a> | <a href="https://www.alderac.com/wp-content/uploads/2021/08/Cascadia-Rules.pdf" target="_blank">Official rules</a> | Thanks to <a href="https://github.com/josh-vin" target="_blank">Josh</a>
-				</p>
+	<p class="links">
+		<a href="https://ronansprake.co.uk/board-game-score-calculators#contact" target="_blank">Give feedback</a> | <a href="https://www.alderac.com/wp-content/uploads/2021/08/Cascadia-Rules.pdf" target="_blank">Official rules</a> | Thanks to <a href="https://github.com/josh-vin" target="_blank">Josh</a>
+	</p>
+    <div class="language">
+        <label for="language-select">Change language</label>
+        <select id="language-select">
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+        </select>
+    </div>
 
     <script>
         const body = document.querySelector("body");
@@ -855,6 +866,8 @@
 
         const elemIncrements = document.querySelectorAll('.js-increment');
         const elemDecrements = document.querySelectorAll('.js-decrement');
+
+        const elemLanguageSelector = document.getElementById('language-select');
 
         document.oncontextmenu = function () {
             return false;
@@ -1149,8 +1162,79 @@
             }
             e.stopPropagation();
         });
+
+        // Translations
+
+        var englishTranslation = {
+            player: 'Player',
+            bear: 'Bear',
+            elk: 'Elk',
+            hawk: 'Hawk',
+            fox: 'Fox',
+            salmon: 'Salmon',
+            mountain: 'Mountain',
+            forest: 'Forest',
+            prarie: 'Prarie',
+            wetland: 'Wetland',
+            river: 'River',
+            tokens: 'Tokens',
+            landmarks: 'Landmarks',
+            reset: 'Reset scores',
+        };
+        var frenchTranslation = {
+            player: 'Joueur',
+            bear: 'Ours',
+            elk: 'Wapiti',
+            hawk: 'Faucon',
+            fox: 'Renard',
+            salmon: 'Saumon',
+            mountain: 'Montagne',
+            forest: 'Forêt',
+            prarie: 'Prairies',
+            wetland: 'Marécages',
+            river: 'Rivière',
+            tokens: 'Jetons',
+            landmarks: 'Repères',
+            reset: 'Réinitialiser',
+            feedback: 'Commentaires',
+        };
+        var turkishTranslation = {
+            player: 'Player',
+            bear: 'Bear',
+            elk: 'Elk',
+            hawk: 'Hawk',
+            fox: 'Fox',
+            salmon: 'Salmon',
+            mountain: 'Mountain',
+            forest: 'Forest',
+            prarie: 'Prarie',
+            wetland: 'Wetland',
+            river: 'River',
+            tokens: 'Tokens',
+            landmarks: 'Landmarks',
+            reset: 'Reset scores',
+        };
+
+        var translator = new Translator({
+            defaultLanguage: "fr",
+            detectLanguage: true,
+            selector: "[data-i18n]",
+            registerGlobally: false,
+            persist: false,
+            persistKey: "preferred_language"
+        });
+
+        translator.add('en', englishTranslation);
+        translator.add('fr', frenchTranslation);
+
+        translator.translatePageTo();
+        elemLanguageSelector.value = translator.currentLanguage;
+            
+        elemLanguageSelector.addEventListener('change', (e) => {
+            var language = e.target.value;
+            translator.translatePageTo(language);
+        });
     </script>
 </body>
 
 </html>
-
