@@ -893,10 +893,12 @@
         });
 
         elemScores.forEach((elemScore) => {
-            elemScore.addEventListener('input', (e) => {
+            elemScore.addEventListener('change', (e) => {
                 if (!elemScore.value) {
                     elemScore.value = 0;
                 }
+            });
+            elemScore.addEventListener('input', (e) => {
                 if (elemScore.dataset.type == "habitat") {
                     applyBonusesToRow(elemScore.dataset.row);
                 }
@@ -1007,6 +1009,7 @@
             if (direction == 'increment') {
                 scoreInput.value = parseInt(scoreInput.value) + 1
             }
+            scoreInput.dispatchEvent(new Event('change'));
             scoreInput.dispatchEvent(new Event('input'));
             updateTotalScore();
         }
