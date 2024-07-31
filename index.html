@@ -1007,7 +1007,7 @@
             if (direction == 'increment') {
                 scoreInput.value = parseInt(scoreInput.value) + 1
             }
-            scoreInput.dispatchEvent(new Event('change'));
+            scoreInput.dispatchEvent(new Event('input'));
             updateTotalScore();
         }
 
