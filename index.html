@@ -61,9 +61,9 @@
       .players li input[type="radio"]:checked + label span { color: var(--neutral-800); }
       label { -webkit-tap-highlight-color: rgba(0,0,0,0); }
       .player-multi { margin: 0; padding-top: 10px; background-color: #F6F6F6; z-index: 1; }
-      body.fixed { padding-top: 110px; }
-      body.fixed .player-multi { position: fixed; top: 0; width: 100%; max-width: 400px; }
-      body.fixed .player-multi .row.end { margin-bottom: 0; }
+      body:not([data-players="1"]).fixed { padding-top: 110px; }
+      body:not([data-players="1"]).fixed .player-multi { position: fixed; top: 0; width: 100%; max-width: 400px; }
+      body:not([data-players="1"]).fixed .player-multi .row.end { margin-bottom: 0; }
       body[data-players="1"] .player-multi { display: none; }
       body[data-players="2"] .initials { margin: 0 40px; }
       body[data-players="3"] .counter button, body[data-players="4"] .counter button, body[data-players="5"] .counter button, body[data-players="6"] .counter button {display: none;}
@@ -875,10 +875,6 @@
 
         const elemLanguageSelector = document.getElementById('language-select');
 
-        document.oncontextmenu = function () {
-            return false;
-        }
-
         let scrollPos = window.scrollY
         const fixedHeader = document.querySelector('.js-player-multi')
         const fixedHeaderTop = fixedHeader.offsetTop
@@ -891,6 +887,10 @@
             if (scrollPos >= fixedHeaderTop) { fixPlayerInitials() }
             else { unfixPlayerInitials() }
         });
+
+        document.oncontextmenu = function () {
+            return false;
+        }
 
         // Switch player
         players.forEach((player) => {
