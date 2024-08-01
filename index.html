@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Cascadia score calculator</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content="A score calculator for the board game Cascadia, including scoring for 1 to 6 players">
     <link rel="shortcut icon" href="/images/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,12 +27,13 @@
       }
       * { font-family: 'Open Sans', sans-serif; font-weight: 600; color: var(--neutral-800); box-sizing: border-box; touch-action: manipulation; }
       body { background-color: #F6F6F6; margin: 0; padding: 40px 0; position: relative; }
-      .wrap { max-width: 440px; padding: 0 20px; margin: 0 auto; }
+      .wrap { max-width: 440px; min-width: 320px; padding: 0 20px; margin: 0 auto; }
       .hide { text-indent: -99em; position: absolute; left: -9999px; width: 0; height: 0; }
       .rows {padding: 0;}
       .row-label { font-size: 16px; width: 80px; }
       .counter, .initials, .score, .total-score { font-size: 32px; }
       .subtotals .total-score { font-size: 20px; }
+      .no-margin-top { margin-top: 0; }
       h1, .rows label { text-indent: -99em; position: absolute; width: 0; height: 0; }
       button { background: none; width: 40px; height: 40px; font-size: 24px; border: none; cursor: pointer; line-height: 38px; }
       .button { all: revert; border-radius: 4px; background: #FFF; color: var(--neutral-800); font-size: 16px; border: 1px solid var(--neutral-600); cursor: pointer; line-height: 18px; padding: 16px; width: 100%; }
@@ -50,9 +51,9 @@
       .subtotals { margin-top: -20px; padding-bottom: 0; }
       .players { border: 0; padding: 0; font-size: 14px; margin: 0; }
       .players legend { position: absolute; top: -999px; }
-      .players ul { overflow: hidden; position: relative; display: block; list-style: none; margin: 0 0 40px; padding: 0; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly; }
+      .players ul { overflow: hidden; position: relative; display: block; list-style: none; margin: 0 0 30px; padding: 0; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly; }
       .players li { width: 50%; }
-      .players label { border: 1px solid #DDD; border-right-color: #FFF; display: block; background: #FFF; color: #999; padding: 6px 10px; margin-bottom: 5px; cursor: pointer; transition: .2s background; position: relative; text-align: center; }
+      .players label { border: 1px solid #DDD; border-right-color: #FFF; display: block; background: #FFF; color: #999; line-height: 21px; padding: 6px 10px; margin: 0; cursor: pointer; transition: .2s background; position: relative; text-align: center; }
       .players span { color: #999; }
       .players li:first-child label { border-radius: 4px 0 0 4px; }
       .players li:last-child label { border-radius: 0 4px 4px 0; border-right-color: #DDD; }
@@ -60,9 +61,10 @@
       .players li input[type="radio"]:checked + label { border: 1px solid var(--neutral-800); background: #EEE; color: var(--neutral-800); }
       .players li input[type="radio"]:checked + label span { color: var(--neutral-800); }
       label { -webkit-tap-highlight-color: rgba(0,0,0,0); }
-      .player-multi { margin: 0; padding-top: 10px; background-color: #F6F6F6; z-index: 1; }
-      body:not([data-players="1"]).fixed { padding-top: 114px; }
-      body:not([data-players="1"]).fixed .player-multi { position: fixed; top: 0; width: 100%; max-width: 400px; }
+      .player-multi { margin: 0; padding-top: 20px; background-color: #F6F6F6; z-index: 1; }
+      body:not([data-players="1"]).fixed { padding-top: 120px; }
+      body:not([data-players="1"]).fixed .player-multi { position: fixed; top: 0; left: 0; width: 100%; }
+      body:not([data-players="1"]).fixed .player-multi .rows { max-width: 400px; padding: 0 20px; margin: 0 auto; }
       body:not([data-players="1"]).fixed .player-multi .row.end { margin-bottom: 0; }
       body[data-players="1"] .player-multi { display: none; }
       body[data-players="2"] .initials { margin: 0 40px; }
@@ -116,35 +118,38 @@
             </ul>
         </fieldset>
 
-        <ul class="rows player-multi js-player-multi">
-            <li class="row end">
-                <div class="row-label" data-i18n="player">Player</div>
-                <div class="initials player-1">
-                    <label for="player-1-initials">Player 1 initials</label>
-                    <input id="player-1-initials" type="text" value="" maxlength="2" />
-                </div>
-                <div class="initials player-2">
-                    <label for="player-2-initials">Player 2 initials</label>
-                    <input id="player-2-initials" type="text" value="" maxlength="2" />
-                </div>
-                <div class="initials player-3">
-                    <label for="player-3-initials">Player 3 initials</label>
-                    <input id="player-3-initials" type="text" value="" maxlength="2" />
-                </div>
-                <div class="initials player-4">
-                    <label for="player-4-initials">Player 4 initials</label>
-                    <input id="player-4-initials" type="text" value="" maxlength="2" />
-                </div>
-                <div class="initials player-5">
-                    <label for="player-5-initials">Player 5 initials</label>
-                    <input id="player-5-initials" type="text" value="" maxlength="2" />
-                </div>
-                <div class="initials player-6">
-                    <label for="player-6-initials">Player 6 initials</label>
-                    <input id="player-6-initials" type="text" value="" maxlength="2" />
-                </div>
-            </li>
-        </ul>
+        <div class="player-multi js-player-multi">
+            <h2 class="group-label hide">Player initials</h2>
+            <ul class="rows no-margin-top">
+                <li class="row end">
+                    <div class="row-label" data-i18n="player">Player</div>
+                    <div class="initials player-1">
+                        <label for="player-1-initials">Player 1 initials</label>
+                        <input id="player-1-initials" type="text" value="" maxlength="2" />
+                    </div>
+                    <div class="initials player-2">
+                        <label for="player-2-initials">Player 2 initials</label>
+                        <input id="player-2-initials" type="text" value="" maxlength="2" />
+                    </div>
+                    <div class="initials player-3">
+                        <label for="player-3-initials">Player 3 initials</label>
+                        <input id="player-3-initials" type="text" value="" maxlength="2" />
+                    </div>
+                    <div class="initials player-4">
+                        <label for="player-4-initials">Player 4 initials</label>
+                        <input id="player-4-initials" type="text" value="" maxlength="2" />
+                    </div>
+                    <div class="initials player-5">
+                        <label for="player-5-initials">Player 5 initials</label>
+                        <input id="player-5-initials" type="text" value="" maxlength="2" />
+                    </div>
+                    <div class="initials player-6">
+                        <label for="player-6-initials">Player 6 initials</label>
+                        <input id="player-6-initials" type="text" value="" maxlength="2" />
+                    </div>
+                </li>
+            </ul>
+        </div>
 
         <ul class="rows">
             <li class="row js-row">
