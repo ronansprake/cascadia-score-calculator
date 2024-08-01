@@ -899,10 +899,12 @@
                 }
             });
             elemScore.addEventListener('input', (e) => {
-                if (elemScore.dataset.type == "habitat") {
-                    applyBonusesToRow(elemScore.dataset.row);
-                }
-                updateTotalScore();
+	        if (elemScore.value) {
+                    if (elemScore.dataset.type == "habitat") {
+                        applyBonusesToRow(elemScore.dataset.row);
+                    }
+                    updateTotalScore();
+		}
             });
             elemScore.addEventListener('focus', (e) => {
                 elemScore.select();
@@ -958,6 +960,10 @@
                 // Calculate bonus scores
                 var maxScore = players[0].score; // Maximum score
                 var tiedPlayers = players.filter(player => player.score === maxScore); // Find tied players
+
+                if (maxScore == 0) {
+                    return;
+                }
 
                 // FIRST PLACE POINTS LOGIC
                 if (tiedPlayers.length === 1) { // If there's only one player with the top score, they get 3 points
