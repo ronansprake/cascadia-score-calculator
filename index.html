@@ -919,18 +919,12 @@
                 if (!elemScore.value) {
                     elemScore.value = 0;
                 }
+            });
+            elemScore.addEventListener('input', (e) => {
                 if (elemScore.dataset.type == "habitat") {
                     applyBonusesToRow(elemScore.dataset.row);
                 }
                 updateTotalScore();
-            });
-            elemScore.addEventListener('input', (e) => {
-                if (elemScore.value) {
-                    if (elemScore.dataset.type == "habitat") {
-                        applyBonusesToRow(elemScore.dataset.row);
-                    }
-                    updateTotalScore();
-                }
             });
             elemScore.addEventListener('focus', (e) => {
                 elemScore.select();
@@ -974,7 +968,7 @@
                 for (var i = 0; i < body.dataset.players; i++) {
                     var player = {
                         number: i + 1, // Player number
-                        score: parseInt(elemScores[i].value), // Player score
+                        score: parseInt(Number.isInteger(parseInt(elemScores[i].value)) ? elemScores[i].value : '0'), // Player score
                         bonus: 0 // Player bonus score, initialized to 0
                     };
                     players.push(player);
@@ -1083,51 +1077,51 @@
             var subtotalHabitatsPlayer6 = 0;
             elemScoresPlayer1.forEach((elemScore) => {
                 if (elemScore.dataset.type == 'wildlife') {
-                    subtotalWildlifePlayer1 += parseInt(elemScore.value);
+                    subtotalWildlifePlayer1 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
                 } else if (elemScore.dataset.type == 'habitat') {
-                    subtotalHabitatsPlayer1 += parseInt(elemScore.value);
+                    subtotalHabitatsPlayer1 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
                 }
-                scorePlayer1 += parseInt(elemScore.value);
+                scorePlayer1 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
             });
             elemScoresPlayer2.forEach((elemScore) => {
                 if (elemScore.dataset.type == 'wildlife') {
-                    subtotalWildlifePlayer2 += parseInt(elemScore.value);
+                    subtotalWildlifePlayer2 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
                 } else if (elemScore.dataset.type == 'habitat') {
-                    subtotalHabitatsPlayer2 += parseInt(elemScore.value);
+                    subtotalHabitatsPlayer2 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
                 }
-                scorePlayer2 += parseInt(elemScore.value);
+                scorePlayer2 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
             });
             elemScoresPlayer3.forEach((elemScore) => {
                 if (elemScore.dataset.type == 'wildlife') {
-                    subtotalWildlifePlayer3 += parseInt(elemScore.value);
+                    subtotalWildlifePlayer3 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
                 } else if (elemScore.dataset.type == 'habitat') {
-                    subtotalHabitatsPlayer3 += parseInt(elemScore.value);
+                    subtotalHabitatsPlayer3 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
                 }
-                scorePlayer3 += parseInt(elemScore.value);
+                scorePlayer3 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
             });
             elemScoresPlayer4.forEach((elemScore) => {
                 if (elemScore.dataset.type == 'wildlife') {
-                    subtotalWildlifePlayer4 += parseInt(elemScore.value);
+                    subtotalWildlifePlayer4 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
                 } else if (elemScore.dataset.type == 'habitat') {
-                    subtotalHabitatsPlayer4 += parseInt(elemScore.value);
+                    subtotalHabitatsPlayer4 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
                 }
-                scorePlayer4 += parseInt(elemScore.value);
+                scorePlayer4 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
             });
             elemScoresPlayer5.forEach((elemScore) => {
                 if (elemScore.dataset.type == 'wildlife') {
-                    subtotalWildlifePlayer5 += parseInt(elemScore.value);
+                    subtotalWildlifePlayer5 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
                 } else if (elemScore.dataset.type == 'habitat') {
-                    subtotalHabitatsPlayer5 += parseInt(elemScore.value);
+                    subtotalHabitatsPlayer5 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
                 }
-                scorePlayer5 += parseInt(elemScore.value);
+                scorePlayer5 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
             });
             elemScoresPlayer6.forEach((elemScore) => {
                 if (elemScore.dataset.type == 'wildlife') {
-                    subtotalWildlifePlayer6 += parseInt(elemScore.value);
+                    subtotalWildlifePlayer6 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
                 } else if (elemScore.dataset.type == 'habitat') {
-                    subtotalHabitatsPlayer6 += parseInt(elemScore.value);
+                    subtotalHabitatsPlayer6 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
                 }
-                scorePlayer6 += parseInt(elemScore.value);
+                scorePlayer6 += parseInt(Number.isInteger(parseInt(elemScore.value)) ? elemScore.value : '0');
             });
             elemBonusesPlayer1.forEach((elemBonus) => {
                 if (elemBonus.innerHTML) {
