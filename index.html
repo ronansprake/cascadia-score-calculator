@@ -962,6 +962,7 @@
                 var tiedPlayers = players.filter(player => player.score === maxScore); // Find tied players
 
                 if (maxScore == 0) {
+                    updateBonusValues(row, ['']);
                     return;
                 }
 
