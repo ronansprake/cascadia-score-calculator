@@ -64,7 +64,7 @@
       .player-multi { margin: 0; padding-top: 20px; background-color: #F6F6F6; z-index: 1; }
       body:not([data-players="1"]).fixed { padding-top: 120px; }
       body:not([data-players="1"]).fixed .player-multi { position: fixed; top: 0; left: 0; width: 100%; }
-      body:not([data-players="1"]).fixed .player-multi .rows { max-width: 400px; padding: 0 20px; margin: 0 auto; }
+      body:not([data-players="1"]).fixed .player-multi .rows { max-width: 440px; min-width: 320px; padding: 0 20px; margin: 0 auto; }
       body:not([data-players="1"]).fixed .player-multi .row.end { margin-bottom: 0; }
       body[data-players="1"] .player-multi { display: none; }
       body[data-players="2"] .initials { margin: 0 40px; }
@@ -919,6 +919,10 @@
                 if (!elemScore.value) {
                     elemScore.value = 0;
                 }
+                if (elemScore.dataset.type == "habitat") {
+                    applyBonusesToRow(elemScore.dataset.row);
+                }
+                updateTotalScore();
             });
             elemScore.addEventListener('input', (e) => {
                 if (elemScore.value) {
