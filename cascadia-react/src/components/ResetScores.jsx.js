@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import translator from "./translator";
 
 export default function ResetScores({resetScores}) {
 
   const handleOnClick = (text) => {
-    resetScores();
+    let result = window.confirm(translator.translateForKey('dialog.reset', translator.currentLanguage));
+    if (result === true) {
+      resetScores();
+    }
   };
 
   return (

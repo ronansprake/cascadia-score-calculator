@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 export default function PlayerInitialsDisplay({currentPlayerCount}) {
   const rows = [];
   for (var i = 1; i <= currentPlayerCount; i++) {
@@ -11,7 +9,7 @@ export default function PlayerInitialsDisplay({currentPlayerCount}) {
         <h2 className="group-label hide">Player initials</h2>
         <ul className="rows no-margin-top">
           <li className="row end">
-            <div className="row-label">Player</div>
+            <div className="row-label"data-i18n="player">Player</div>
             { rows.map( (text) => <PlayerInitialControl key={text} player={text} /> ) }
           </li>
         </ul>

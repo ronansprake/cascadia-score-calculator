@@ -20,6 +20,7 @@ import Translator from "@andreasremdt/simple-translator";
         feedback: 'Give feedback',
         rules: 'Official rules',
         thanks: 'Thanks to',
+        changeLanguage: 'Change language',
         dialog: {
             reset: 'Reset your score?',
         },
@@ -42,6 +43,7 @@ import Translator from "@andreasremdt/simple-translator";
         feedback: 'Suggestions',
         rules: 'Livre de règles (Anglais)',
         thanks: 'Merci à',
+        changeLanguage: 'Changer de langue',
         dialog: {
             reset: 'Réinitialiser les scores?',
         },
@@ -64,6 +66,7 @@ import Translator from "@andreasremdt/simple-translator";
         feedback: 'Vorschläge',
         rules: 'Regelbuch (Englisch)',
         thanks: 'Danke an ',
+        changeLanguage: 'Sprache ändern',
         dialog: {
             reset: 'Punkte zurücksetzen?',
         },
@@ -82,12 +85,13 @@ import Translator from "@andreasremdt/simple-translator";
         river: 'Rzeki',
         tokens: 'Żetony natury',
         landmarks: 'Pomniki przyrody',
-        reset: 'Reset scores',
-        feedback: 'Give feedback',
-        rules: 'Official rules',
-        thanks: 'Thanks to',
+        reset: 'Zresetuj wyniki',
+        feedback: 'Uwagi',
+        rules: 'Regulamin (angielski)',
+        thanks: 'Dzięki',
+        changeLanguage: 'Zmień język',
         dialog: {
-            reset: 'Reset your score?',
+            reset: 'Zresetować wyniki??',
         },
     };
     var turkishTranslation = {
@@ -107,31 +111,24 @@ import Translator from "@andreasremdt/simple-translator";
         reset: 'Sıfırla',
         feedback: 'Geri bildirim',
         rules: 'Kural Kitapçığı (İngilizce)',
-        thanks: 'Thanks to',
+        thanks: 'Teşekkürler',
+        changeLanguage: 'Dili değiştir',
         dialog: {
             reset: 'Tüm tabloyu sıfırla?',
         },
     };
+// eslint-disable-next-line
+var translator = new Translator({
+  detectLanguage: true,
+  selector: "[data-i18n]",
+  persist: true,
+  persistKey: "preferred_language"
+});
 
-    var translator = new Translator({
-        detectLanguage: true,
-        selector: "[data-i18n]",
-        persist: true,
-        persistKey: "preferred_language"
-    });
-
-    translator.add('en', englishTranslation);
-    translator.add('fr', frenchTranslation);
-    translator.add('de', germanTranslation);
-    translator.add('pl', polishTranslation);
-    translator.add('tr', turkishTranslation);
-
-    translator.translatePageTo();
-
-    // const elemLanguageSelector = document.getElementById('language-select');
-    // elemLanguageSelector.value = translator.currentLanguage;
-
-    // elemLanguageSelector.addEventListener('change', (e) => {
-    // var language = e.target.value;
-    // translator.translatePageTo(language);
-    // });
+translator.add('en', englishTranslation);
+translator.add('fr', frenchTranslation);
+translator.add('de', germanTranslation);
+translator.add('pl', polishTranslation);
+translator.add('tr', turkishTranslation);
+    
+export default translator;
