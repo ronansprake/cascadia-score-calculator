@@ -5,8 +5,6 @@ export default function PlayerCountDisplay({currentPlayerCount, setCurrentPlayer
   }
   function handleOnClick(text) {
     setCurrentPlayerCount(text);
-    window.console.log(text);
-    window.console.log(currentPlayerCount);
     setBodyData(text);
     if (currentPlayerCount === 1 || text === 1) {
       resetScores();
