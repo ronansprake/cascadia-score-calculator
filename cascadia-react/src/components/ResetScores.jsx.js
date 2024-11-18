@@ -1,9 +1,11 @@
-import translator from "./translator";
+import { useTranslation } from 'react-i18next';
 
 export default function ResetScores({resetScores}) {
 
+  const { t } = useTranslation();
+
   const handleOnClick = (text) => {
-    let result = window.confirm(translator.translateForKey('dialog.reset', translator.currentLanguage));
+    let result = window.confirm(t('Reset your score?'));
     if (result === true) {
       resetScores();
     }
@@ -11,7 +13,7 @@ export default function ResetScores({resetScores}) {
 
   return (
     <>
-      <button onClick={() => { handleOnClick() }} className="button reset" data-i18n="reset">Reset scores</button>
+      <button onClick={() => { handleOnClick() }} className="button reset" data-i18n="reset">{t('Reset scores')}</button>
     </>
   );
 }

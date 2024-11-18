@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import PlayerCountDisplay from './components/PlayerCountDisplay.jsx';
 import PlayerInitialsDisplay from './components/PlayerInitialsDisplay.jsx';
 import ScoringRow from './components/ScoringRow.jsx';
@@ -9,6 +10,7 @@ import ResetScores from './components/ResetScores.jsx';
 import FixedHeader from './components/FixedHeader.js';
 import TranslationControl from './components/TranslationControl.jsx';
 import './App.scss';
+import './components/i18n';
 
 function App() {
 
@@ -16,6 +18,8 @@ function App() {
   useEffect(() => {
     FixedHeader();
   });
+
+  const { t } = useTranslation();
 
   // Define number of scoring rows per section, so blank arrays are correct length
   const wildlifeScoreRows = 5;
@@ -194,7 +198,7 @@ function App() {
         <TotalsRow currentPlayerCount={currentPlayerCount} getTotalScoreByPlayer={getTotalScoreByPlayer} />
       </div>
       <ResetScores resetScores={resetScores} />
-      <p className="links"><a href="https://ronansprake.co.uk/board-game-score-calculators#contact" rel="noreferrer" target="_blank" data-i18n="feedback">Give feedback</a> | <a href="https://www.alderac.com/wp-content/uploads/2021/08/Cascadia-Rules.pdf" rel="noreferrer" target="_blank" data-i18n="rules">Official rules</a> | <span data-i18n="thanks">Thanks to</span> <a href="https://github.com/josh-vin" rel="noreferrer" target="_blank">Josh</a></p>
+      <p className="links"><a href="https://ronansprake.co.uk/board-game-score-calculators#contact" rel="noreferrer" target="_blank" data-i18n="feedback">{t('Give feedback')}</a> | <a href="https://www.alderac.com/wp-content/uploads/2021/08/Cascadia-Rules.pdf" rel="noreferrer" target="_blank" data-i18n="rules">{t('Official rules')}</a> | <span data-i18n="thanks">{t('Thanks to')}</span> <a href="https://github.com/josh-vin" rel="noreferrer" target="_blank">Josh</a></p>
       <TranslationControl />
     </div>
   );

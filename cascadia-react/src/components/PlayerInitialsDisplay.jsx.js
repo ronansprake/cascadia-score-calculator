@@ -1,4 +1,8 @@
+import { useTranslation } from 'react-i18next';
+
 export default function PlayerInitialsDisplay({currentPlayerCount}) {
+
+  const { t } = useTranslation();
   const rows = [];
   for (var i = 1; i <= currentPlayerCount; i++) {
     rows.push(i);
@@ -9,7 +13,7 @@ export default function PlayerInitialsDisplay({currentPlayerCount}) {
         <h2 className="group-label hide">Player initials</h2>
         <ul className="rows no-margin-top">
           <li className="row end">
-            <div className="row-label"data-i18n="player">Player</div>
+            <div className="row-label"data-i18n="player">{t('Player')}</div>
             { rows.map( (text) => <PlayerInitialControl key={text} player={text} /> ) }
           </li>
         </ul>
